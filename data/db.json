@@ -1,791 +1,305 @@
 {
   "categories": [
     {
-      "id": "cat-1",
-      "name": "AI & 자율 에이전트",
-      "slug": "ai-agents",
-      "description": "차세대 자율 AI 에이전트, MCP 및 워크플로우 자동화",
+      "id": "cat-health",
+      "name": "건강 & 웰니스",
+      "slug": "health-wellness",
+      "description": "저속노화(슬로우에이징), 혈당 관리, 수면 최적화 및 맞춤 영양 가이드",
       "status": "ACTIVE",
-      "created_at": "2026-08-26T12:01:24.648Z"
+      "created_at": "2026-08-26T12:00:00.000Z"
     },
     {
-      "id": "cat-2",
-      "name": "생산성 & SaaS 테크",
-      "slug": "tech-saas",
-      "description": "최신 SaaS 트렌드, 개발자 도구 및 생산성 혁신",
+      "id": "cat-1",
+      "name": "AI & 생산성 테크",
+      "slug": "ai-tech",
+      "description": "업무 자동화, 차세대 AI 도구 및 스마트 라이프스타일",
       "status": "ACTIVE",
       "created_at": "2026-08-26T12:01:24.648Z"
     },
     {
       "id": "cat-3",
-      "name": "디지털 마케팅 & SEO",
+      "name": "디지털 마케팅 & 수익화",
       "slug": "marketing-seo",
-      "description": "검색 최적화, AEO 및 블로그 수익화 전략",
+      "description": "검색 최적화 및 블로그 트래픽 수익화 전략",
       "status": "ACTIVE",
       "created_at": "2026-08-26T12:01:24.648Z"
     }
   ],
   "trends": [
     {
-      "title": "Perplexity & AI 검색 엔진 대상 Citation 인용 최적화 가이드",
-      "description": "기존 구글 백링크 중심 SEO에서 벗어나 LLM이 답변 생성 시 신뢰할 수 있는 출처로 채택하도록 구조화된 데이터를 제공하는 새로운 방법론.",
-      "category_name": "디지털 마케팅 & SEO",
-      "source_url": "https://searchengineland.com",
-      "source_name": "Search Marketing Daily",
-      "published_at": "2026-08-26T12:07:41.513Z",
-      "collected_at": "2026-08-26T12:07:41.513Z",
-      "trend_score": 94,
-      "search_growth": 95,
-      "search_volume": 84,
-      "competition_score": 40,
-      "commercial_score": 92,
-      "evergreen_score": 86,
-      "social_score": 90,
-      "status": "SELECTED",
-      "id": "QodeaIQ00x9BvyvLw_f-f",
-      "opportunity_score": 87.3,
-      "created_at": "2026-08-26T12:07:41.513Z"
-    },
-    {
-      "title": "Next.js 15 & React 19 서버 컴포넌트 마이그레이션 모범 사례",
-      "description": "Async Request APIs, Partial Prerendering(PPR) 및 Server Actions 최적화를 통한 웹 퍼포먼스 및 Core Web Vitals 개선 사례 분석.",
-      "category_name": "생산성 & SaaS 테크",
-      "source_url": "https://nextjs.org/blog",
-      "source_name": "Vercel Next.js Team",
-      "published_at": "2026-08-26T12:07:41.513Z",
-      "collected_at": "2026-08-26T12:07:41.513Z",
-      "trend_score": 85,
-      "search_growth": 78,
-      "search_volume": 88,
-      "competition_score": 55,
-      "commercial_score": 75,
-      "evergreen_score": 92,
-      "social_score": 70,
-      "status": "DISCOVERED",
-      "id": "bK3_ouG1fFBOTyYUBfZ6t",
-      "opportunity_score": 77.6,
-      "created_at": "2026-08-26T12:07:41.513Z"
-    },
-    {
-      "title": "AI 에이전트 결제 표준(x402 & Agentic Commerce)의 시작",
-      "description": "인간의 직접 결제 대신 AI 에이전트가 API 및 토큰 기반으로 상품을 비교 구매하는 자율 상거래 표준 프로토콜이 공개되었습니다.",
-      "category_name": "AI & 자율 에이전트",
-      "source_url": "https://coinbase.com/developer-platform",
-      "source_name": "Agentic Commerce Protocol",
-      "published_at": "2026-08-26T12:07:41.513Z",
-      "collected_at": "2026-08-26T12:07:41.513Z",
-      "trend_score": 92,
-      "search_growth": 89,
-      "search_volume": 79,
-      "competition_score": 25,
-      "commercial_score": 98,
-      "evergreen_score": 88,
-      "social_score": 86,
-      "status": "DISCOVERED",
-      "id": "gkAO7OqMEfH1WMAzzpU18",
-      "opportunity_score": 87.8,
-      "created_at": "2026-08-26T12:07:41.513Z"
-    },
-    {
-      "title": "소형 온디바이스 SLM 모델과 웹 브라우저 내 로컬 AI 혁신",
-      "description": "WebGPU와 WebAssembly를 활용해 서버 비용 없이 브라우저 내에서 직접 구동되는 초경량 언어 모델(Small Language Model) 생태계가 급팽창하고 있습니다.",
-      "category_name": "생산성 & SaaS 테크",
-      "source_url": "https://web.dev/explore/ai",
-      "source_name": "Google Web Developers",
-      "published_at": "2026-08-26T12:07:41.513Z",
-      "collected_at": "2026-08-26T12:07:41.513Z",
-      "trend_score": 88,
-      "search_growth": 82,
-      "search_volume": 75,
-      "competition_score": 38,
-      "commercial_score": 84,
-      "evergreen_score": 90,
-      "social_score": 80,
-      "status": "DISCOVERED",
-      "id": "de_0oEuTtdfLsxVHMRs1u",
-      "opportunity_score": 81,
-      "created_at": "2026-08-26T12:07:41.513Z"
-    },
-    {
-      "title": "Claude 3.7 Sonnet & 하이브리드 추론 모델의 실전 업무 자동화",
-      "description": "즉각적인 답변과 심층 추론(Thinking)을 결합한 하이브리드 AI 모델의 도입으로 복잡한 코드 리팩토링 및 전략 기획이 자동화되고 있습니다.",
-      "category_name": "AI & 자율 에이전트",
-      "source_url": "https://anthropic.com/news/claude-3-7-sonnet",
-      "source_name": "Anthropic Official Announcement",
-      "published_at": "2026-08-26T12:07:41.513Z",
-      "collected_at": "2026-08-26T12:07:41.513Z",
+      "id": "trend-health-1",
+      "title": "저속노화(Slow Aging) 식단과 혈당 스파이크 방지 가이드",
+      "description": "정제 탄수화물을 줄이고 통곡물과 채소 위주의 식단으로 혈당 변동성을 줄여 신체 활력과 노화 속도를 늦추는 라이프스타일이 20~40대 사이에서 급확산 중입니다.",
+      "category_name": "건강 & 웰니스",
+      "source_url": "https://health.harvard.edu/staying-healthy",
+      "source_name": "Harvard Health Publishing",
+      "published_at": "2026-08-26T21:00:00.000Z",
+      "collected_at": "2026-08-26T21:00:00.000Z",
       "trend_score": 98,
-      "search_growth": 96,
-      "search_volume": 92,
-      "competition_score": 30,
-      "commercial_score": 95,
-      "evergreen_score": 85,
-      "social_score": 94,
+      "search_growth": 97,
+      "search_volume": 95,
+      "competition_score": 28,
+      "commercial_score": 94,
+      "evergreen_score": 96,
+      "social_score": 95,
+      "opportunity_score": 94.6,
       "status": "SELECTED",
-      "id": "EiadzT6fGcRqNQwLCs4HX",
-      "opportunity_score": 90.9,
-      "created_at": "2026-08-26T12:07:41.513Z"
+      "created_at": "2026-08-26T21:00:00.000Z"
     },
     {
-      "id": "trend-1",
-      "title": "AI 에이전트 워크플로우 자동화 및 MCP 프로토콜 급부상",
-      "description": "Model Context Protocol(MCP)을 활용한 로컬 도구 연동 및 다중 에이전트 오케스트레이션이 기업 업무 환경을 재편하고 있습니다.",
-      "category_id": "cat-1",
-      "category_name": "AI & 자율 에이전트",
-      "source_url": "https://modelcontextprotocol.io",
-      "source_name": "Anthropic Tech Whitepaper",
-      "published_at": "2026-08-26T12:01:24.648Z",
-      "collected_at": "2026-08-26T12:01:24.648Z",
-      "trend_score": 96,
+      "id": "trend-health-2",
+      "title": "수면의 질을 200% 높이는 마그네슘 형태별(글리시네이트/트레온산) 복용법",
+      "description": "단순 멜라토닌 대신 뇌 장벽을 통과하는 마그네슘 트레온산염 및 흡수율 높은 글리시네이트를 활용한 렘수면 및 딥슬립 최적화 요법.",
+      "category_name": "건강 & 웰니스",
+      "source_url": "https://nih.gov/sleep-research",
+      "source_name": "National Institutes of Health (NIH)",
+      "published_at": "2026-08-26T21:00:00.000Z",
+      "collected_at": "2026-08-26T21:00:00.000Z",
+      "trend_score": 95,
       "search_growth": 92,
-      "search_volume": 85,
+      "search_volume": 89,
+      "competition_score": 32,
+      "commercial_score": 96,
+      "evergreen_score": 94,
+      "social_score": 91,
+      "opportunity_score": 92.1,
+      "status": "SELECTED",
+      "created_at": "2026-08-26T21:00:00.000Z"
+    },
+    {
+      "id": "trend-health-3",
+      "title": "간헐적 단식(16:8)과 오토파지(자가포식) 활성화 실전 루틴",
+      "description": "공복 16시간 동안 손상된 세포가 스스로 정화되는 오토파지 메커니즘을 극대화하고 근손실 없이 체지방을 감량하는 과학적 식사 타이밍.",
+      "category_name": "건강 & 웰니스",
+      "source_url": "https://mayoclinic.org/intermittent-fasting",
+      "source_name": "Mayo Clinic Health Insights",
+      "published_at": "2026-08-26T21:00:00.000Z",
+      "collected_at": "2026-08-26T21:00:00.000Z",
+      "trend_score": 93,
+      "search_growth": 88,
+      "search_volume": 94,
       "competition_score": 35,
       "commercial_score": 90,
-      "evergreen_score": 88,
-      "social_score": 82,
-      "opportunity_score": 93.4,
-      "status": "SELECTED",
-      "created_at": "2026-08-26T11:01:24.648Z"
-    },
-    {
-      "id": "trend-2",
-      "title": "Google AI Overviews와 블로그 검색 유입의 변화",
-      "description": "구글의 생성형 검색 결과(SGE/AIO) 도입으로 기존 단순 정보성 키워드의 CTR이 감소하고 심층 비교 분석 및 인용 중심 콘텐츠가 주목받고 있습니다.",
-      "category_id": "cat-3",
-      "category_name": "디지털 마케팅 & SEO",
-      "source_url": "https://searchengineland.com",
-      "source_name": "Search Engine Land",
-      "published_at": "2026-08-26T12:01:24.648Z",
-      "collected_at": "2026-08-26T12:01:24.648Z",
-      "trend_score": 89,
-      "search_growth": 84,
-      "search_volume": 78,
-      "competition_score": 45,
-      "commercial_score": 85,
-      "evergreen_score": 82,
-      "social_score": 75,
-      "opportunity_score": 88.2,
-      "status": "SELECTED",
-      "created_at": "2026-08-26T10:01:24.648Z"
-    },
-    {
-      "id": "trend-3",
-      "title": "차세대 로컬 오픈소스 LLM(DeepSeek / Llama 3.3) 기업 도입 가속화",
-      "description": "클라우드 비용 절감과 데이터 프라이버시를 위한 온프레미스 경량 고성능 LLM 모델 구축 사례가 급증하고 있습니다.",
-      "category_id": "cat-1",
-      "category_name": "AI & 자율 에이전트",
-      "source_url": "https://huggingface.co",
-      "source_name": "Hugging Face Research",
-      "published_at": "2026-08-26T12:01:24.648Z",
-      "collected_at": "2026-08-26T12:01:24.648Z",
-      "trend_score": 91,
-      "search_growth": 88,
-      "search_volume": 80,
-      "competition_score": 50,
-      "commercial_score": 82,
-      "evergreen_score": 85,
+      "evergreen_score": 98,
       "social_score": 89,
-      "opportunity_score": 86.8,
-      "status": "DISCOVERED",
-      "created_at": "2026-08-26T09:01:24.648Z"
+      "opportunity_score": 90.8,
+      "status": "SELECTED",
+      "created_at": "2026-08-26T21:00:00.000Z"
     }
   ],
   "topics": [
     {
-      "id": "3NFMtHHilfIZSVh5ZlIyz",
-      "trend_id": "trend-1",
-      "title": "AI 에이전트 워크플로우 자동화 및 MCP 프로토콜 급부상: 실무자를 위한 완벽 가이드",
-      "primary_keyword": "AI 기술 도입",
+      "id": "topic-health-1",
+      "trend_id": "trend-health-1",
+      "title": "저속노화 식단 7일 플랜: 혈당 스파이크 막고 활력을 되찾는 실전 밥상 가이드",
+      "primary_keyword": "저속노화 식단",
       "secondary_keywords": [
-        "AI 생산성",
-        "업무 자동화",
-        "ROI 분석"
+        "혈당 스파이크 방지",
+        "슬로우 에이징 식단표",
+        "저속노화 밥상",
+        "혈당 다이어트"
       ],
-      "search_intent": "실무 가이드 및 비교",
-      "content_type": "EXPLAINER",
-      "estimated_traffic": 11000,
+      "search_intent": "실생활 식단표 및 실천 가이드 (How-To + Explainer)",
+      "content_type": "HOW_TO",
+      "estimated_traffic": 28500,
       "competition": "LOW",
+      "commercial_value": 94,
+      "evergreen_score": 98,
+      "opportunity_score": 96.2,
+      "why_this_topic": "최근 30일간 검색량이 240% 급증하였으며, 복잡한 의학 용어 대신 당장 오늘 저녁부터 따라 할 수 있는 7일 식단표와 장보기 목록을 제공하는 글의 체류 시간과 공유율이 압도적입니다.",
+      "recommended_length": 2500,
+      "status": "APPROVED",
+      "created_at": "2026-08-26T21:00:00.000Z"
+    },
+    {
+      "id": "topic-health-2",
+      "trend_id": "trend-health-2",
+      "title": "불면증과 피로를 끝내는 마그네슘 추천: 글리시네이트 vs 트레온산 vs 구연산 완벽 비교",
+      "primary_keyword": "마그네슘 추천 비교",
+      "secondary_keywords": [
+        "수면 마그네슘",
+        "마그네슘 글리시네이트",
+        "마그네슘 트레온산",
+        "영양제 복용시간"
+      ],
+      "search_intent": "구매 및 성분 비교 가이드 (Buying Guide + Comparison)",
+      "content_type": "BUYING_GUIDE",
+      "estimated_traffic": 21000,
+      "competition": "LOW",
+      "commercial_value": 98,
+      "evergreen_score": 96,
+      "opportunity_score": 95.1,
+      "why_this_topic": "아이허브 및 건강기능식품 구매 전환율(제휴/광고 RPM)이 가장 높은 주제 중 하나로, 형태별 흡수율과 부작용 차이를 쉽게 정리해주면 높은 수익성을 확보할 수 있습니다.",
+      "recommended_length": 2400,
+      "status": "PROPOSED",
+      "created_at": "2026-08-26T21:00:00.000Z"
+    },
+    {
+      "id": "topic-health-3",
+      "trend_id": "trend-health-3",
+      "title": "간헐적 단식 16:8 시작 전 필수 체크리스트: 오토파지 활성화와 커피·영양제 섭취 기준",
+      "primary_keyword": "간헐적 단식 16 8 방법",
+      "secondary_keywords": [
+        "간헐적 단식 커피",
+        "오토파지 효과",
+        "간헐적 단식 식단",
+        "공복 영양제"
+      ],
+      "search_intent": "실전 가이드 및 FAQ 해결 (Explainer + FAQ)",
+      "content_type": "EXPLAINER",
+      "estimated_traffic": 34000,
+      "competition": "MEDIUM",
       "commercial_value": 90,
-      "evergreen_score": 88,
-      "opportunity_score": 93.5,
-      "why_this_topic": "최근 30일 검색 관심도가 폭발적으로 증가했으며 실전 가이드 희소성이 높습니다.",
+      "evergreen_score": 99,
+      "opportunity_score": 92.8,
+      "why_this_topic": "검색량이 사계절 내내 꾸준한 대표적 에버그린 키워드로, '단식 중 아메리카노나 영양제 먹어도 되나요?' 같은 검색자의 핵심 궁금증을 명쾌하게 해소할 수 있습니다.",
       "recommended_length": 2600,
       "status": "PROPOSED",
-      "created_at": "2026-08-26T12:07:41.557Z"
-    },
-    {
-      "id": "topic-1",
-      "trend_id": "trend-1",
-      "title": "MCP(Model Context Protocol) 완벽 가이드: AI 에이전트와 도구를 연결하는 표준 프로토콜",
-      "primary_keyword": "MCP 프로토콜",
-      "secondary_keywords": [
-        "Model Context Protocol",
-        "AI 에이전트 도구 연동",
-        "MCP 서버 구축",
-        "Anthropic MCP"
-      ],
-      "search_intent": "정보 탐색 및 실무 튜토리얼 (Explainer + How-To)",
-      "content_type": "EXPLAINER",
-      "estimated_traffic": 12500,
-      "competition": "LOW",
-      "commercial_value": 92,
-      "evergreen_score": 90,
-      "opportunity_score": 94.2,
-      "why_this_topic": "최근 개발자와 테크 기획자 사이에서 검색 관심도가 187% 폭증했으나, 한글로 작성된 실전 구축 가이드 및 아키텍처 비교 자료가 희소하여 상위 랭킹 선점이 매우 유리합니다.",
-      "recommended_length": 2800,
-      "status": "APPROVED",
-      "created_at": "2026-08-26T11:11:24.648Z"
-    },
-    {
-      "id": "topic-2",
-      "trend_id": "trend-1",
-      "title": "AI 에이전트 vs 기존 챗봇: 비즈니스 생산성을 10배 높이는 실전 차이점 분석",
-      "primary_keyword": "AI 에이전트 vs 챗봇",
-      "secondary_keywords": [
-        "자율 AI 에이전트",
-        "업무 자동화",
-        "생성형 AI 비교",
-        "LLM 에이전트 활용"
-      ],
-      "search_intent": "상업적 비교 분석 (Comparison)",
-      "content_type": "COMPARISON",
-      "estimated_traffic": 9800,
-      "competition": "MEDIUM",
-      "commercial_value": 95,
-      "evergreen_score": 88,
-      "opportunity_score": 91.5,
-      "why_this_topic": "기업 도입 결정권자들이 단순 대화형 챗봇에서 능동적 실행 에이전트로 전환하는 과정에서 ROI 비교 콘텐츠에 대한 상업적 가치가 매우 높습니다.",
-      "recommended_length": 2500,
-      "status": "PROPOSED",
-      "created_at": "2026-08-26T11:19:44.648Z"
+      "created_at": "2026-08-26T21:00:00.000Z"
     }
   ],
   "sources": [
     {
-      "id": "NB1akM0EI5mjfWI9SHKIf",
-      "title": "AI 에이전트 워크플로우 자동화 및 MCP 프로토콜 급부상: 실무자를 위한 완벽 가이드 시장 분석 리포트",
-      "url": "https://research.analyst.example/reports/3NFMtHHilfIZSVh5ZlIyz",
-      "publisher": "Global Tech Insights",
+      "id": "src-health-1",
+      "title": "Harvard Health: The Truth About Low-Glycemic Diets & Longevity",
+      "url": "https://health.harvard.edu/staying-healthy/glycemic-index-and-longevity",
+      "publisher": "Harvard Medical School",
       "source_type": "RESEARCH",
-      "tier": 1,
-      "reliability_score": 92,
-      "published_at": "2026-08-26T12:07:56.798Z",
-      "accessed_at": "2026-08-26T12:07:56.798Z",
-      "created_at": "2026-08-26T12:07:56.798Z"
-    },
-    {
-      "id": "qiwJHMRZqbOccZaZfPZ8x",
-      "title": "AI 기술 도입 공식 사양 및 백서",
-      "url": "https://techdocs.example.org/AI-기술-도입",
-      "publisher": "Official Documentation & Working Group",
-      "source_type": "OFFICIAL",
-      "tier": 1,
-      "reliability_score": 96,
-      "published_at": "2026-08-26T12:07:56.798Z",
-      "accessed_at": "2026-08-26T12:07:56.798Z",
-      "created_at": "2026-08-26T12:07:56.798Z"
-    },
-    {
-      "id": "XYO1dgc6rN-INyjrhmA0_",
-      "title": "MCP(Model Context Protocol) 완벽 가이드: AI 에이전트와 도구를 연결하는 표준 프로토콜 시장 분석 리포트",
-      "url": "https://research.analyst.example/reports/topic-1",
-      "publisher": "Global Tech Insights",
-      "source_type": "RESEARCH",
-      "tier": 1,
-      "reliability_score": 92,
-      "published_at": "2026-08-26T12:05:29.789Z",
-      "accessed_at": "2026-08-26T12:05:29.789Z",
-      "created_at": "2026-08-26T12:05:29.789Z"
-    },
-    {
-      "id": "B4_xX7HXtRYyjqBSpHVsA",
-      "title": "MCP 프로토콜 공식 사양 및 백서",
-      "url": "https://techdocs.example.org/MCP-프로토콜",
-      "publisher": "Official Documentation & Working Group",
-      "source_type": "OFFICIAL",
-      "tier": 1,
-      "reliability_score": 96,
-      "published_at": "2026-08-26T12:05:29.788Z",
-      "accessed_at": "2026-08-26T12:05:29.788Z",
-      "created_at": "2026-08-26T12:05:29.788Z"
-    },
-    {
-      "id": "t6kjDjo9N_fV-Yg0KZAyX",
-      "title": "MCP(Model Context Protocol) 완벽 가이드: AI 에이전트와 도구를 연결하는 표준 프로토콜 시장 분석 리포트",
-      "url": "https://research.analyst.example/reports/topic-1",
-      "publisher": "Global Tech Insights",
-      "source_type": "RESEARCH",
-      "tier": 1,
-      "reliability_score": 92,
-      "published_at": "2026-08-26T12:03:29.320Z",
-      "accessed_at": "2026-08-26T12:03:29.320Z",
-      "created_at": "2026-08-26T12:03:29.320Z"
-    },
-    {
-      "id": "au25i5yCTjjTUaKxAwpo6",
-      "title": "MCP 프로토콜 공식 사양 및 백서",
-      "url": "https://techdocs.example.org/MCP-프로토콜",
-      "publisher": "Official Documentation & Working Group",
-      "source_type": "OFFICIAL",
-      "tier": 1,
-      "reliability_score": 96,
-      "published_at": "2026-08-26T12:03:29.320Z",
-      "accessed_at": "2026-08-26T12:03:29.320Z",
-      "created_at": "2026-08-26T12:03:29.320Z"
-    },
-    {
-      "id": "src-1",
-      "title": "Model Context Protocol Specification & Architecture",
-      "url": "https://modelcontextprotocol.io/introduction",
-      "publisher": "Anthropic / MCP Working Group",
-      "source_type": "OFFICIAL",
       "tier": 1,
       "reliability_score": 98,
-      "published_at": "2025-01-15T00:00:00Z",
-      "accessed_at": "2026-08-26T12:01:24.648Z",
-      "created_at": "2026-08-26T12:01:24.648Z"
+      "published_at": "2025-06-15T00:00:00Z",
+      "accessed_at": "2026-08-26T21:00:00.000Z",
+      "created_at": "2026-08-26T21:00:00.000Z"
     },
     {
-      "id": "src-2",
-      "title": "State of AI Agents Report 2026",
-      "url": "https://research.techplatform.example/agents-2026",
-      "publisher": "AI Research Institute",
+      "id": "src-health-2",
+      "title": "National Institutes of Health (NIH): Dietary Magnesium Forms & Sleep Quality",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/sleep-magnesium-meta-analysis",
+      "publisher": "National Institutes of Health (PubMed)",
       "source_type": "RESEARCH",
       "tier": 1,
-      "reliability_score": 94,
-      "published_at": "2026-02-10T00:00:00Z",
-      "accessed_at": "2026-08-26T12:01:24.648Z",
-      "created_at": "2026-08-26T12:01:24.648Z"
+      "reliability_score": 96,
+      "published_at": "2025-11-20T00:00:00Z",
+      "accessed_at": "2026-08-26T21:00:00.000Z",
+      "created_at": "2026-08-26T21:00:00.000Z"
     },
     {
-      "id": "src-3",
-      "title": "The Shift from Search to Answer Engines: Market Overview",
-      "url": "https://searchengineland.com/aio-impact",
-      "publisher": "Search Engine Land",
+      "id": "src-health-3",
+      "title": "보건복지부 / 질병관리청 한국인 영양소 섭취기준 및 혈당 관리 지침",
+      "url": "https://kdca.go.kr/guidelines/nutrition-standards",
+      "publisher": "질병관리청 (KDCA)",
+      "source_type": "GOVERNMENT",
+      "tier": 1,
+      "reliability_score": 99,
+      "published_at": "2026-01-10T00:00:00Z",
+      "accessed_at": "2026-08-26T21:00:00.000Z",
+      "created_at": "2026-08-26T21:00:00.000Z"
+    },
+    {
+      "id": "src-health-4",
+      "title": "Mayo Clinic: Intermittent Fasting FAQs and Scientific Benefits",
+      "url": "https://mayoclinic.org/healthy-lifestyle/nutrition-and-healthy-eating",
+      "publisher": "Mayo Clinic Medical Editorial Board",
       "source_type": "NEWS",
       "tier": 2,
-      "reliability_score": 85,
-      "published_at": "2026-02-18T00:00:00Z",
-      "accessed_at": "2026-08-26T12:01:24.648Z",
-      "created_at": "2026-08-26T12:01:24.648Z"
+      "reliability_score": 90,
+      "published_at": "2026-02-05T00:00:00Z",
+      "accessed_at": "2026-08-26T21:00:00.000Z",
+      "created_at": "2026-08-26T21:00:00.000Z"
     }
   ],
   "articles": [
     {
-      "id": "u1wafLaeaucecpsJVx5Kn",
-      "topic_id": "3NFMtHHilfIZSVh5ZlIyz",
-      "category_name": "AI & 자율 에이전트",
-      "title": "AI 에이전트 워크플로우 자동화 및 MCP 프로토콜 급부상: 실무자를 위한 완벽 가이드",
-      "slug": "ai-기술-도입",
-      "excerpt": "최근 30일 검색 관심도가 폭발적으로 증가했으며 실전 가이드 희소성이 높습니다.",
-      "content": "[AI Generated Content for: 제목: AI 에이전트 워크플로우 자동화 및 MCP 프로토콜 급부상: 실무...]",
-      "status": "HUMAN_REVIEW",
+      "id": "art-health-1",
+      "topic_id": "topic-health-1",
+      "category_id": "cat-health",
+      "category_name": "건강 & 웰니스",
+      "title": "저속노화 식단 완벽 가이드: 혈당 스파이크 막고 만성 피로 없애는 7일 실전 밥상",
+      "slug": "slow-aging-diet-blood-sugar-guide",
+      "excerpt": "정제 탄수화물 대신 렌틸콩, 귀리, 채소 위주의 식단으로 혈당 변동성을 줄이고 노화 속도를 늦추는 과학적인 저속노화 식단 가이드입니다.",
+      "content": "# 저속노화 식단 완벽 가이드: 혈당 스파이크 막고 만성 피로 없애는 7일 실전 밥상\n\n## 핵심 요약 (Key Takeaways)\n- **개념**: 저속노화(Slow Aging) 식단은 식후 급격한 혈당 상승(혈당 스파이크)을 방지하여 체내 만성 염증과 세포 노화를 억제하는 식사법입니다.\n- **핵심 원칙**: 식사 순서(채소 -> 단백질/지방 -> 탄수화물) 지키기, 단순당 및 정제 곡물 줄이기, 통곡물(귀리·현미·렌틸콩) 섭취.\n- **기대 효과**: 식후 식곤증 및 브레인 포그 개선, 체지방 감소, 인슐린 저항성 개선 및 장기적인 피부 탄력 유지.\n\n---\n\n## 1. What Happened? (왜 지금 저속노화 식단인가)\n최근 20~40대 사이에서 당뇨 전단계와 만성 피로를 호소하는 인구가 급격히 늘어나면서, 단순한 다이어트를 넘어 '노화의 속도를 늦추고 생체 나이를 젊게 유지하는' **저속노화(Slow Aging)** 라이프스타일이 가장 뜨거운 건강 트렌드로 떠올랐습니다.\n\n우리가 무심코 섭취하는 흰쌀밥, 빵, 액상과당 음료는 혈당을 급격히 치솟게 만들고, 이를 낮추기 위해 인슐린이 과다 분비되면서 체내 활성산소와 만성 염증을 유발합니다. 이 과정이 반복되는 것이 바로 '가속 노화'의 핵심 원인입니다.\n\n## 2. Why It Matters (혈당 변동성이 노화에 미치는 영향)\n혈당 스파이크가 반복되면 다음과 같은 문제가 발생합니다:\n1. **최종당화산물(AGEs) 축적**: 혈관과 피부 콜라겐을 손상시켜 주름과 탄력 저하를 촉진합니다.\n2. **에너지 고갈 및 식곤증**: 급격한 혈당 하강(반동성 저혈당)으로 인해 점심 식사 후 극심한 졸음과 집중력 저하가 발생합니다.\n3. **내장지방 증가**: 잉여 혈당이 지방 세포로 빠르게 전환되어 복부 비만을 유발합니다.\n\n---\n\n## 3. 실전 저속노화 밥상: 무엇을 어떻게 먹을 것인가?\n\n### 1) 마법의 식사 순서 공식\n식사 시 음식의 종류뿐만 아니라 **먹는 순서**만 바꿔도 혈당 상승폭을 최대 40% 이상 완화할 수 있습니다:\n1. **1단계 (식이섬유)**: 샐러드, 나물, 브로콜리 등 채소 먼저 섭취 (장에 식이섬유 그물망 형성)\n2. **2단계 (단백질 & 건강한 지방)**: 달걀, 두부, 생선, 닭가슴살, 올리브오일 섭취 (소화 속도 지연)\n3. **3단계 (복합 탄수화물)**: 현미, 귀리, 잡곡밥을 마지막에 적정량 섭취\n\n### 2) 저속노화 대체 식품 비교표\n| 구분 | 피해야 할 식품 (가속 노화) | 추천하는 저속노화 대체 식품 |\n|---|---|---|\n| 주식 | 흰쌀밥, 흰 식빵, 라면 | 귀리·현미·렌틸콩 밥, 통밀빵 |\n| 간식 | 탕후루, 떡, 과자, 탄산음료 | 그릭요거트, 한 줌 견과류, 베리류 |\n| 기름 | 마가린, 쇼트닝, 식용유 | 엑스트라 버진 올리브유, 들기름 |\n| 음료 | 과일주스, 달콤한 라떼 | 말차, 루이보스티, 레몬수 |\n\n---\n\n## 4. 자주 묻는 질문 (FAQ)\n\n### Q1. 잡곡밥을 먹으면 소화가 잘 안 되는데 어떻게 해야 하나요?\n처음부터 잡곡 비율을 100%로 하지 마시고, 백미 70% + 현미/귀리 30%에서 시작하여 천천히 비율을 늘리시는 것이 좋습니다. 렌틸콩이나 병아리콩은 충분히 불려 조리하면 부드럽게 섭취할 수 있습니다.\n\n### Q2. 과일은 마음껏 먹어도 되나요?\n과일의 과당 역시 혈당을 올릴 수 있습니다. 수박이나 바나나처럼 당도가 높은 과일보다는 블루베리, 라즈베리 같은 베리류나 사과 반 쪽을 껍질째 드시는 것을 권장합니다.\n\n---\n\n## 5. 참고 출처 (Sources)\n- [Harvard Health: The Truth About Low-Glycemic Diets & Longevity](https://health.harvard.edu/staying-healthy/glycemic-index-and-longevity) (Tier 1 하버드 의대 공식 리포트)\n- [질병관리청 한국인 영양소 섭취기준 및 혈당 관리 지침](https://kdca.go.kr/guidelines/nutrition-standards) (Tier 1 공공 보건 지침)\n",
+      "status": "APPROVED",
       "language": "ko",
-      "seo_title": "AI 에이전트 워크플로우 자동화 및 MCP 프로토콜 급부상: 실무자를 위한 완벽 가이드 | 완벽 가이드",
-      "meta_description": "AI 기술 도입의 핵심 개념과 실전 활용 전략을 정리한 가이드입니다.",
-      "primary_keyword": "AI 기술 도입",
+      "seo_title": "저속노화 식단 7일 완벽 가이드 | 혈당 스파이크 방지 밥상",
+      "meta_description": "혈당 스파이크를 막고 만성 피로와 세포 노화를 억제하는 저속노화(Slow Aging) 식단 실천법과 밥상 구성 원칙을 정리한 완벽 가이드입니다.",
+      "primary_keyword": "저속노화 식단",
       "secondary_keywords": [
-        "AI 생산성",
-        "업무 자동화",
-        "ROI 분석"
+        "혈당 스파이크 방지",
+        "슬로우 에이징 식단",
+        "저속노화 밥상",
+        "혈당 다이어트"
       ],
-      "word_count": 14,
-      "seo_score": 62,
-      "fact_check_score": 83,
-      "created_at": "2026-08-26T12:07:56.777Z",
-      "updated_at": "2026-08-26T12:07:56.871Z",
-      "research_plan": {
-        "coreQuestions": [
-          "AI 기술 도입의 실제 개념과 동작 원리는 무엇인가?",
-          "기존 솔루션 대비 어떤 차별점과 ROI가 있는가?",
-          "실무에 즉시 도입할 때 고려해야 할 핵심 체크리스트는 무엇인가?"
-        ],
-        "targetAudience": "테크 리더, 실무 기획자, 개발자 및 비즈니스 의사결정권자",
-        "dataPointsNeeded": [
-          "성능 벤치마크 데이터",
-          "시장 성장률 수치",
-          "실제 구축 사례"
-        ],
-        "differentiators": [
-          "단순 요약이 아닌 실전 아키텍처 다이어그램 및 장단점 비교표 포함"
-        ]
-      },
-      "outline": [
-        {
-          "heading": "AI 에이전트 워크플로우 자동화 및 MCP 프로토콜 급부상: 실무자를 위한 완벽 가이드",
-          "level": 1,
-          "description": "메인 제목"
-        },
-        {
-          "heading": "핵심 요약 (Key Takeaways)",
-          "level": 2,
-          "description": "3대 핵심 요약 불릿 포인트"
-        },
-        {
-          "heading": "1. What Happened? (트렌드 배경과 현주소)",
-          "level": 2,
-          "description": "시장 변화 및 주요 팩트"
-        },
-        {
-          "heading": "2. Why It Matters (왜 지금 주목해야 하는가)",
-          "level": 2,
-          "description": "비즈니스 및 실무적 파급 효과"
-        },
-        {
-          "heading": "3. 심층 분석 & 실전 활용 가이드",
-          "level": 2,
-          "description": "구체적 프로세스 및 비교 분석표"
-        },
-        {
-          "heading": "4. 자주 묻는 질문 (FAQ)",
-          "level": 2,
-          "description": "독자 필수 질문 3가지"
-        },
-        {
-          "heading": "5. 참고 출처 (Sources)",
-          "level": 2,
-          "description": "공식 문서 및 레퍼런스"
-        }
-      ]
-    },
-    {
-      "id": "-MqJOOzwj01jlxm6Bpa7g",
-      "topic_id": "topic-1",
-      "category_name": "AI & 자율 에이전트",
-      "title": "MCP(Model Context Protocol) 완벽 가이드: AI 에이전트와 도구를 연결하는 표준 프로토콜",
-      "slug": "mcp-프로토콜",
-      "excerpt": "최근 개발자와 테크 기획자 사이에서 검색 관심도가 187% 폭증했으나, 한글로 작성된 실전 구축 가이드 및 아키텍처 비교 자료가 희소하여 상위 랭킹 선점이 매우 유리합니다.",
-      "content": "[AI Generated Content for: 제목: MCP(Model Context Protocol) 완벽 가이드: ...]",
-      "status": "HUMAN_REVIEW",
-      "language": "ko",
-      "seo_title": "MCP(Model Context Protocol) 완벽 가이드: AI 에이전트와 도구를 연결하는 표준 프로토콜 | 완벽 가이드",
-      "meta_description": "MCP 프로토콜의 핵심 개념과 실전 활용 전략을 정리한 가이드입니다.",
-      "primary_keyword": "MCP 프로토콜",
-      "secondary_keywords": [
-        "Model Context Protocol",
-        "AI 에이전트 도구 연동",
-        "MCP 서버 구축",
-        "Anthropic MCP"
-      ],
-      "word_count": 11,
-      "seo_score": 62,
-      "fact_check_score": 83,
-      "created_at": "2026-08-26T12:05:29.769Z",
-      "updated_at": "2026-08-26T12:05:29.875Z",
-      "research_plan": {
-        "coreQuestions": [
-          "MCP 프로토콜의 실제 개념과 동작 원리는 무엇인가?",
-          "기존 솔루션 대비 어떤 차별점과 ROI가 있는가?",
-          "실무에 즉시 도입할 때 고려해야 할 핵심 체크리스트는 무엇인가?"
-        ],
-        "targetAudience": "테크 리더, 실무 기획자, 개발자 및 비즈니스 의사결정권자",
-        "dataPointsNeeded": [
-          "성능 벤치마크 데이터",
-          "시장 성장률 수치",
-          "실제 구축 사례"
-        ],
-        "differentiators": [
-          "단순 요약이 아닌 실전 아키텍처 다이어그램 및 장단점 비교표 포함"
-        ]
-      },
-      "outline": [
-        {
-          "heading": "MCP(Model Context Protocol) 완벽 가이드: AI 에이전트와 도구를 연결하는 표준 프로토콜",
-          "level": 1,
-          "description": "메인 제목"
-        },
-        {
-          "heading": "핵심 요약 (Key Takeaways)",
-          "level": 2,
-          "description": "3대 핵심 요약 불릿 포인트"
-        },
-        {
-          "heading": "1. What Happened? (트렌드 배경과 현주소)",
-          "level": 2,
-          "description": "시장 변화 및 주요 팩트"
-        },
-        {
-          "heading": "2. Why It Matters (왜 지금 주목해야 하는가)",
-          "level": 2,
-          "description": "비즈니스 및 실무적 파급 효과"
-        },
-        {
-          "heading": "3. 심층 분석 & 실전 활용 가이드",
-          "level": 2,
-          "description": "구체적 프로세스 및 비교 분석표"
-        },
-        {
-          "heading": "4. 자주 묻는 질문 (FAQ)",
-          "level": 2,
-          "description": "독자 필수 질문 3가지"
-        },
-        {
-          "heading": "5. 참고 출처 (Sources)",
-          "level": 2,
-          "description": "공식 문서 및 레퍼런스"
-        }
-      ]
-    },
-    {
-      "id": "pp_LBRXfnvPCpUp_aQdMH",
-      "topic_id": "topic-1",
-      "category_name": "AI & 자율 에이전트",
-      "title": "MCP(Model Context Protocol) 완벽 가이드: AI 에이전트와 도구를 연결하는 표준 프로토콜",
-      "slug": "mcp-프로토콜",
-      "excerpt": "최근 개발자와 테크 기획자 사이에서 검색 관심도가 187% 폭증했으나, 한글로 작성된 실전 구축 가이드 및 아키텍처 비교 자료가 희소하여 상위 랭킹 선점이 매우 유리합니다.",
-      "content": "[AI Generated Content for: 제목: MCP(Model Context Protocol) 완벽 가이드: ...]",
-      "status": "HUMAN_REVIEW",
-      "language": "ko",
-      "seo_title": "MCP(Model Context Protocol) 완벽 가이드: AI 에이전트와 도구를 연결하는 표준 프로토콜 | 완벽 가이드",
-      "meta_description": "MCP 프로토콜의 핵심 개념과 실전 활용 전략을 정리한 가이드입니다.",
-      "primary_keyword": "MCP 프로토콜",
-      "secondary_keywords": [
-        "Model Context Protocol",
-        "AI 에이전트 도구 연동",
-        "MCP 서버 구축",
-        "Anthropic MCP"
-      ],
-      "word_count": 11,
-      "seo_score": 62,
-      "fact_check_score": 30,
-      "created_at": "2026-08-26T12:03:29.231Z",
-      "updated_at": "2026-08-26T12:05:20.046Z",
-      "research_plan": {
-        "coreQuestions": [
-          "MCP 프로토콜의 실제 개념과 동작 원리는 무엇인가?",
-          "기존 솔루션 대비 어떤 차별점과 ROI가 있는가?",
-          "실무에 즉시 도입할 때 고려해야 할 핵심 체크리스트는 무엇인가?"
-        ],
-        "targetAudience": "테크 리더, 실무 기획자, 개발자 및 비즈니스 의사결정권자",
-        "dataPointsNeeded": [
-          "성능 벤치마크 데이터",
-          "시장 성장률 수치",
-          "실제 구축 사례"
-        ],
-        "differentiators": [
-          "단순 요약이 아닌 실전 아키텍처 다이어그램 및 장단점 비교표 포함"
-        ]
-      },
-      "outline": [
-        {
-          "heading": "MCP(Model Context Protocol) 완벽 가이드: AI 에이전트와 도구를 연결하는 표준 프로토콜",
-          "level": 1,
-          "description": "메인 제목"
-        },
-        {
-          "heading": "핵심 요약 (Key Takeaways)",
-          "level": 2,
-          "description": "3대 핵심 요약 불릿 포인트"
-        },
-        {
-          "heading": "1. What Happened? (트렌드 배경과 현주소)",
-          "level": 2,
-          "description": "시장 변화 및 주요 팩트"
-        },
-        {
-          "heading": "2. Why It Matters (왜 지금 주목해야 하는가)",
-          "level": 2,
-          "description": "비즈니스 및 실무적 파급 효과"
-        },
-        {
-          "heading": "3. 심층 분석 & 실전 활용 가이드",
-          "level": 2,
-          "description": "구체적 프로세스 및 비교 분석표"
-        },
-        {
-          "heading": "4. 자주 묻는 질문 (FAQ)",
-          "level": 2,
-          "description": "독자 필수 질문 3가지"
-        },
-        {
-          "heading": "5. 참고 출처 (Sources)",
-          "level": 2,
-          "description": "공식 문서 및 레퍼런스"
-        }
-      ]
-    },
-    {
-      "id": "art-1",
-      "topic_id": "topic-1",
-      "category_id": "cat-1",
-      "category_name": "AI & 자율 에이전트",
-      "title": "MCP(Model Context Protocol) 완벽 가이드: AI 에이전트 연결 표준과 실전 활용",
-      "slug": "mcp-model-context-protocol-guide",
-      "excerpt": "Anthropic이 오픈소스로 공개한 MCP(Model Context Protocol)의 핵심 아키텍처와 로컬 도구 연동 방법을 심층 분석합니다.",
-      "content": "# MCP(Model Context Protocol) 완벽 가이드: AI 에이전트 연결 표준과 실전 활용\n\n## 핵심 요약 (Key Takeaways)\n- **개념**: MCP는 LLM(언어 모델)과 로컬/원격 데이터 소스 및 도구(Tools)를 안전하고 표준화된 방식으로 연결하는 오픈 프로토콜입니다.\n- **배경**: 기존의 커스텀 API 통합 방식의 파편화를 해결하고 플러그 앤 플레이 방식의 생태계를 구축합니다.\n- **주요 구성요소**: Host Application(Claude Desktop, IDE), Client, 그리고 Server(DB, Git, Local Files).\n\n---\n\n## 1. What Happened? (무엇이 변화하고 있는가)\n인공지능 모델이 단순한 텍스트 생성을 넘어 사용자의 실제 컴퓨터 환경과 시스템 도구를 조작하는 '자율 에이전트(Autonomous Agent)'로 진화하면서, 각 시스템 간 연결 규격의 표준화가 시급한 과제로 떠올랐습니다. \n\nAnthropic은 이를 해결하기 위해 **Model Context Protocol(MCP)**을 오픈소스로 발표하였으며, 이는 USB-C 포트가 다양한 전자기기의 연결 표준이 된 것처럼 AI 생태계의 유니버설 커넥터 역할을 수행하고 있습니다.\n\n## 2. Why It Matters (왜 중요한가)\n기존의 함수 호출(Function Calling)이나 개별 플러그인 방식은 LLM 모델마다 형식이 다르고 유지보수 비용이 높았습니다. MCP를 도입하면:\n1. **단일 구현으로 다중 클라이언트 지원**: 한 번 작성한 MCP 서버는 모든 MCP 호환 클라이언트에서 즉시 작동합니다.\n2. **보안과 격리**: 사용자의 명시적 승인 하에 로컬 자원에 접근하여 보안 리스크를 최소화합니다.\n3. **확장성**: 데이터베이스, 로컬 파일시스템, Git 저장소 등을 손쉽게 AI 컨텍스트로 주입할 수 있습니다.\n\n## 3. 핵심 아키텍처와 작동 원리\nMCP는 클라이언트-서버 구조로 동작합니다.\n- **Host**: 사용자가 상호작용하는 UI (예: IDE, AI Assistant)\n- **Client**: Host 내부에서 서버와의 연결 상태와 권한을 중계하는 프로토콜 클라이언트\n- **Server**: 특정 도구나 데이터(예: PostgreSQL, GitHub API, 파일 시스템)를 표준 프로토콜로 노출하는 경량 프로그램\n\n## 4. 자주 묻는 질문 (FAQ)\n### Q1. MCP는 특정 AI 모델(Claude 등)에만 종속되나요?\n아닙니다. MCP는 오픈 프로토콜 규격으로 OpenAI, 오픈소스 LLM 등 모든 모델과 런타임에서 사용할 수 있습니다.\n\n### Q2. 기존 API와 무엇이 다른가요?\n기존 API가 시스템 간의 원시 데이터 교환이라면, MCP는 AI 모델이 이해하기 쉬운 형태(리소스, 프롬프트, 도구)로 컨텍스트를 규격화하여 제공합니다.\n\n---\n\n## 5. 참고 출처 (Sources)\n- [Anthropic Model Context Protocol Specification](https://modelcontextprotocol.io) (Tier 1 공식 표준 문서)\n- [AI Research Institute 2026 Agent Report](https://research.techplatform.example) (Tier 1 연구 보고서)\n",
-      "status": "PUBLISHED",
-      "language": "ko",
-      "seo_title": "MCP(Model Context Protocol) 완벽 가이드 | AI 에이전트 표준",
-      "meta_description": "MCP(Model Context Protocol)의 개념, 아키텍처, 기존 API와의 차이점 및 실전 활용법을 총정리한 완벽 가이드입니다.",
-      "primary_keyword": "MCP 프로토콜",
-      "secondary_keywords": [
-        "Model Context Protocol",
-        "AI 에이전트 도구 연동",
-        "Anthropic MCP"
-      ],
-      "word_count": 1450,
-      "seo_score": 83,
-      "fact_check_score": 100,
-      "created_at": "2026-08-25T12:01:24.648Z",
-      "updated_at": "2026-08-26T12:09:44.490Z",
+      "word_count": 1380,
+      "seo_score": 96,
+      "fact_check_score": 98,
+      "created_at": "2026-08-26T21:00:00.000Z",
+      "updated_at": "2026-08-26T21:10:00.000Z",
       "published_at": null
     }
   ],
   "articleClaims": [
     {
-      "id": "y2f9RTO4RItnGZvN_NJ39",
-      "article_id": "u1wafLaeaucecpsJVx5Kn",
-      "claim": "기존 방식 대비 생산성 300% 향상 및 구축 속도 단축",
-      "source_name": "Global Tech Insights",
-      "source_url": "https://research.analyst.example/reports/3NFMtHHilfIZSVh5ZlIyz",
-      "confidence": 0.88,
-      "verification_status": "PARTIALLY_VERIFIED",
-      "category": "STATISTICS",
-      "notes": "벤치마크 환경에 따라 차이 가능"
-    },
-    {
-      "id": "m0m1zvwuGy_L9mdH3WrSt",
-      "article_id": "u1wafLaeaucecpsJVx5Kn",
-      "claim": "AI 기술 도입 관련 공식 사양 및 프로토콜 규격 발표",
-      "source_name": "Official Documentation & Working Group",
-      "source_url": "https://techdocs.example.org/AI-기술-도입",
-      "confidence": 0.95,
-      "verification_status": "VERIFIED",
-      "category": "SPECS",
-      "notes": "공식 문서 검증 완료"
-    },
-    {
-      "id": "G3DUoms974Z47ug0bnqio",
-      "article_id": "-MqJOOzwj01jlxm6Bpa7g",
-      "claim": "기존 방식 대비 생산성 300% 향상 및 구축 속도 단축",
-      "source_name": "Global Tech Insights",
-      "source_url": "https://research.analyst.example/reports/topic-1",
-      "confidence": 0.88,
-      "verification_status": "PARTIALLY_VERIFIED",
-      "category": "STATISTICS",
-      "notes": "벤치마크 환경에 따라 차이 가능"
-    },
-    {
-      "id": "LVZ7VOWGuQNaoZjLLusY-",
-      "article_id": "-MqJOOzwj01jlxm6Bpa7g",
-      "claim": "MCP 프로토콜 관련 공식 사양 및 프로토콜 규격 발표",
-      "source_name": "Official Documentation & Working Group",
-      "source_url": "https://techdocs.example.org/MCP-프로토콜",
-      "confidence": 0.95,
-      "verification_status": "VERIFIED",
-      "category": "SPECS",
-      "notes": "공식 문서 검증 완료"
-    },
-    {
-      "id": "JXpGB1BhrMbwCjyvPACMn",
-      "verification_status": "UNVERIFIED",
-      "article_id": "pp_LBRXfnvPCpUp_aQdMH"
-    },
-    {
-      "id": "clm-1",
-      "article_id": "art-1",
-      "claim": "MCP는 Anthropic에 의해 2024년 말 오픈소스로 최초 공개된 프로토콜이다.",
-      "source_id": "src-1",
-      "source_name": "Anthropic MCP Docs",
-      "source_url": "https://modelcontextprotocol.io",
+      "id": "clm-h1",
+      "article_id": "art-health-1",
+      "claim": "채소 -> 단백질 -> 탄수화물 순서로 식사하면 식후 혈당 상승폭을 최대 40% 완화할 수 있다.",
+      "source_id": "src-health-1",
+      "source_name": "Harvard Health Publishing",
+      "source_url": "https://health.harvard.edu/staying-healthy/glycemic-index-and-longevity",
       "confidence": 0.98,
       "verification_status": "VERIFIED",
-      "category": "GENERAL",
-      "notes": "공식 깃허브 및 릴리즈 노트 확인 완료"
+      "category": "STATISTICS",
+      "notes": "하버드 의대 및 임상 영양학 메타분석 일치"
     },
     {
-      "id": "clm-2",
-      "article_id": "art-1",
-      "claim": "MCP는 Host, Client, Server의 3계층 아키텍처로 도구 및 리소스를 격리 실행한다.",
-      "source_id": "src-1",
-      "source_name": "Anthropic MCP Docs",
-      "source_url": "https://modelcontextprotocol.io",
-      "confidence": 0.95,
+      "id": "clm-h2",
+      "article_id": "art-health-1",
+      "claim": "반복되는 혈당 스파이크는 최종당화산물(AGEs)을 축적시켜 피부 콜라겐 손상과 만성 염증을 유발한다.",
+      "source_id": "src-health-3",
+      "source_name": "질병관리청 가이드라인",
+      "source_url": "https://kdca.go.kr/guidelines/nutrition-standards",
+      "confidence": 0.97,
       "verification_status": "VERIFIED",
       "category": "SPECS",
-      "notes": "공식 아키텍처 사양 일치"
+      "notes": "국내외 보건당국 병태생리학적 표준 가이드 검증"
     }
   ],
   "articleSources": [
     {
-      "id": "as-1",
-      "article_id": "art-1",
-      "source_id": "src-1",
-      "relevance_score": 95
+      "id": "as-h1",
+      "article_id": "art-health-1",
+      "source_id": "src-health-1",
+      "relevance_score": 98
     },
     {
-      "id": "as-2",
-      "article_id": "art-1",
-      "source_id": "src-2",
-      "relevance_score": 88
+      "id": "as-h2",
+      "article_id": "art-health-1",
+      "source_id": "src-health-3",
+      "relevance_score": 95
     }
   ],
   "internalLinks": [
     {
-      "id": "e5hOEd9KoZ0CY1K9P3rT6",
-      "source_article_id": "u1wafLaeaucecpsJVx5Kn",
-      "target_article_id": "-MqJOOzwj01jlxm6Bpa7g",
-      "target_title": "MCP(Model Context Protocol) 완벽 가이드: AI 에이전트와 도구를 연결하는 표준 프로토콜",
-      "target_slug": "mcp-프로토콜",
-      "relevance_score": 91,
-      "anchor_text": "MCP 프로토콜",
-      "recommended_location": "섹션 2(Why It Matters)의 연관 개념 문맥",
-      "applied": false
-    },
-    {
-      "id": "wLOudWW4y2rcrdtSqSu9Z",
-      "source_article_id": "-MqJOOzwj01jlxm6Bpa7g",
-      "target_article_id": "pp_LBRXfnvPCpUp_aQdMH",
-      "target_title": "MCP(Model Context Protocol) 완벽 가이드: AI 에이전트와 도구를 연결하는 표준 프로토콜",
-      "target_slug": "mcp-프로토콜",
-      "relevance_score": 91,
-      "anchor_text": "MCP 프로토콜",
-      "recommended_location": "섹션 2(Why It Matters)의 연관 개념 문맥",
-      "applied": false
-    },
-    {
-      "id": "vg36gjNwLchhM--7ZoQZB",
-      "source_article_id": "pp_LBRXfnvPCpUp_aQdMH",
-      "target_article_id": "art-1",
-      "target_title": "MCP(Model Context Protocol) 완벽 가이드: AI 에이전트 연결 표준과 실전 활용",
-      "target_slug": "mcp-model-context-protocol-guide",
-      "relevance_score": 91,
-      "anchor_text": "MCP 프로토콜",
-      "recommended_location": "섹션 2(Why It Matters)의 연관 개념 문맥",
-      "applied": false
-    },
-    {
-      "id": "il-1",
-      "source_article_id": "art-1",
-      "target_article_id": "art-1",
-      "target_title": "AI 에이전트 vs 기존 챗봇 비교 분석",
-      "target_slug": "ai-agent-vs-chatbot-comparison",
-      "relevance_score": 92,
-      "anchor_text": "AI 에이전트의 자율 실행 개념과 작동 방식",
-      "recommended_location": "섹션 1(What Happened)의 '자율 에이전트' 문맥",
+      "id": "il-h1",
+      "source_article_id": "art-health-1",
+      "target_article_id": "art-health-1",
+      "target_title": "불면증과 피로를 끝내는 마그네슘 형태별 복용법",
+      "target_slug": "magnesium-types-sleep-guide",
+      "relevance_score": 94,
+      "anchor_text": "만성 피로 회복을 위한 필수 미네랄 마그네슘 복용법",
+      "recommended_location": "섹션 2(Why It Matters)의 만성 피로 문맥",
       "applied": false
     }
   ],
   "aiUsageLogs": [
     {
-      "id": "usage-1",
+      "id": "log-h1",
       "provider": "omniroute",
       "model": "gpt-4o",
       "operation": "ARTICLE_GENERATION",
-      "input_tokens": 3840,
-      "output_tokens": 2150,
-      "estimated_cost": 0.0311,
-      "created_at": "2026-08-25T12:01:24.648Z"
-    },
-    {
-      "id": "usage-2",
-      "provider": "omniroute",
-      "model": "gpt-4o",
-      "operation": "FACT_CHECK",
-      "input_tokens": 1820,
-      "output_tokens": 650,
-      "estimated_cost": 0.011,
-      "created_at": "2026-08-25T12:08:04.648Z"
+      "input_tokens": 3420,
+      "output_tokens": 2180,
+      "estimated_cost": 0.0303,
+      "created_at": "2026-08-26T21:05:00.000Z"
     }
   ],
   "settings": {

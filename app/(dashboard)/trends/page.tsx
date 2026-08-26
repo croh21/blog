@@ -145,9 +145,9 @@ export default function TrendsPage() {
               className="flex h-10 w-full rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 px-3 py-2 text-sm text-slate-900 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-blue-600"
             >
               <option value="ALL">전체 카테고리</option>
-              <option value="AI & 자율 에이전트">AI & 자율 에이전트</option>
-              <option value="생산성 & SaaS 테크">생산성 & SaaS 테크</option>
-              <option value="디지털 마케팅 & SEO">디지털 마케팅 & SEO</option>
+              <option value="건강 & 웰니스">건강 & 웰니스 (저속노화/영양/수면)</option>
+              <option value="AI & 생산성 테크">AI & 생산성 테크</option>
+              <option value="디지털 마케팅 & 수익화">디지털 마케팅 & 수익화</option>
             </select>
           </div>
 
