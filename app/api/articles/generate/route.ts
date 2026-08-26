@@ -4,8 +4,14 @@ import { runFullArticlePipeline } from "@/lib/ai/pipeline";
 
 export async function POST(req: Request) {
   try {
-    const body = await req.json();
-    let topicId = body.topicId;
+    let body: any = {};
+    try {
+      body = await req.json();
+    } catch {
+      body = {};
+    }
+
+    let topicId = body?.topicId;
     let topic = topicId ? await getTopicById(topicId) : undefined;
 
     if (!topic) {

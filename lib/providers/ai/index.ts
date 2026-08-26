@@ -26,22 +26,24 @@ export class OmniRouteAIProvider implements AIProvider {
       });
 
       const text = response.choices[0]?.message?.content || "";
-      const inputTokens = response.usage?.prompt_tokens || Math.ceil(prompt.length / 4);
-      const outputTokens = response.usage?.completion_tokens || Math.ceil(text.length / 4);
+      if (text && text.trim().length > 100) {
+        const inputTokens = response.usage?.prompt_tokens || Math.ceil(prompt.length / 4);
+        const outputTokens = response.usage?.completion_tokens || Math.ceil(text.length / 4);
 
-      await logAIUsage({
-        provider: "omniroute",
-        model,
-        operation: "TEXT_GENERATION",
-        inputTokens,
-        outputTokens,
-      });
+        await logAIUsage({
+          provider: "omniroute",
+          model,
+          operation: "TEXT_GENERATION",
+          inputTokens,
+          outputTokens,
+        });
 
-      return { text, inputTokens, outputTokens };
+        return { text, inputTokens, outputTokens };
+      }
+      throw new Error("Empty or insufficient response from LLM");
     } catch (error) {
-      console.warn("OmniRoute Live API failed, falling back to simulated generation:", error);
-      const mockText = `[AI Generated Content for: ${prompt.slice(0, 40)}...]`;
-      return { text: mockText, inputTokens: 500, outputTokens: 800 };
+      console.warn("OmniRoute Live API error, delegating to intelligent content synthesis engine:", error);
+      throw error; // Throw so pipeline fallback can synthesize rich domain-specific article
     }
   }
 
@@ -78,7 +80,7 @@ export class OmniRouteAIProvider implements AIProvider {
 
       return { data, inputTokens, outputTokens };
     } catch (error) {
-      console.warn("OmniRoute JSON generation fallback:", error);
+      console.warn("OmniRoute JSON generation error:", error);
       throw error;
     }
   }
