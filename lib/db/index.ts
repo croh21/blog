@@ -12,10 +12,23 @@ import {
 } from "@/types";
 import { nanoid } from "nanoid";
 import { DEFAULT_SCORING_WEIGHTS } from "@/lib/scoring/trend-scorer";
+import { loadDataFromFile, saveDataToFile } from "./storage";
 
-// In-Memory Database Store (with initial seed data for immediate MVP usability)
-class MemoryDatabase {
-  categories: Category[] = [
+interface DatabaseSchema {
+  categories: Category[];
+  trends: Trend[];
+  topics: Topic[];
+  sources: Source[];
+  articles: Article[];
+  articleClaims: ArticleClaim[];
+  articleSources: ArticleSource[];
+  internalLinks: InternalLinkRecommendation[];
+  aiUsageLogs: AIUsageLog[];
+  settings: Record<string, any>;
+}
+
+const INITIAL_SEED_DATA: DatabaseSchema = {
+  categories: [
     {
       id: "cat-1",
       name: "AI & 자율 에이전트",
@@ -40,9 +53,9 @@ class MemoryDatabase {
       status: "ACTIVE",
       created_at: new Date().toISOString(),
     },
-  ];
+  ],
 
-  trends: Trend[] = [
+  trends: [
     {
       id: "trend-1",
       title: "AI 에이전트 워크플로우 자동화 및 MCP 프로토콜 급부상",
@@ -56,7 +69,7 @@ class MemoryDatabase {
       trend_score: 96,
       search_growth: 92,
       search_volume: 85,
-      competition_score: 35, // Low competition -> High opportunity
+      competition_score: 35,
       commercial_score: 90,
       evergreen_score: 88,
       social_score: 82,
@@ -106,30 +119,9 @@ class MemoryDatabase {
       status: "DISCOVERED",
       created_at: new Date(Date.now() - 10800000).toISOString(),
     },
-    {
-      id: "trend-4",
-      title: "2026 자율형 노코드 개발 도구 및 풀스택 바이브 코딩",
-      description: "자연어 프롬프트 기반으로 웹/앱 전체를 빌드하고 배포하는 AI 바이브 코딩 플랫폼이 비개발자 창업자들에게 확산 중입니다.",
-      category_id: "cat-2",
-      category_name: "생산성 & SaaS 테크",
-      source_url: "https://techcrunch.com",
-      source_name: "TechCrunch",
-      published_at: new Date().toISOString(),
-      collected_at: new Date().toISOString(),
-      trend_score: 84,
-      search_growth: 79,
-      search_volume: 72,
-      competition_score: 40,
-      commercial_score: 88,
-      evergreen_score: 78,
-      social_score: 85,
-      opportunity_score: 85.1,
-      status: "DISCOVERED",
-      created_at: new Date(Date.now() - 14400000).toISOString(),
-    },
-  ];
+  ],
 
-  topics: Topic[] = [
+  topics: [
     {
       id: "topic-1",
       trend_id: "trend-1",
@@ -166,27 +158,9 @@ class MemoryDatabase {
       status: "PROPOSED",
       created_at: new Date(Date.now() - 2500000).toISOString(),
     },
-    {
-      id: "topic-3",
-      trend_id: "trend-2",
-      title: "Google AI Overviews 시대의 SEO 생존 전략: 인용 최적화(AEO) 7가지 원칙",
-      primary_keyword: "AI Overviews SEO",
-      secondary_keywords: ["AEO 최적화", "구글 생성형 검색 대응", "AI 검색 인용", "블로그 트래픽 전략"],
-      search_intent: "전문가 전략 및 실전 가이드 (Trend Report)",
-      content_type: "TREND_REPORT",
-      estimated_traffic: 15400,
-      competition: "MEDIUM",
-      commercial_value: 90,
-      evergreen_score: 85,
-      opportunity_score: 90.1,
-      why_this_topic: "블로거와 마케터들이 검색 유입 감소에 대한 해답을 찾고 있으며 실전 체크리스트를 담은 심층 포스트의 체류 시간과 공유율이 극대화될 수 있습니다.",
-      recommended_length: 3000,
-      status: "PROPOSED",
-      created_at: new Date(Date.now() - 2000000).toISOString(),
-    },
-  ];
+  ],
 
-  sources: Source[] = [
+  sources: [
     {
       id: "src-1",
       title: "Model Context Protocol Specification & Architecture",
@@ -223,9 +197,9 @@ class MemoryDatabase {
       accessed_at: new Date().toISOString(),
       created_at: new Date().toISOString(),
     },
-  ];
+  ],
 
-  articles: Article[] = [
+  articles: [
     {
       id: "art-1",
       topic_id: "topic-1",
@@ -273,7 +247,7 @@ MCP는 클라이언트-서버 구조로 동작합니다.
 - [Anthropic Model Context Protocol Specification](https://modelcontextprotocol.io) (Tier 1 공식 표준 문서)
 - [AI Research Institute 2026 Agent Report](https://research.techplatform.example) (Tier 1 연구 보고서)
 `,
-      status: "APPROVED",
+      status: "HUMAN_REVIEW",
       language: "ko",
       seo_title: "MCP(Model Context Protocol) 완벽 가이드 | AI 에이전트 표준",
       meta_description: "MCP(Model Context Protocol)의 개념, 아키텍처, 기존 API와의 차이점 및 실전 활용법을 총정리한 완벽 가이드입니다.",
@@ -286,9 +260,9 @@ MCP는 클라이언트-서버 구조로 동작합니다.
       updated_at: new Date().toISOString(),
       published_at: null,
     },
-  ];
+  ],
 
-  articleClaims: ArticleClaim[] = [
+  articleClaims: [
     {
       id: "clm-1",
       article_id: "art-1",
@@ -313,9 +287,9 @@ MCP는 클라이언트-서버 구조로 동작합니다.
       category: "SPECS",
       notes: "공식 아키텍처 사양 일치",
     },
-  ];
+  ],
 
-  articleSources: ArticleSource[] = [
+  articleSources: [
     {
       id: "as-1",
       article_id: "art-1",
@@ -328,9 +302,9 @@ MCP는 클라이언트-서버 구조로 동작합니다.
       source_id: "src-2",
       relevance_score: 88,
     },
-  ];
+  ],
 
-  internalLinks: InternalLinkRecommendation[] = [
+  internalLinks: [
     {
       id: "il-1",
       source_article_id: "art-1",
@@ -342,9 +316,9 @@ MCP는 클라이언트-서버 구조로 동작합니다.
       recommended_location: "섹션 1(What Happened)의 '자율 에이전트' 문맥",
       applied: false,
     },
-  ];
+  ],
 
-  aiUsageLogs: AIUsageLog[] = [
+  aiUsageLogs: [
     {
       id: "usage-1",
       provider: "omniroute",
@@ -365,9 +339,9 @@ MCP는 클라이언트-서버 구조로 동작합니다.
       estimated_cost: 0.011,
       created_at: new Date(Date.now() - 86000000).toISOString(),
     },
-  ];
+  ],
 
-  settings: Record<string, any> = {
+  settings: {
     scoring_weights: DEFAULT_SCORING_WEIGHTS,
     ai_config: {
       defaultModel: "gpt-4o",
@@ -376,99 +350,202 @@ MCP는 클라이언트-서버 구조로 동작합니다.
       contentLanguage: "ko",
       defaultArticleLength: 2500,
     },
-  };
+  },
+};
+
+// Singleton in-memory store backed by file persistence
+class PersistentDatabase {
+  private data: DatabaseSchema;
+
+  constructor() {
+    this.data = loadDataFromFile<DatabaseSchema>(INITIAL_SEED_DATA);
+  }
+
+  private persist() {
+    saveDataToFile(this.data);
+  }
+
+  get trends(): Trend[] {
+    return this.data.trends;
+  }
+  get topics(): Topic[] {
+    return this.data.topics;
+  }
+  get articles(): Article[] {
+    return this.data.articles;
+  }
+  get sources(): Source[] {
+    return this.data.sources;
+  }
+  get articleSources(): ArticleSource[] {
+    return this.data.articleSources;
+  }
+  get articleClaims(): ArticleClaim[] {
+    return this.data.articleClaims;
+  }
+  get internalLinks(): InternalLinkRecommendation[] {
+    return this.data.internalLinks;
+  }
+  get aiUsageLogs(): AIUsageLog[] {
+    return this.data.aiUsageLogs;
+  }
+  get settings(): Record<string, any> {
+    return this.data.settings;
+  }
+
+  sync() {
+    this.persist();
+  }
 }
 
-// Global Singleton in memory store
-export const memoryDb = new MemoryDatabase();
+export const dbInstance = new PersistentDatabase();
 
 // Unified Database Access Functions
 export async function getTrends(): Promise<Trend[]> {
-  return [...memoryDb.trends].sort((a, b) => b.opportunity_score - a.opportunity_score);
+  return [...dbInstance.trends].sort((a, b) => b.opportunity_score - a.opportunity_score);
 }
 
 export async function getTrendById(id: string): Promise<Trend | undefined> {
-  return memoryDb.trends.find((t) => t.id === id);
+  return dbInstance.trends.find((t) => t.id === id);
 }
 
 export async function saveTrends(newTrends: Trend[]): Promise<void> {
   for (const item of newTrends) {
-    const idx = memoryDb.trends.findIndex((t) => t.id === item.id || t.title === item.title);
+    const idx = dbInstance.trends.findIndex((t) => t.id === item.id || t.title === item.title);
     if (idx >= 0) {
-      memoryDb.trends[idx] = { ...memoryDb.trends[idx], ...item };
+      dbInstance.trends[idx] = { ...dbInstance.trends[idx], ...item };
     } else {
-      memoryDb.trends.unshift(item);
+      dbInstance.trends.unshift(item);
     }
   }
+  dbInstance.sync();
 }
 
 export async function updateTrendStatus(id: string, status: Trend["status"]): Promise<void> {
-  const trend = memoryDb.trends.find((t) => t.id === id);
-  if (trend) trend.status = status;
+  const trend = dbInstance.trends.find((t) => t.id === id);
+  if (trend) {
+    trend.status = status;
+    dbInstance.sync();
+  }
 }
 
 export async function getTopics(): Promise<Topic[]> {
-  return [...memoryDb.topics].sort((a, b) => b.opportunity_score - a.opportunity_score);
+  return [...dbInstance.topics].sort((a, b) => b.opportunity_score - a.opportunity_score);
 }
 
 export async function getTopicById(id: string): Promise<Topic | undefined> {
-  return memoryDb.topics.find((t) => t.id === id);
+  return dbInstance.topics.find((t) => t.id === id);
 }
 
 export async function saveTopics(newTopics: Topic[]): Promise<void> {
   for (const item of newTopics) {
-    const idx = memoryDb.topics.findIndex((t) => t.id === item.id || t.title === item.title);
+    const idx = dbInstance.topics.findIndex((t) => t.id === item.id || t.title === item.title);
     if (idx >= 0) {
-      memoryDb.topics[idx] = { ...memoryDb.topics[idx], ...item };
+      dbInstance.topics[idx] = { ...dbInstance.topics[idx], ...item };
     } else {
-      memoryDb.topics.unshift(item);
+      dbInstance.topics.unshift(item);
     }
   }
+  dbInstance.sync();
 }
 
 export async function getArticles(): Promise<Article[]> {
-  return [...memoryDb.articles].sort(
+  return [...dbInstance.articles].sort(
     (a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
   );
 }
 
 export async function getArticleById(id: string): Promise<Article | undefined> {
-  return memoryDb.articles.find((a) => a.id === id);
+  return dbInstance.articles.find((a) => a.id === id);
 }
 
 export async function saveArticle(article: Article): Promise<void> {
-  const idx = memoryDb.articles.findIndex((a) => a.id === article.id);
+  const idx = dbInstance.articles.findIndex((a) => a.id === article.id);
   if (idx >= 0) {
-    memoryDb.articles[idx] = { ...memoryDb.articles[idx], ...article, updated_at: new Date().toISOString() };
+    dbInstance.articles[idx] = { ...dbInstance.articles[idx], ...article, updated_at: new Date().toISOString() };
   } else {
-    memoryDb.articles.unshift(article);
+    dbInstance.articles.unshift(article);
   }
+  dbInstance.sync();
 }
 
 export async function getSources(articleId?: string): Promise<Source[]> {
-  if (!articleId) return memoryDb.sources;
-  const sourceIds = memoryDb.articleSources
+  if (!articleId) return dbInstance.sources;
+  const sourceIds = dbInstance.articleSources
     .filter((as) => as.article_id === articleId)
     .map((as) => as.source_id);
-  return memoryDb.sources.filter((s) => sourceIds.includes(s.id));
+  return dbInstance.sources.filter((s) => sourceIds.includes(s.id));
 }
 
 export async function saveSource(source: Source): Promise<void> {
-  const idx = memoryDb.sources.findIndex((s) => s.id === source.id || s.url === source.url);
-  if (idx >= 0) memoryDb.sources[idx] = source;
-  else memoryDb.sources.unshift(source);
+  const idx = dbInstance.sources.findIndex((s) => s.id === source.id);
+  if (idx >= 0) {
+    dbInstance.sources[idx] = { ...dbInstance.sources[idx], ...source };
+  } else {
+    dbInstance.sources.unshift(source);
+  }
+  dbInstance.sync();
+}
+
+export async function deleteSource(id: string): Promise<void> {
+  const idx = dbInstance.sources.findIndex((s) => s.id === id);
+  if (idx >= 0) {
+    dbInstance.sources.splice(idx, 1);
+    dbInstance.sync();
+  }
+}
+
+export async function attachSourceToArticle(articleId: string, sourceId: string): Promise<void> {
+  const exists = dbInstance.articleSources.some(
+    (as) => as.article_id === articleId && as.source_id === sourceId
+  );
+  if (!exists) {
+    dbInstance.articleSources.push({
+      id: nanoid(),
+      article_id: articleId,
+      source_id: sourceId,
+      relevance_score: 90,
+    });
+    dbInstance.sync();
+  }
+}
+
+export async function detachSourceFromArticle(articleId: string, sourceId: string): Promise<void> {
+  const idx = dbInstance.articleSources.findIndex(
+    (as) => as.article_id === articleId && as.source_id === sourceId
+  );
+  if (idx >= 0) {
+    dbInstance.articleSources.splice(idx, 1);
+    dbInstance.sync();
+  }
 }
 
 export async function getClaims(articleId?: string): Promise<ArticleClaim[]> {
-  if (!articleId) return memoryDb.articleClaims;
-  return memoryDb.articleClaims.filter((c) => c.article_id === articleId);
+  if (!articleId) return dbInstance.articleClaims;
+  return dbInstance.articleClaims.filter((c) => c.article_id === articleId);
 }
 
 export async function saveClaims(claims: ArticleClaim[]): Promise<void> {
   for (const claim of claims) {
-    const idx = memoryDb.articleClaims.findIndex((c) => c.id === claim.id);
-    if (idx >= 0) memoryDb.articleClaims[idx] = claim;
-    else memoryDb.articleClaims.unshift(claim);
+    const idx = dbInstance.articleClaims.findIndex((c) => c.id === claim.id);
+    if (idx >= 0) dbInstance.articleClaims[idx] = claim;
+    else dbInstance.articleClaims.unshift(claim);
+  }
+  dbInstance.sync();
+}
+
+export async function saveClaim(claim: ArticleClaim): Promise<void> {
+  const idx = dbInstance.articleClaims.findIndex((c) => c.id === claim.id);
+  if (idx >= 0) dbInstance.articleClaims[idx] = claim;
+  else dbInstance.articleClaims.unshift(claim);
+  dbInstance.sync();
+}
+
+export async function deleteClaim(id: string): Promise<void> {
+  const idx = dbInstance.articleClaims.findIndex((c) => c.id === id);
+  if (idx >= 0) {
+    dbInstance.articleClaims.splice(idx, 1);
+    dbInstance.sync();
   }
 }
 
@@ -476,37 +553,43 @@ export async function updateClaimStatus(
   id: string,
   status: ArticleClaim["verification_status"]
 ): Promise<void> {
-  const claim = memoryDb.articleClaims.find((c) => c.id === id);
-  if (claim) claim.verification_status = status;
+  const claim = dbInstance.articleClaims.find((c) => c.id === id);
+  if (claim) {
+    claim.verification_status = status;
+    dbInstance.sync();
+  }
 }
 
 export async function getInternalLinks(articleId?: string): Promise<InternalLinkRecommendation[]> {
-  if (!articleId) return memoryDb.internalLinks;
-  return memoryDb.internalLinks.filter((il) => il.source_article_id === articleId);
+  if (!articleId) return dbInstance.internalLinks;
+  return dbInstance.internalLinks.filter((il) => il.source_article_id === articleId);
 }
 
 export async function saveInternalLinks(links: InternalLinkRecommendation[]): Promise<void> {
   for (const link of links) {
-    const idx = memoryDb.internalLinks.findIndex((l) => l.id === link.id);
-    if (idx >= 0) memoryDb.internalLinks[idx] = link;
-    else memoryDb.internalLinks.unshift(link);
+    const idx = dbInstance.internalLinks.findIndex((l) => l.id === link.id);
+    if (idx >= 0) dbInstance.internalLinks[idx] = link;
+    else dbInstance.internalLinks.unshift(link);
   }
+  dbInstance.sync();
 }
 
 export async function getAIUsage(): Promise<AIUsageLog[]> {
-  return [...memoryDb.aiUsageLogs].sort(
+  return [...dbInstance.aiUsageLogs].sort(
     (a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
   );
 }
 
 export async function saveAIUsage(log: AIUsageLog): Promise<void> {
-  memoryDb.aiUsageLogs.unshift(log);
+  dbInstance.aiUsageLogs.unshift(log);
+  dbInstance.sync();
 }
 
 export async function getSettings(): Promise<Record<string, any>> {
-  return memoryDb.settings;
+  return dbInstance.settings;
 }
 
 export async function updateSettings(key: string, value: any): Promise<void> {
-  memoryDb.settings[key] = value;
+  dbInstance.settings[key] = value;
+  dbInstance.sync();
 }

@@ -6,19 +6,18 @@ import {
   Sliders,
   Bot,
   Globe,
-  Database,
   CheckCircle2,
-  AlertCircle,
   Save,
-  Shield,
-  Layers,
-  Sparkles,
+  Clock,
+  Coins,
+  History,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
-import { ScoringWeights } from "@/types";
+import { ScoringWeights, AIUsageLog } from "@/types";
+import { formatCurrency, formatNumber, formatDate } from "@/lib/utils";
 
 export default function SettingsPage() {
   const [weights, setWeights] = useState<ScoringWeights>({
@@ -39,6 +38,7 @@ export default function SettingsPage() {
     defaultArticleLength: 2500,
   });
 
+  const [aiLogs, setAiLogs] = useState<AIUsageLog[]>([]);
   const [saving, setSaving] = useState(false);
   const [savedMessage, setSavedMessage] = useState(false);
 
@@ -48,6 +48,13 @@ export default function SettingsPage() {
       .then((d) => {
         if (d.settings?.scoring_weights) setWeights(d.settings.scoring_weights);
         if (d.settings?.ai_config) setAiConfig(d.settings.ai_config);
+      })
+      .catch(console.error);
+
+    fetch("/api/cost")
+      .then((r) => r.json())
+      .then((d) => {
+        if (d.recentLogs) setAiLogs(d.recentLogs);
       })
       .catch(console.error);
   }, []);
@@ -82,15 +89,15 @@ export default function SettingsPage() {
   );
 
   return (
-    <div className="space-y-6 max-w-4xl">
+    <div className="space-y-6 max-w-5xl">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
           <h1 className="text-2xl font-extrabold tracking-tight flex items-center gap-2">
             <Settings className="h-6 w-6 text-slate-700 dark:text-slate-300" />
-            System & Algorithm Settings
+            시스템 설정 및 AI 비용 관리
           </h1>
           <p className="text-sm text-slate-500">
-            Opportunity Score 가중치, AI 모델 배분 및 외부 서비스 어댑터 설정
+            기회지수 알고리즘 가중치, OmniRoute AI 게이트웨이 모델 및 실시간 호출 이력
           </p>
         </div>
 
@@ -228,14 +235,14 @@ export default function SettingsPage() {
         </div>
       </Card>
 
-      {/* AI & Generation Engine Config */}
+      {/* AI Config */}
       <Card className="p-6 space-y-4">
         <CardTitle className="text-base font-bold flex items-center gap-2">
           <Bot className="h-5 w-5 text-purple-600" />
-          AI Provider & Engine Configuration (AGENTS.md)
+          AI Provider & Engine Configuration (OmniRoute Gateway)
         </CardTitle>
         <CardDescription className="text-xs">
-          OmniRoute 로컬 게이트웨이(http://localhost:20128/v1)를 통해 구동되는 Task별 모델
+          OmniRoute 로컬 게이트웨이(http://localhost:20128/v1)를 통해 구동되는 모델 설정
         </CardDescription>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
@@ -260,79 +267,73 @@ export default function SettingsPage() {
               className="text-xs font-mono"
             />
           </div>
-
-          <div className="space-y-1">
-            <label className="font-semibold text-slate-600 dark:text-slate-300">
-              기본 콘텐츠 작성 언어
-            </label>
-            <Input
-              value={aiConfig.contentLanguage}
-              onChange={(e) => setAiConfig({ ...aiConfig, contentLanguage: e.target.value })}
-              className="text-xs"
-            />
-          </div>
-
-          <div className="space-y-1">
-            <label className="font-semibold text-slate-600 dark:text-slate-300">
-              기본 권장 글자 수 (단어)
-            </label>
-            <Input
-              type="number"
-              value={aiConfig.defaultArticleLength}
-              onChange={(e) => setAiConfig({ ...aiConfig, defaultArticleLength: parseInt(e.target.value) || 2500 })}
-              className="text-xs"
-            />
-          </div>
         </div>
       </Card>
 
-      {/* External Service Adapters Status */}
+      {/* AI Usage Logs History Table */}
       <Card className="p-6 space-y-4">
-        <CardTitle className="text-base font-bold flex items-center gap-2">
-          <Globe className="h-5 w-5 text-blue-600" />
-          Connected Adapters & Status
-        </CardTitle>
-
-        <div className="divide-y divide-slate-100 dark:divide-slate-800 text-xs">
-          <div className="py-3 flex justify-between items-center">
-            <div>
-              <span className="font-semibold block">OmniRoute LLM Gateway</span>
-              <span className="text-slate-400 text-[11px]">http://localhost:20128/v1 (OpenAI Protocol)</span>
-            </div>
-            <Badge variant="success">Connected (Active)</Badge>
+        <div className="flex items-center justify-between">
+          <div>
+            <CardTitle className="text-base font-bold flex items-center gap-2">
+              <History className="h-5 w-5 text-purple-600" />
+              AI 호출 및 토큰 사용 이력 (AI Usage History)
+            </CardTitle>
+            <CardDescription className="text-xs">
+              실제 호출된 작업, 모델, 토큰 수량 및 추정 비용 기록
+            </CardDescription>
           </div>
+          <Badge variant="purple" className="text-xs">
+            {aiLogs.length}건 기록됨
+          </Badge>
+        </div>
 
-          <div className="py-3 flex justify-between items-center">
-            <div>
-              <span className="font-semibold block">Supabase Database & Storage</span>
-              <span className="text-slate-400 text-[11px]">PostgreSQL 15 / Supabase Client</span>
-            </div>
-            <Badge variant="success">Connected / Memory Fallback Active</Badge>
-          </div>
-
-          <div className="py-3 flex justify-between items-center">
-            <div>
-              <span className="font-semibold block">WordPress REST API Adapter</span>
-              <span className="text-slate-400 text-[11px]">Phase 4 배포 대상</span>
-            </div>
-            <Badge variant="outline">Mock Adapter (Ready)</Badge>
-          </div>
-
-          <div className="py-3 flex justify-between items-center">
-            <div>
-              <span className="font-semibold block">Google Search Console / GA4 Adapter</span>
-              <span className="text-slate-400 text-[11px]">Phase 5 분석 연동</span>
-            </div>
-            <Badge variant="outline">Not Connected (Phase 5)</Badge>
-          </div>
-
-          <div className="py-3 flex justify-between items-center">
-            <div>
-              <span className="font-semibold block">Google AdSense / Mediavine Adapter</span>
-              <span className="text-slate-400 text-[11px]">Phase 6 수익 최적화 연동</span>
-            </div>
-            <Badge variant="outline">Not Connected (Phase 6)</Badge>
-          </div>
+        <div className="overflow-x-auto">
+          <table className="w-full text-xs text-left">
+            <thead className="border-b text-slate-400 font-semibold bg-slate-50 dark:bg-slate-800/60">
+              <tr>
+                <th className="py-2.5 px-3">일시</th>
+                <th className="py-2.5 px-3">작업 유형</th>
+                <th className="py-2.5 px-3">모델</th>
+                <th className="py-2.5 px-3 text-right">입력 토큰</th>
+                <th className="py-2.5 px-3 text-right">출력 토큰</th>
+                <th className="py-2.5 px-3 text-right">추정 비용</th>
+                <th className="py-2.5 px-3 text-center">상태</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-100 dark:divide-slate-800">
+              {aiLogs.map((log) => (
+                <tr key={log.id} className="hover:bg-slate-50/50 dark:hover:bg-slate-800/50">
+                  <td className="py-2.5 px-3 text-slate-500 font-mono text-[11px]">
+                    {new Date(log.created_at).toLocaleTimeString("ko-KR", {
+                      hour: "2-digit",
+                      minute: "2-digit",
+                      second: "2-digit",
+                    })}
+                  </td>
+                  <td className="py-2.5 px-3 font-semibold text-slate-800 dark:text-slate-200">
+                    {log.operation}
+                  </td>
+                  <td className="py-2.5 px-3 font-mono text-slate-600 dark:text-slate-300">
+                    {log.model}
+                  </td>
+                  <td className="py-2.5 px-3 text-right font-mono text-slate-600 dark:text-slate-300">
+                    {formatNumber(log.input_tokens)}
+                  </td>
+                  <td className="py-2.5 px-3 text-right font-mono text-slate-600 dark:text-slate-300">
+                    {formatNumber(log.output_tokens)}
+                  </td>
+                  <td className="py-2.5 px-3 text-right font-mono font-bold text-purple-600">
+                    {formatCurrency(log.estimated_cost)}
+                  </td>
+                  <td className="py-2.5 px-3 text-center">
+                    <Badge variant="success" className="text-[10px] px-1.5 py-0">
+                      SUCCESS
+                    </Badge>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
       </Card>
     </div>

@@ -23,12 +23,14 @@ import {
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { Skeleton } from "@/components/ui/skeleton";
 import { formatCurrency, formatNumber } from "@/lib/utils";
 import { Topic, Article, Trend } from "@/types";
 
 export default function DashboardPage() {
   const router = useRouter();
-  const [loading, setLoading] = useState(false);
+  const [initialLoading, setInitialLoading] = useState(true);
+  const [loadingAction, setLoadingAction] = useState(false);
   const [trends, setTrends] = useState<Trend[]>([]);
   const [topics, setTopics] = useState<Topic[]>([]);
   const [articles, setArticles] = useState<Article[]>([]);
@@ -66,11 +68,13 @@ export default function DashboardPage() {
       }
     } catch (err) {
       console.error("Error loading dashboard data:", err);
+    } finally {
+      setInitialLoading(false);
     }
   }
 
   async function handleFindTodayOpportunities() {
-    setLoading(true);
+    setLoadingAction(true);
     try {
       // 1. Discover trends
       const trendRes = await fetch("/api/trends/discover", { method: "POST" });
@@ -91,7 +95,7 @@ export default function DashboardPage() {
     } catch (err) {
       console.error("Failed to run opportunity finder:", err);
     } finally {
-      setLoading(false);
+      setLoadingAction(false);
     }
   }
 
@@ -140,10 +144,10 @@ export default function DashboardPage() {
               size="lg"
               variant="gradient"
               onClick={handleFindTodayOpportunities}
-              disabled={loading}
+              disabled={loadingAction}
               className="h-14 px-8 text-base font-bold shadow-lg shadow-blue-500/25 gap-3 bg-gradient-to-r from-amber-500 via-orange-500 to-red-500 hover:from-amber-600 hover:to-red-600 border-0"
             >
-              {loading ? (
+              {loadingAction ? (
                 <>
                   <RefreshCw className="h-5 w-5 animate-spin" />
                   트렌드 수집 및 AI 분석 중...
@@ -159,78 +163,90 @@ export default function DashboardPage() {
         </div>
       </div>
 
-      {/* Top KPI Metrics Row */}
+      {/* Top KPI Metrics Row with Skeleton Loading */}
       <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
-        <Card className="p-4 bg-white dark:bg-slate-900 border-slate-200/80 dark:border-slate-800">
-          <div className="flex items-center justify-between">
-            <span className="text-xs font-semibold text-slate-500 dark:text-slate-400">Total Articles</span>
-            <FileText className="h-4 w-4 text-blue-600" />
-          </div>
-          <div className="mt-2 text-2xl font-bold">{articles.length}</div>
-          <div className="text-[11px] text-slate-400 mt-1 flex items-center gap-1">
-            <span className="text-emerald-600 font-medium">{publishedCount} 승인됨</span> • {draftCount} 작성중
-          </div>
-        </Card>
+        {initialLoading ? (
+          Array.from({ length: 6 }).map((_, i) => (
+            <Card key={i} className="p-4 space-y-2">
+              <Skeleton className="h-4 w-20" />
+              <Skeleton className="h-8 w-16" />
+              <Skeleton className="h-3 w-28" />
+            </Card>
+          ))
+        ) : (
+          <>
+            <Card className="p-4 bg-white dark:bg-slate-900 border-slate-200/80 dark:border-slate-800">
+              <div className="flex items-center justify-between">
+                <span className="text-xs font-semibold text-slate-500 dark:text-slate-400">Total Articles</span>
+                <FileText className="h-4 w-4 text-blue-600" />
+              </div>
+              <div className="mt-2 text-2xl font-bold">{articles.length}</div>
+              <div className="text-[11px] text-slate-400 mt-1 flex items-center gap-1">
+                <span className="text-emerald-600 font-medium">{publishedCount} 승인됨</span> • {draftCount} 작성중
+              </div>
+            </Card>
 
-        <Card className="p-4 bg-white dark:bg-slate-900 border-slate-200/80 dark:border-slate-800">
-          <div className="flex items-center justify-between">
-            <span className="text-xs font-semibold text-slate-500 dark:text-slate-400">Active Trends</span>
-            <TrendingUp className="h-4 w-4 text-indigo-600" />
-          </div>
-          <div className="mt-2 text-2xl font-bold">{trends.length}</div>
-          <div className="text-[11px] text-indigo-600 font-medium mt-1">
-            평균 기회지수 {Math.round(trends.reduce((a, b) => a + (b.opportunity_score || 0), 0) / (trends.length || 1))}점
-          </div>
-        </Card>
+            <Card className="p-4 bg-white dark:bg-slate-900 border-slate-200/80 dark:border-slate-800">
+              <div className="flex items-center justify-between">
+                <span className="text-xs font-semibold text-slate-500 dark:text-slate-400">Active Trends</span>
+                <TrendingUp className="h-4 w-4 text-indigo-600" />
+              </div>
+              <div className="mt-2 text-2xl font-bold">{trends.length}</div>
+              <div className="text-[11px] text-indigo-600 font-medium mt-1">
+                평균 기회지수 {Math.round(trends.reduce((a, b) => a + (b.opportunity_score || 0), 0) / (trends.length || 1))}점
+              </div>
+            </Card>
 
-        <Card className="p-4 bg-white dark:bg-slate-900 border-slate-200/80 dark:border-slate-800">
-          <div className="flex items-center justify-between">
-            <span className="text-xs font-semibold text-slate-500 dark:text-slate-400">Organic Traffic</span>
-            <BarChart3 className="h-4 w-4 text-emerald-600" />
-          </div>
-          <div className="mt-2 text-2xl font-bold">124.8K</div>
-          <div className="text-[11px] text-emerald-600 font-medium mt-1">
-            클릭수 8,420 (CTR 6.7%)
-          </div>
-        </Card>
+            <Card className="p-4 bg-white dark:bg-slate-900 border-slate-200/80 dark:border-slate-800">
+              <div className="flex items-center justify-between">
+                <span className="text-xs font-semibold text-slate-500 dark:text-slate-400">Organic Traffic</span>
+                <BarChart3 className="h-4 w-4 text-emerald-600" />
+              </div>
+              <div className="mt-2 text-2xl font-bold">124.8K</div>
+              <div className="text-[11px] text-emerald-600 font-medium mt-1">
+                클릭수 8,420 (CTR 6.7%)
+              </div>
+            </Card>
 
-        <Card className="p-4 bg-white dark:bg-slate-900 border-slate-200/80 dark:border-slate-800">
-          <div className="flex items-center justify-between">
-            <span className="text-xs font-semibold text-slate-500 dark:text-slate-400">Est. Revenue</span>
-            <DollarSign className="h-4 w-4 text-amber-500" />
-          </div>
-          <div className="mt-2 text-2xl font-bold">{formatCurrency(1245.8)}</div>
-          <div className="text-[11px] text-slate-400 mt-1">
-            월 예상 <span className="text-amber-600 font-semibold">{formatCurrency(3840)}</span>
-          </div>
-        </Card>
+            <Card className="p-4 bg-white dark:bg-slate-900 border-slate-200/80 dark:border-slate-800">
+              <div className="flex items-center justify-between">
+                <span className="text-xs font-semibold text-slate-500 dark:text-slate-400">Est. Revenue</span>
+                <DollarSign className="h-4 w-4 text-amber-500" />
+              </div>
+              <div className="mt-2 text-2xl font-bold">{formatCurrency(1245.8)}</div>
+              <div className="text-[11px] text-slate-400 mt-1">
+                월 예상 <span className="text-amber-600 font-semibold">{formatCurrency(3840)}</span>
+              </div>
+            </Card>
 
-        <Card className="p-4 bg-white dark:bg-slate-900 border-slate-200/80 dark:border-slate-800">
-          <div className="flex items-center justify-between">
-            <span className="text-xs font-semibold text-slate-500 dark:text-slate-400">Today AI Cost</span>
-            <Bot className="h-4 w-4 text-purple-600" />
-          </div>
-          <div className="mt-2 text-2xl font-bold">
-            {formatCurrency(costData?.totalCost || 0.042)}
-          </div>
-          <div className="text-[11px] text-purple-600 font-medium mt-1">
-            글당 평균 ${costData?.averageCostPerArticle || 0.038}
-          </div>
-        </Card>
+            <Card className="p-4 bg-white dark:bg-slate-900 border-slate-200/80 dark:border-slate-800">
+              <div className="flex items-center justify-between">
+                <span className="text-xs font-semibold text-slate-500 dark:text-slate-400">Today AI Cost</span>
+                <Bot className="h-4 w-4 text-purple-600" />
+              </div>
+              <div className="mt-2 text-2xl font-bold">
+                {formatCurrency(costData?.totalCost || 0.042)}
+              </div>
+              <div className="text-[11px] text-purple-600 font-medium mt-1">
+                글당 평균 ${costData?.averageCostPerArticle || 0.038}
+              </div>
+            </Card>
 
-        <Card className="p-4 bg-white dark:bg-slate-900 border-slate-200/80 dark:border-slate-800">
-          <div className="flex items-center justify-between">
-            <span className="text-xs font-semibold text-slate-500 dark:text-slate-400">Avg SEO Score</span>
-            <Search className="h-4 w-4 text-cyan-600" />
-          </div>
-          <div className="mt-2 text-2xl font-bold">94 / 100</div>
-          <div className="text-[11px] text-cyan-600 font-medium mt-1">
-            팩트체크 신뢰도 96%
-          </div>
-        </Card>
+            <Card className="p-4 bg-white dark:bg-slate-900 border-slate-200/80 dark:border-slate-800">
+              <div className="flex items-center justify-between">
+                <span className="text-xs font-semibold text-slate-500 dark:text-slate-400">Avg SEO Score</span>
+                <Search className="h-4 w-4 text-cyan-600" />
+              </div>
+              <div className="mt-2 text-2xl font-bold">94 / 100</div>
+              <div className="text-[11px] text-cyan-600 font-medium mt-1">
+                팩트체크 신뢰도 96%
+              </div>
+            </Card>
+          </>
+        )}
       </div>
 
-      {/* Main Section: Today's Opportunities (AI Top 5 Recommendations) */}
+      {/* Main Section: Today's Opportunities (AI Top Recommendations) */}
       <div className="space-y-4">
         <div className="flex items-center justify-between">
           <div>
@@ -249,93 +265,106 @@ export default function DashboardPage() {
           </Link>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {topics.slice(0, 5).map((topic, idx) => (
-            <Card
-              key={topic.id}
-              className="flex flex-col justify-between hover:shadow-md transition-all duration-200 border-slate-200/90 dark:border-slate-800"
-            >
-              <CardHeader className="pb-3">
-                <div className="flex items-start justify-between gap-2">
-                  <Badge variant="opportunity" className="gap-1 px-2 py-0.5">
-                    <Flame className="h-3 w-3 fill-current" />
-                    Score {topic.opportunity_score}
-                  </Badge>
-                  <Badge variant="outline" className="text-[10px] font-mono">
-                    {topic.content_type}
-                  </Badge>
-                </div>
-                <CardTitle className="text-base font-bold line-clamp-2 mt-2 leading-snug">
-                  {topic.title}
-                </CardTitle>
-                <CardDescription className="text-xs text-slate-500 line-clamp-2 mt-1">
-                  {topic.why_this_topic}
-                </CardDescription>
-              </CardHeader>
-
-              <CardContent className="pt-0 space-y-3">
-                <div className="grid grid-cols-3 gap-2 py-2 px-3 bg-slate-50 dark:bg-slate-800/60 rounded-lg text-center text-xs">
-                  <div>
-                    <span className="text-[10px] text-slate-400 block">Traffic</span>
-                    <span className="font-bold text-slate-700 dark:text-slate-200">
-                      {formatNumber(topic.estimated_traffic)}
-                    </span>
+        {initialLoading ? (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {Array.from({ length: 3 }).map((_, i) => (
+              <Card key={i} className="p-5 space-y-3">
+                <Skeleton className="h-5 w-24" />
+                <Skeleton className="h-6 w-full" />
+                <Skeleton className="h-12 w-full" />
+                <Skeleton className="h-8 w-full" />
+              </Card>
+            ))}
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {topics.slice(0, 5).map((topic) => (
+              <Card
+                key={topic.id}
+                className="flex flex-col justify-between hover:shadow-md transition-all duration-200 border-slate-200/90 dark:border-slate-800"
+              >
+                <CardHeader className="pb-3">
+                  <div className="flex items-start justify-between gap-2">
+                    <Badge variant="opportunity" className="gap-1 px-2 py-0.5">
+                      <Flame className="h-3 w-3 fill-current" />
+                      Score {topic.opportunity_score}
+                    </Badge>
+                    <Badge variant="outline" className="text-[10px] font-mono">
+                      {topic.content_type}
+                    </Badge>
                   </div>
-                  <div>
-                    <span className="text-[10px] text-slate-400 block">Competition</span>
-                    <span
-                      className={`font-bold ${
-                        topic.competition === "LOW"
-                          ? "text-emerald-600"
-                          : topic.competition === "MEDIUM"
-                          ? "text-amber-600"
-                          : "text-red-600"
-                      }`}
+                  <CardTitle className="text-base font-bold line-clamp-2 mt-2 leading-snug">
+                    {topic.title}
+                  </CardTitle>
+                  <CardDescription className="text-xs text-slate-500 line-clamp-2 mt-1">
+                    {topic.why_this_topic}
+                  </CardDescription>
+                </CardHeader>
+
+                <CardContent className="pt-0 space-y-3">
+                  <div className="grid grid-cols-3 gap-2 py-2 px-3 bg-slate-50 dark:bg-slate-800/60 rounded-lg text-center text-xs">
+                    <div>
+                      <span className="text-[10px] text-slate-400 block">Traffic</span>
+                      <span className="font-bold text-slate-700 dark:text-slate-200">
+                        {formatNumber(topic.estimated_traffic)}
+                      </span>
+                    </div>
+                    <div>
+                      <span className="text-[10px] text-slate-400 block">Competition</span>
+                      <span
+                        className={`font-bold ${
+                          topic.competition === "LOW"
+                            ? "text-emerald-600"
+                            : topic.competition === "MEDIUM"
+                            ? "text-amber-600"
+                            : "text-red-600"
+                        }`}
+                      >
+                        {topic.competition}
+                      </span>
+                    </div>
+                    <div>
+                      <span className="text-[10px] text-slate-400 block">Commercial</span>
+                      <span className="font-bold text-blue-600 dark:text-blue-400">
+                        {topic.commercial_value}/100
+                      </span>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center gap-2">
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      className="flex-1 text-xs"
+                      onClick={() => router.push(`/topics?selected=${topic.id}`)}
                     >
-                      {topic.competition}
-                    </span>
+                      분석 보기
+                    </Button>
+                    <Button
+                      variant="gradient"
+                      size="sm"
+                      className="flex-1 text-xs font-semibold gap-1.5 shadow-sm"
+                      disabled={generatingArticleId === topic.id}
+                      onClick={() => handleCreateArticleFromTopic(topic)}
+                    >
+                      {generatingArticleId === topic.id ? (
+                        <>
+                          <RefreshCw className="h-3.5 w-3.5 animate-spin" />
+                          작성 중...
+                        </>
+                      ) : (
+                        <>
+                          <Sparkles className="h-3.5 w-3.5" />
+                          Create Article
+                        </>
+                      )}
+                    </Button>
                   </div>
-                  <div>
-                    <span className="text-[10px] text-slate-400 block">Commercial</span>
-                    <span className="font-bold text-blue-600 dark:text-blue-400">
-                      {topic.commercial_value}/100
-                    </span>
-                  </div>
-                </div>
-
-                <div className="flex items-center gap-2">
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    className="flex-1 text-xs"
-                    onClick={() => router.push(`/topics?selected=${topic.id}`)}
-                  >
-                    Analyze
-                  </Button>
-                  <Button
-                    variant="gradient"
-                    size="sm"
-                    className="flex-1 text-xs font-semibold gap-1.5 shadow-sm"
-                    disabled={generatingArticleId === topic.id}
-                    onClick={() => handleCreateArticleFromTopic(topic)}
-                  >
-                    {generatingArticleId === topic.id ? (
-                      <>
-                        <RefreshCw className="h-3.5 w-3.5 animate-spin" />
-                        작성 중...
-                      </>
-                    ) : (
-                      <>
-                        <Sparkles className="h-3.5 w-3.5" />
-                        Create Article
-                      </>
-                    )}
-                  </Button>
-                </div>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        )}
       </div>
 
       {/* Two Column Section: Recent Articles & AI Cost Monitoring */}
@@ -376,7 +405,7 @@ export default function DashboardPage() {
                         {art.status}
                       </Badge>
                       <span className="text-xs text-slate-400 font-mono">
-                        {art.word_count || 1400} words
+                        {art.word_count || 1400} 단어
                       </span>
                     </div>
                     <Link
@@ -398,7 +427,7 @@ export default function DashboardPage() {
                     </div>
                     <Link href={`/articles/${art.id}`}>
                       <Button size="sm" variant="outline" className="h-8 px-3 text-xs">
-                        Editor & Review
+                        검토 및 편집
                       </Button>
                     </Link>
                   </div>

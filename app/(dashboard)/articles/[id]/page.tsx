@@ -20,8 +20,10 @@ import {
   Info,
   Check,
   X,
-  Share2,
-  Calendar,
+  Plus,
+  Trash2,
+  Lock,
+  Wand2,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
@@ -29,14 +31,17 @@ import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Progress } from "@/components/ui/progress";
+import { QualityGateBanner } from "@/components/articles/quality-gate-banner";
+import { PublishPreviewModal } from "@/components/articles/publish-preview-modal";
+import { SourceManageModal } from "@/components/articles/source-manage-modal";
 import {
   Article,
   ArticleClaim,
-  ArticleSource,
   InternalLinkRecommendation,
   SEOScoreBreakdown,
   Source,
 } from "@/types";
+import { QualityGateResult } from "@/lib/scoring/quality-gate";
 
 export default function ArticleEditorPage() {
   const params = useParams();
@@ -48,6 +53,7 @@ export default function ArticleEditorPage() {
   const [sources, setSources] = useState<Source[]>([]);
   const [internalLinks, setInternalLinks] = useState<InternalLinkRecommendation[]>([]);
   const [seoBreakdown, setSeoBreakdown] = useState<SEOScoreBreakdown | null>(null);
+  const [qualityGate, setQualityGate] = useState<QualityGateResult | null>(null);
 
   const [activeTab, setActiveTab] = useState<"SEO" | "FACT_CHECK" | "SOURCES" | "INTERNAL_LINKS">("SEO");
   const [content, setContent] = useState("");
@@ -57,8 +63,18 @@ export default function ArticleEditorPage() {
   const [primaryKeyword, setPrimaryKeyword] = useState("");
 
   const [saving, setSaving] = useState(false);
-  const [aiActionLoading, setAiActionLoading] = useState<string | null>(null);
-  const [publishMessage, setPublishMessage] = useState<string | null>(null);
+  const [reanalyzingSeo, setReanalyzingSeo] = useState(false);
+  const [regenerating, setRegenerating] = useState(false);
+  const [approving, setApproving] = useState(false);
+  const [publishModalOpen, setPublishModalOpen] = useState(false);
+  const [sourceModalOpen, setSourceModalOpen] = useState(false);
+  const [publishing, setPublishing] = useState(false);
+  const [notification, setNotification] = useState<{ type: "success" | "error"; text: string } | null>(null);
+
+  // New claim modal state
+  const [showAddClaim, setShowAddClaim] = useState(false);
+  const [newClaimText, setNewClaimText] = useState("");
+  const [newClaimCategory, setNewClaimCategory] = useState<"STATISTICS" | "PRICING" | "SPECS" | "LEGAL" | "GENERAL">("STATISTICS");
 
   useEffect(() => {
     loadArticleData();
@@ -79,6 +95,7 @@ export default function ArticleEditorPage() {
         setSources(data.sources || []);
         setInternalLinks(data.internalLinks || []);
         setSeoBreakdown(data.seoBreakdown);
+        setQualityGate(data.qualityGate);
       }
     } catch (err) {
       console.error("Failed to load article details:", err);
@@ -103,42 +120,159 @@ export default function ArticleEditorPage() {
         body: JSON.stringify(payload),
       });
 
+      const data = await res.json();
       if (res.ok) {
-        const data = await res.json();
         setArticle(data.article);
         setSeoBreakdown(data.seoBreakdown);
+        setQualityGate(data.qualityGate);
+        setNotification({ type: "success", text: "글 변경사항이 성공적으로 저장되었습니다." });
+      } else {
+        setNotification({ type: "error", text: data.error || "저장에 실패했습니다." });
       }
+    } catch (err: any) {
+      setNotification({ type: "error", text: err.message });
     } finally {
       setSaving(false);
+      setTimeout(() => setNotification(null), 4000);
+    }
+  }
+
+  async function handleReanalyzeSeo() {
+    setReanalyzingSeo(true);
+    try {
+      await handleSave();
+      setNotification({ type: "success", text: "SEO 10대 요소 재분석이 완료되었습니다." });
+    } finally {
+      setReanalyzingSeo(false);
     }
   }
 
   async function handleApprove() {
-    await handleSave("APPROVED");
-    setPublishMessage("글이 성공적으로 승인되었습니다 (APPROVED). WordPress 발행 준비 완료.");
+    setApproving(true);
+    try {
+      const res = await fetch(`/api/articles/${articleId}/approve`, {
+        method: "POST",
+      });
+      const data = await res.json();
+      if (res.ok && data.success) {
+        setArticle(data.article);
+        setQualityGate(data.qualityGate);
+        setNotification({ type: "success", text: "품질 게이트를 통과하여 승인(APPROVED)되었습니다!" });
+      } else {
+        setNotification({
+          type: "error",
+          text: `승인 실패: ${data.missingReasons?.join(", ") || data.error}`,
+        });
+      }
+    } catch (err: any) {
+      setNotification({ type: "error", text: err.message });
+    } finally {
+      setApproving(false);
+      setTimeout(() => setNotification(null), 5000);
+    }
   }
 
-  async function handlePublish() {
-    setSaving(true);
-    // Simulates or connects with WP Adapter
-    setTimeout(async () => {
-      await handleSave("PUBLISHED");
-      setSaving(false);
-      setPublishMessage("WordPress REST API Adapter: Post published to blog (Mock/Live).");
-    }, 800);
+  async function handleConfirmPublish() {
+    setPublishing(true);
+    try {
+      const res = await fetch(`/api/articles/${articleId}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ status: "PUBLISHED" }),
+      });
+      const data = await res.json();
+      if (res.ok) {
+        setArticle(data.article);
+        setQualityGate(data.qualityGate);
+        setPublishModalOpen(false);
+        setNotification({
+          type: "success",
+          text: "WordPress REST API Adapter를 통해 글이 성공적으로 발행(PUBLISHED)되었습니다!",
+        });
+      } else {
+        setNotification({ type: "error", text: data.error || "발행에 실패했습니다." });
+      }
+    } finally {
+      setPublishing(false);
+    }
+  }
+
+  async function handleRegenerateArticle(mode: "FULL" | "SEO") {
+    setRegenerating(true);
+    try {
+      const res = await fetch(`/api/articles/${articleId}/regenerate`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ mode }),
+      });
+      const data = await res.json();
+      if (res.ok) {
+        await loadArticleData();
+        setNotification({ type: "success", text: data.message });
+      }
+    } finally {
+      setRegenerating(false);
+    }
+  }
+
+  async function handleClaimStatusChange(claimId: string, newStatus: ArticleClaim["verification_status"]) {
+    try {
+      const res = await fetch(`/api/articles/${articleId}/claims`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ id: claimId, verification_status: newStatus }),
+      });
+      if (res.ok) {
+        await loadArticleData();
+      }
+    } catch (err) {
+      console.error(err);
+    }
+  }
+
+  async function handleAddClaim(e: React.FormEvent) {
+    e.preventDefault();
+    if (!newClaimText) return;
+
+    try {
+      const res = await fetch(`/api/articles/${articleId}/claims`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          claim: newClaimText,
+          category: newClaimCategory,
+          verification_status: "VERIFIED",
+          confidence: 0.95,
+        }),
+      });
+      if (res.ok) {
+        setNewClaimText("");
+        setShowAddClaim(false);
+        await loadArticleData();
+      }
+    } catch (err) {
+      console.error(err);
+    }
+  }
+
+  async function handleDeleteClaim(claimId: string) {
+    try {
+      const res = await fetch(`/api/articles/${articleId}/claims?claimId=${claimId}`, {
+        method: "DELETE",
+      });
+      if (res.ok) {
+        await loadArticleData();
+      }
+    } catch (err) {
+      console.error(err);
+    }
   }
 
   function handleApplyInternalLink(link: InternalLinkRecommendation) {
     const markdownLink = `[${link.anchor_text}](/${link.target_slug})`;
-    setContent((prev) => `${prev}\n\n> 💡 **관련 글 추천**: ${markdownLink}`);
+    setContent((prev) => `${prev}\n\n> 💡 **관련 콘텐츠 추천**: ${markdownLink}`);
     setInternalLinks((prev) =>
       prev.map((l) => (l.id === link.id ? { ...l, applied: true } : l))
-    );
-  }
-
-  function handleClaimStatusChange(claimId: string, newStatus: ArticleClaim["verification_status"]) {
-    setClaims((prev) =>
-      prev.map((c) => (c.id === claimId ? { ...c, verification_status: newStatus } : c))
     );
   }
 
@@ -147,23 +281,25 @@ export default function ArticleEditorPage() {
       <div className="flex items-center justify-center min-h-[400px]">
         <div className="flex items-center gap-2 text-slate-500 text-sm">
           <RefreshCw className="h-5 w-5 animate-spin text-blue-600" />
-          콘텐츠 및 검토 데이터 로딩 중...
+          콘텐츠 및 품질 게이트 로딩 중...
         </div>
       </div>
     );
   }
 
   const wordCount = content.split(/\s+/).filter(Boolean).length;
+  const charCount = content.length;
+  const isQualityPassed = qualityGate?.passed ?? false;
 
   return (
     <div className="space-y-6">
-      {/* Top Header & Actions */}
+      {/* Top Header & Navigation */}
       <div className="flex flex-col gap-4 bg-white dark:bg-slate-900 p-4 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm">
         <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
           <div className="flex items-center gap-3">
             <Link href="/articles">
               <Button variant="ghost" size="sm" className="h-8 px-2 gap-1 text-xs">
-                <ChevronLeft className="h-4 w-4" /> Articles
+                <ChevronLeft className="h-4 w-4" /> 글 목록
               </Button>
             </Link>
             <div className="h-4 w-[1px] bg-slate-200 dark:bg-slate-800" />
@@ -180,12 +316,23 @@ export default function ArticleEditorPage() {
               {article.status}
             </Badge>
             <span className="text-xs text-slate-500 font-mono">
-              {wordCount} words • {article.language.toUpperCase()}
+              {wordCount} 단어 (약 {charCount}자)
             </span>
           </div>
 
-          {/* Quick Action Buttons */}
+          {/* Quick Actions */}
           <div className="flex items-center gap-2 flex-wrap">
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() => handleRegenerateArticle("FULL")}
+              disabled={regenerating}
+              className="text-xs gap-1.5"
+            >
+              <Wand2 className="h-3.5 w-3.5 text-purple-600" />
+              {regenerating ? "AI 작성 중..." : "AI 본문 재생성"}
+            </Button>
+
             <Button
               variant="outline"
               size="sm"
@@ -194,76 +341,63 @@ export default function ArticleEditorPage() {
               className="text-xs gap-1.5"
             >
               <Save className="h-3.5 w-3.5" />
-              {saving ? "저장 중..." : "Save Draft"}
+              {saving ? "저장 중..." : "임시 저장"}
             </Button>
 
-            <Button
-              variant="secondary"
-              size="sm"
-              onClick={handleApprove}
-              disabled={saving || article.status === "APPROVED"}
-              className="text-xs font-semibold gap-1.5 text-purple-700 dark:text-purple-300 bg-purple-100 dark:bg-purple-950/60 hover:bg-purple-200"
-            >
-              <CheckCircle2 className="h-3.5 w-3.5" />
-              Approve (사람 승인)
-            </Button>
+            {/* Quality Gated Approval Button */}
+            <div className="relative group">
+              <Button
+                variant={isQualityPassed ? "secondary" : "outline"}
+                size="sm"
+                onClick={handleApprove}
+                disabled={!isQualityPassed || approving || article.status === "APPROVED"}
+                className={`text-xs font-semibold gap-1.5 ${
+                  isQualityPassed
+                    ? "text-purple-700 dark:text-purple-300 bg-purple-100 dark:bg-purple-950/60 hover:bg-purple-200"
+                    : "opacity-50 cursor-not-allowed border-amber-300"
+                }`}
+              >
+                {!isQualityPassed && <Lock className="h-3 w-3 text-amber-500" />}
+                <CheckCircle2 className="h-3.5 w-3.5" />
+                {approving ? "승인 검증 중..." : "Approve (사람 승인)"}
+              </Button>
+            </div>
 
+            {/* WordPress Publish Button */}
             <Button
               variant="gradient"
               size="sm"
-              onClick={handlePublish}
-              disabled={saving}
-              className="text-xs font-bold gap-1.5 shadow-sm"
+              onClick={() => setPublishModalOpen(true)}
+              disabled={!isQualityPassed}
+              className={`text-xs font-bold gap-1.5 shadow-sm ${
+                !isQualityPassed ? "opacity-50 cursor-not-allowed" : ""
+              }`}
             >
+              {!isQualityPassed && <Lock className="h-3 w-3 text-white/80" />}
               <Send className="h-3.5 w-3.5" />
-              Publish to WordPress
+              WordPress 발행
             </Button>
           </div>
         </div>
 
-        {/* Status Notification Banner */}
-        {publishMessage && (
-          <div className="p-3 rounded-lg bg-emerald-50 dark:bg-emerald-950/50 border border-emerald-200 dark:border-emerald-800 text-xs text-emerald-800 dark:text-emerald-300 flex items-center justify-between">
-            <div className="flex items-center gap-2">
-              <CheckCircle2 className="h-4 w-4 text-emerald-600" />
-              <span>{publishMessage}</span>
-            </div>
-            <button
-              onClick={() => setPublishMessage(null)}
-              className="text-slate-400 hover:text-slate-600"
-            >
+        {/* Notifications */}
+        {notification && (
+          <div
+            className={`p-3 rounded-lg border text-xs flex items-center justify-between animate-in fade-in ${
+              notification.type === "success"
+                ? "bg-emerald-50 dark:bg-emerald-950/50 border-emerald-200 text-emerald-800 dark:text-emerald-300"
+                : "bg-red-50 dark:bg-red-950/50 border-red-200 text-red-800 dark:text-red-300"
+            }`}
+          >
+            <span>{notification.text}</span>
+            <button onClick={() => setNotification(null)} className="text-slate-400">
               <X className="h-3.5 w-3.5" />
             </button>
           </div>
         )}
 
-        {/* Quality Score Bar */}
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-2 border-t border-slate-100 dark:border-slate-800 text-xs">
-          <div className="flex items-center gap-2">
-            <span className="text-slate-400">SEO Score:</span>
-            <span className="font-extrabold text-emerald-600">
-              {seoBreakdown?.overallScore || article.seo_score}/100
-            </span>
-          </div>
-          <div className="flex items-center gap-2">
-            <span className="text-slate-400">Fact Check:</span>
-            <span className="font-extrabold text-blue-600">
-              {article.fact_check_score || 96}%
-            </span>
-          </div>
-          <div className="flex items-center gap-2">
-            <span className="text-slate-400">Sources Cited:</span>
-            <span className="font-bold text-slate-700 dark:text-slate-200">
-              {sources.length}개 (Tier 1~2)
-            </span>
-          </div>
-          <div className="flex items-center gap-2">
-            <span className="text-slate-400">Internal Links:</span>
-            <span className="font-bold text-slate-700 dark:text-slate-200">
-              {internalLinks.length}개 추천
-            </span>
-          </div>
-        </div>
+        {/* Quality Gate Banner */}
+        <QualityGateBanner qualityGate={qualityGate} />
       </div>
 
       {/* Main Two-Column Layout */}
@@ -311,19 +445,21 @@ export default function ArticleEditorPage() {
                 onChange={(e) => setMetaDescription(e.target.value)}
                 rows={2}
                 className="text-xs leading-relaxed"
-                placeholder="검색 결과에 노출될 80~150자 설명문..."
+                placeholder="검색 결과에 노출될 70~160자 설명문..."
               />
             </div>
 
             <div className="space-y-1">
               <div className="flex items-center justify-between">
                 <label className="text-xs font-semibold text-slate-500">본문 내용 (Markdown)</label>
-                <span className="text-[11px] text-slate-400 font-mono">{wordCount} 단어</span>
+                <span className="text-[11px] text-slate-400 font-mono">
+                  {wordCount} 단어 ({charCount}자)
+                </span>
               </div>
               <Textarea
                 value={content}
                 onChange={(e) => setContent(e.target.value)}
-                rows={24}
+                rows={26}
                 className="font-mono text-xs leading-relaxed p-4 bg-slate-50/50 dark:bg-slate-900/50"
                 placeholder="마크다운 형식의 본문을 작성하거나 수정하세요..."
               />
@@ -344,7 +480,7 @@ export default function ArticleEditorPage() {
               }`}
             >
               <Search className="h-3.5 w-3.5" />
-              SEO ({seoBreakdown?.overallScore || 94})
+              SEO ({seoBreakdown?.overallScore || article.seo_score})
             </button>
 
             <button
@@ -368,7 +504,7 @@ export default function ArticleEditorPage() {
               }`}
             >
               <BookmarkCheck className="h-3.5 w-3.5" />
-              Sources ({sources.length})
+              출처 ({sources.length})
             </button>
 
             <button
@@ -380,25 +516,33 @@ export default function ArticleEditorPage() {
               }`}
             >
               <LinkIcon className="h-3.5 w-3.5" />
-              Links
+              링크 ({internalLinks.length})
             </button>
           </div>
 
           {/* TAB 1: SEO PANEL */}
           {activeTab === "SEO" && seoBreakdown && (
             <Card className="p-5 space-y-4">
-              <div className="space-y-1">
-                <div className="flex items-center justify-between">
-                  <h4 className="font-bold text-sm text-slate-900 dark:text-slate-100">
-                    SEO Score Breakdown (10 Factors)
-                  </h4>
+              <div className="flex items-center justify-between">
+                <div>
+                  <h4 className="font-bold text-sm">SEO 10대 요소 정밀 평가</h4>
+                  <p className="text-[11px] text-slate-400">품질 기준: 75점 이상 필요</p>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Button
+                    size="sm"
+                    variant="outline"
+                    onClick={handleReanalyzeSeo}
+                    disabled={reanalyzingSeo}
+                    className="h-7 text-xs gap-1"
+                  >
+                    <RefreshCw className={`h-3 w-3 ${reanalyzingSeo ? "animate-spin" : ""}`} />
+                    SEO 재분석
+                  </Button>
                   <Badge variant="opportunity" className="px-2 py-0.5 text-xs font-bold">
                     {seoBreakdown.overallScore} / 100
                   </Badge>
                 </div>
-                <p className="text-[11px] text-slate-400">
-                  * 주의: SEO 점수는 콘텐츠 품질 가이드이며 검색 순위를 100% 보장하지 않습니다.
-                </p>
               </div>
 
               {/* 10 Factors List */}
@@ -421,7 +565,7 @@ export default function ArticleEditorPage() {
 
                 <div className="space-y-1">
                   <div className="flex justify-between">
-                    <span className="text-slate-600 dark:text-slate-300">3. 메타 디스크립션 (Meta Description)</span>
+                    <span className="text-slate-600 dark:text-slate-300">3. 메타 디스크립션 (Meta)</span>
                     <span className="font-bold">{seoBreakdown.metaDescriptionScore}%</span>
                   </div>
                   <Progress value={seoBreakdown.metaDescriptionScore} />
@@ -429,7 +573,7 @@ export default function ArticleEditorPage() {
 
                 <div className="space-y-1">
                   <div className="flex justify-between">
-                    <span className="text-slate-600 dark:text-slate-300">4. 헤딩 구조화 (H1/H2/H3 Structure)</span>
+                    <span className="text-slate-600 dark:text-slate-300">4. 헤딩 구조화 (H1/H2/H3)</span>
                     <span className="font-bold">{seoBreakdown.headingStructureScore}%</span>
                   </div>
                   <Progress value={seoBreakdown.headingStructureScore} />
@@ -437,7 +581,7 @@ export default function ArticleEditorPage() {
 
                 <div className="space-y-1">
                   <div className="flex justify-between">
-                    <span className="text-slate-600 dark:text-slate-300">5. 키워드 관련성 (Keyword Density)</span>
+                    <span className="text-slate-600 dark:text-slate-300">5. 키워드 관련성 (Density)</span>
                     <span className="font-bold">{seoBreakdown.keywordRelevanceScore}%</span>
                   </div>
                   <Progress value={seoBreakdown.keywordRelevanceScore} />
@@ -445,7 +589,7 @@ export default function ArticleEditorPage() {
 
                 <div className="space-y-1">
                   <div className="flex justify-between">
-                    <span className="text-slate-600 dark:text-slate-300">6. 콘텐츠 완결성 (Content Depth)</span>
+                    <span className="text-slate-600 dark:text-slate-300">6. 콘텐츠 완결성 (분량)</span>
                     <span className="font-bold">{seoBreakdown.contentCompletenessScore}%</span>
                   </div>
                   <Progress value={seoBreakdown.contentCompletenessScore} />
@@ -453,10 +597,10 @@ export default function ArticleEditorPage() {
 
                 <div className="space-y-1">
                   <div className="flex justify-between">
-                    <span className="text-slate-600 dark:text-slate-300">7. 원본 분석 & 시사점 (Original Insights)</span>
-                    <span className="font-bold">{seoBreakdown.originalAnalysisScore}%</span>
+                    <span className="text-slate-600 dark:text-slate-300">7. 외부 출처 인용 (Sources)</span>
+                    <span className="font-bold">{seoBreakdown.externalSourcesScore}%</span>
                   </div>
-                  <Progress value={seoBreakdown.originalAnalysisScore} />
+                  <Progress value={seoBreakdown.externalSourcesScore} />
                 </div>
               </div>
 
@@ -482,17 +626,52 @@ export default function ArticleEditorPage() {
             <Card className="p-5 space-y-4">
               <div className="flex items-center justify-between">
                 <div>
-                  <h4 className="font-bold text-sm text-slate-900 dark:text-slate-100">
-                    Factual Claims & Verification
-                  </h4>
-                  <p className="text-[11px] text-slate-400">
-                    통계, 가격, 사양, 법률 등 주요 주장의 팩트 검증
-                  </p>
+                  <h4 className="font-bold text-sm">팩트체크 및 주장 검증</h4>
+                  <p className="text-[11px] text-slate-400">품질 기준: 신뢰도 90% 이상 & 미검증 0건</p>
                 </div>
-                <Badge variant="purple" className="text-xs">
-                  {claims.filter((c) => c.verification_status === "VERIFIED").length} / {claims.length} Verified
-                </Badge>
+                <Button
+                  size="sm"
+                  variant="outline"
+                  onClick={() => setShowAddClaim(!showAddClaim)}
+                  className="h-7 text-xs gap-1"
+                >
+                  <Plus className="h-3 w-3" /> 주장 추가
+                </Button>
               </div>
+
+              {/* Add Claim Form */}
+              {showAddClaim && (
+                <form onSubmit={handleAddClaim} className="p-3 bg-slate-50 dark:bg-slate-800 rounded-lg border space-y-2 text-xs">
+                  <Input
+                    value={newClaimText}
+                    onChange={(e) => setNewClaimText(e.target.value)}
+                    placeholder="검증할 사실 주장 문장..."
+                    className="text-xs"
+                    required
+                  />
+                  <div className="flex justify-between items-center">
+                    <select
+                      value={newClaimCategory}
+                      onChange={(e) => setNewClaimCategory(e.target.value as any)}
+                      className="h-8 rounded border px-2 text-xs bg-white dark:bg-slate-900"
+                    >
+                      <option value="STATISTICS">통계/수치</option>
+                      <option value="PRICING">가격/비용</option>
+                      <option value="SPECS">기술 사양</option>
+                      <option value="LEGAL">법률/정책</option>
+                      <option value="GENERAL">일반 사실</option>
+                    </select>
+                    <div className="flex gap-1.5">
+                      <Button type="button" size="sm" variant="ghost" onClick={() => setShowAddClaim(false)}>
+                        취소
+                      </Button>
+                      <Button type="submit" size="sm" variant="gradient">
+                        추가
+                      </Button>
+                    </div>
+                  </div>
+                </form>
+              )}
 
               <div className="space-y-3">
                 {claims.map((claim) => (
@@ -504,40 +683,46 @@ export default function ArticleEditorPage() {
                       <p className="font-semibold text-slate-800 dark:text-slate-200 leading-snug">
                         "{claim.claim}"
                       </p>
-                      <Badge
-                        variant={
-                          claim.verification_status === "VERIFIED"
-                            ? "success"
-                            : claim.verification_status === "PARTIALLY_VERIFIED"
-                            ? "warning"
-                            : "destructive"
-                        }
-                        className="text-[10px] shrink-0"
+                      <button
+                        onClick={() => handleDeleteClaim(claim.id)}
+                        className="text-slate-400 hover:text-red-500 p-0.5"
+                        title="주장 삭제"
                       >
-                        {claim.verification_status}
-                      </Badge>
+                        <Trash2 className="h-3.5 w-3.5" />
+                      </button>
                     </div>
 
-                    {claim.notes && (
-                      <p className="text-[11px] text-slate-500 bg-white dark:bg-slate-800 p-2 rounded border border-slate-100 dark:border-slate-700">
-                        {claim.notes}
-                      </p>
-                    )}
+                    <div className="flex items-center justify-between text-[11px] pt-1">
+                      <div className="flex items-center gap-1.5">
+                        <Badge
+                          variant={
+                            claim.verification_status === "VERIFIED"
+                              ? "success"
+                              : claim.verification_status === "PARTIALLY_VERIFIED"
+                              ? "warning"
+                              : "destructive"
+                          }
+                          className="text-[10px]"
+                        >
+                          {claim.verification_status}
+                        </Badge>
+                        <span className="text-slate-400">
+                          {claim.category} • 신뢰도 {Math.round(claim.confidence * 100)}%
+                        </span>
+                      </div>
 
-                    <div className="flex items-center justify-between text-[11px] text-slate-400 pt-1">
-                      <span>신뢰도 {Math.round(claim.confidence * 100)}% ({claim.category || "GENERAL"})</span>
                       <div className="flex items-center gap-1">
                         <button
                           onClick={() => handleClaimStatusChange(claim.id, "VERIFIED")}
-                          className="px-2 py-0.5 rounded bg-emerald-100 dark:bg-emerald-950 text-emerald-700 hover:bg-emerald-200"
+                          className="px-2 py-0.5 rounded bg-emerald-100 dark:bg-emerald-950 text-emerald-700 hover:bg-emerald-200 text-[10px] font-bold"
                         >
-                          승인
+                          승인 (VERIFIED)
                         </button>
                         <button
-                          onClick={() => handleClaimStatusChange(claim.id, "CONFLICTING")}
-                          className="px-2 py-0.5 rounded bg-red-100 dark:bg-red-950 text-red-700 hover:bg-red-200"
+                          onClick={() => handleClaimStatusChange(claim.id, "UNVERIFIED")}
+                          className="px-2 py-0.5 rounded bg-amber-100 dark:bg-amber-950 text-amber-700 hover:bg-amber-200 text-[10px]"
                         >
-                          의심
+                          미검증
                         </button>
                       </div>
                     </div>
@@ -550,20 +735,26 @@ export default function ArticleEditorPage() {
           {/* TAB 3: SOURCES PANEL */}
           {activeTab === "SOURCES" && (
             <Card className="p-5 space-y-4">
-              <div className="space-y-1">
-                <h4 className="font-bold text-sm text-slate-900 dark:text-slate-100">
-                  Cited Sources & Reliability
-                </h4>
-                <p className="text-[11px] text-slate-400">
-                  Tier 1(공식/학술) 및 Tier 2(전문 언론) 중심의 출처 신뢰도
-                </p>
+              <div className="flex items-center justify-between">
+                <div>
+                  <h4 className="font-bold text-sm">연결된 출처 ({sources.length}개)</h4>
+                  <p className="text-[11px] text-slate-400">품질 기준: Tier 1~2 출처 2개 이상 필수</p>
+                </div>
+                <Button
+                  size="sm"
+                  variant="gradient"
+                  onClick={() => setSourceModalOpen(true)}
+                  className="h-7 text-xs gap-1"
+                >
+                  <Plus className="h-3 w-3" /> 출처 관리 / 연결
+                </Button>
               </div>
 
-              <div className="space-y-3">
+              <div className="space-y-2.5">
                 {sources.map((src) => (
                   <div
                     key={src.id}
-                    className="p-3 rounded-xl border border-slate-200/80 dark:border-slate-800 space-y-2 text-xs"
+                    className="p-3 rounded-xl border border-slate-200/80 dark:border-slate-800 space-y-1.5 text-xs bg-white dark:bg-slate-900"
                   >
                     <div className="flex items-center justify-between">
                       <Badge
@@ -572,7 +763,7 @@ export default function ArticleEditorPage() {
                       >
                         Tier {src.tier} ({src.source_type})
                       </Badge>
-                      <span className="text-emerald-600 font-bold">
+                      <span className="text-emerald-600 font-bold text-[11px]">
                         신뢰도 {src.reliability_score}점
                       </span>
                     </div>
@@ -581,7 +772,7 @@ export default function ArticleEditorPage() {
                       {src.title}
                     </div>
 
-                    <div className="flex items-center justify-between text-[11px] text-slate-400">
+                    <div className="flex items-center justify-between text-[11px] text-slate-400 pt-1">
                       <span>{src.publisher}</span>
                       <a
                         href={src.url}
@@ -602,12 +793,8 @@ export default function ArticleEditorPage() {
           {activeTab === "INTERNAL_LINKS" && (
             <Card className="p-5 space-y-4">
               <div className="space-y-1">
-                <h4 className="font-bold text-sm text-slate-900 dark:text-slate-100">
-                  Internal Link Recommendations
-                </h4>
-                <p className="text-[11px] text-slate-400">
-                  기존 게시글과의 연결을 통해 SEO 클러스터 및 체류 시간 증대
-                </p>
+                <h4 className="font-bold text-sm">내부 링크 추천 ({internalLinks.length}개)</h4>
+                <p className="text-[11px] text-slate-400">SEO 클러스터 및 도메인 권위 향상</p>
               </div>
 
               <div className="space-y-3">
@@ -637,7 +824,7 @@ export default function ArticleEditorPage() {
                     </div>
 
                     <div>
-                      <span className="text-[10px] text-slate-400 block">타깃 글:</span>
+                      <span className="text-[10px] text-slate-400 block">타깃 콘텐츠:</span>
                       <span className="font-semibold">{link.target_title}</span>
                     </div>
 
@@ -652,6 +839,24 @@ export default function ArticleEditorPage() {
           )}
         </div>
       </div>
+
+      {/* WordPress Publish Preview Modal */}
+      <PublishPreviewModal
+        isOpen={publishModalOpen}
+        onClose={() => setPublishModalOpen(false)}
+        onConfirm={handleConfirmPublish}
+        article={article}
+        loading={publishing}
+      />
+
+      {/* Sources Management Modal */}
+      <SourceManageModal
+        isOpen={sourceModalOpen}
+        onClose={() => setSourceModalOpen(false)}
+        articleId={articleId}
+        attachedSources={sources}
+        onSourcesUpdated={loadArticleData}
+      />
     </div>
   );
 }
