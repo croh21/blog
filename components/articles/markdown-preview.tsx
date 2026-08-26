@@ -7,6 +7,20 @@ interface MarkdownPreviewProps {
 }
 
 export function MarkdownPreview({ content }: MarkdownPreviewProps) {
+  const formatInline = (str: string) => {
+    // Dynamic Regex construction avoids Tailwind scanner detecting arbitrary CSS selectors
+    const boldPattern = new RegExp("\\*\\*(.*?)\\*\\*", "g");
+    const italicPattern = new RegExp("\\*(.*?)\\*", "g");
+    const linkPattern = new RegExp("\\[(.*?)\\]\\((.*?)\\)", "g");
+    const codePattern = new RegExp("`([^`]+)`", "g");
+
+    return str
+      .replace(boldPattern, "<strong class='font-bold text-slate-900 dark:text-white'>$1</strong>")
+      .replace(italicPattern, "<em class='italic text-slate-500'>$1</em>")
+      .replace(linkPattern, "<a href='$2' target='_blank' class='text-blue-600 dark:text-blue-400 font-medium underline hover:text-blue-700'>$1</a>")
+      .replace(codePattern, "<code class='bg-slate-100 dark:bg-slate-800 text-purple-600 px-1 py-0.5 rounded font-mono text-xs'>$1</code>");
+  };
+
   const renderLines = () => {
     const lines = content.split("\n");
     const elements: React.ReactNode[] = [];
@@ -62,14 +76,6 @@ export function MarkdownPreview({ content }: MarkdownPreviewProps) {
         listItems = [];
       }
       inList = false;
-    };
-
-    const formatInline = (str: string) => {
-      return str
-        .replace(/\*\*(.*?)\*\*/g, "<strong class='font-bold text-slate-900 dark:text-white'>$1</strong>")
-        .replace(/\*(.*?)\*/g, "<em class='italic text-slate-500'>$1</em>")
-        .replace(/\[(.*?)\]\((.*?)\)/g, "<a href='$2' target='_blank' class='text-blue-600 dark:text-blue-400 font-medium underline hover:text-blue-700'>$1</a>")
-        .replace(/`([^`]+)`/g, "<code class='bg-slate-100 dark:bg-slate-800 text-purple-600 px-1 py-0.5 rounded font-mono text-xs'>$1</code>");
     };
 
     lines.forEach((line, idx) => {
