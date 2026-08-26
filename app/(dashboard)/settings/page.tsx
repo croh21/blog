@@ -270,6 +270,51 @@ export default function SettingsPage() {
         </div>
       </Card>
 
+      {/* Tistory & Blog Integration Config */}
+      <Card className="p-6 space-y-4">
+        <div className="flex items-center justify-between">
+          <div>
+            <CardTitle className="text-base font-bold flex items-center gap-2">
+              <span className="w-5 h-5 rounded bg-orange-500 text-white flex items-center justify-center font-extrabold text-xs">T</span>
+              티스토리 (Tistory) 자동 발행 연동 설정
+            </CardTitle>
+            <CardDescription className="text-xs">
+              카카오 티스토리 오픈 API를 통한 블로그 원클릭 자동 발행 및 예약 관리
+            </CardDescription>
+          </div>
+          <Badge variant="warning" className="text-xs">
+            Open API
+          </Badge>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
+          <div className="space-y-1">
+            <label className="font-semibold text-slate-600 dark:text-slate-300">
+              티스토리 블로그 이름 (Blog Name)
+            </label>
+            <Input
+              defaultValue={process.env.NEXT_PUBLIC_TISTORY_BLOG_NAME || ""}
+              placeholder="예: myhealth (myhealth.tistory.com인 경우 myhealth)"
+              className="text-xs font-mono"
+            />
+            <p className="text-[10px] text-slate-400">내 티스토리 주소 앞부분 아이디를 입력합니다.</p>
+          </div>
+
+          <div className="space-y-1">
+            <label className="font-semibold text-slate-600 dark:text-slate-300">
+              티스토리 Access Token
+            </label>
+            <Input
+              type="password"
+              defaultValue={process.env.NEXT_PUBLIC_TISTORY_ACCESS_TOKEN || ""}
+              placeholder="카카오 오픈 API에서 발급받은 Access Token"
+              className="text-xs font-mono"
+            />
+            <p className="text-[10px] text-slate-400">카카오 개발자 콘솔에서 발급한 티스토리 Access Token입니다.</p>
+          </div>
+        </div>
+      </Card>
+
       {/* AI Usage Logs History Table */}
       <Card className="p-6 space-y-4">
         <div className="flex items-center justify-between">

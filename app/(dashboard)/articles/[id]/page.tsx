@@ -180,26 +180,29 @@ export default function ArticleEditorPage() {
     }
   }
 
-  async function handleConfirmPublish() {
+  const [publishedUrl, setPublishedUrl] = useState<string | null>(null);
+
+  async function handleConfirmPublish(platform: "TISTORY" | "WORDPRESS" = "TISTORY", visibility: 0 | 3 = 3) {
     setPublishing(true);
     try {
-      const res = await fetch(`/api/articles/${articleId}`, {
-        method: "PUT",
+      const res = await fetch(`/api/articles/${articleId}/publish`, {
+        method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ status: "PUBLISHED" }),
+        body: JSON.stringify({ platform, visibility }),
       });
       const data = await res.json();
-      if (res.ok) {
+      if (res.ok && data.success) {
         setArticle(data.article);
-        setQualityGate(data.qualityGate);
-        setPublishModalOpen(false);
+        setPublishedUrl(data.publishResult?.url || data.publishResult?.link || null);
         setNotification({
           type: "success",
-          text: "WordPress REST API Adapter를 통해 글이 성공적으로 발행(PUBLISHED)되었습니다!",
+          text: data.message || "글이 성공적으로 발행되었습니다!",
         });
       } else {
         setNotification({ type: "error", text: data.error || "발행에 실패했습니다." });
       }
+    } catch (err: any) {
+      setNotification({ type: "error", text: err.message });
     } finally {
       setPublishing(false);
     }
@@ -371,19 +374,19 @@ export default function ArticleEditorPage() {
               </Button>
             </div>
 
-            {/* WordPress Publish Button */}
+            {/* Blog Publish Button */}
             <Button
               variant="gradient"
               size="sm"
               onClick={() => setPublishModalOpen(true)}
               disabled={!isQualityPassed}
-              className={`text-xs font-bold gap-1.5 shadow-sm ${
+              className={`text-xs font-bold gap-1.5 shadow-sm bg-gradient-to-r from-orange-500 via-amber-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white border-0 ${
                 !isQualityPassed ? "opacity-50 cursor-not-allowed" : ""
               }`}
             >
               {!isQualityPassed && <Lock className="h-3 w-3 text-white/80" />}
               <Send className="h-3.5 w-3.5" />
-              WordPress 발행
+              티스토리 / 블로그 발행
             </Button>
           </div>
         </div>
@@ -881,13 +884,17 @@ export default function ArticleEditorPage() {
         </div>
       </div>
 
-      {/* WordPress Publish Preview Modal */}
+      {/* Blog Publish Preview Modal */}
       <PublishPreviewModal
         isOpen={publishModalOpen}
-        onClose={() => setPublishModalOpen(false)}
+        onClose={() => {
+          setPublishModalOpen(false);
+          setPublishedUrl(null);
+        }}
         onConfirm={handleConfirmPublish}
         article={article}
         loading={publishing}
+        publishedUrl={publishedUrl}
       />
 
       {/* Sources Management Modal */}
