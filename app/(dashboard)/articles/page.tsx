@@ -13,6 +13,7 @@ import {
   ArrowUpRight,
   Filter,
   Plus,
+  ImageIcon,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -74,7 +75,7 @@ export default function ArticlesPage() {
             Articles & Publishing Pipeline
           </h1>
           <p className="text-sm text-slate-500">
-            AI 리서치, 팩트체크 및 SEO 최적화가 완료된 콘텐츠의 검토, 편집 및 승인 관리
+            시각적 이미지, 팩트체크 및 SEO 최적화가 완료된 콘텐츠의 검토, 편집 및 승인 관리
           </p>
         </div>
 
@@ -117,74 +118,94 @@ export default function ArticlesPage() {
 
       {/* Article List Table / Cards */}
       <div className="space-y-3">
-        {filteredArticles.map((art) => (
-          <Card
-            key={art.id}
-            className="p-5 hover:border-blue-300 dark:hover:border-blue-700 transition-all duration-200"
-          >
-            <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-              <div className="space-y-1.5 flex-1 min-w-0">
-                <div className="flex items-center gap-2 flex-wrap">
-                  <Badge
-                    variant={
-                      art.status === "PUBLISHED"
-                        ? "success"
-                        : art.status === "APPROVED"
-                        ? "purple"
-                        : art.status === "HUMAN_REVIEW"
-                        ? "warning"
-                        : "secondary"
-                    }
-                    className="text-xs font-semibold"
+        {filteredArticles.map((art) => {
+          // Extract first image if featured_image_url not set
+          const imgMatch = art.content?.match(/!\[.*?\]\((.*?)\)/);
+          const thumbUrl = art.featured_image_url || (imgMatch ? imgMatch[1] : null);
+
+          return (
+            <Card
+              key={art.id}
+              className="p-5 hover:border-blue-300 dark:hover:border-blue-700 transition-all duration-200"
+            >
+              <div className="flex flex-col md:flex-row md:items-center justify-between gap-5">
+                {/* Optional Thumbnail Image */}
+                {thumbUrl && (
+                  <div className="w-full md:w-36 h-24 rounded-xl overflow-hidden shrink-0 border border-slate-200/80 dark:border-slate-800 bg-slate-100 dark:bg-slate-800 relative group">
+                    <img
+                      src={thumbUrl}
+                      alt={art.title}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    />
+                  </div>
+                )}
+
+                <div className="space-y-1.5 flex-1 min-w-0">
+                  <div className="flex items-center gap-2 flex-wrap">
+                    <Badge
+                      variant={
+                        art.status === "PUBLISHED"
+                          ? "success"
+                          : art.status === "APPROVED"
+                          ? "purple"
+                          : art.status === "HUMAN_REVIEW"
+                          ? "warning"
+                          : "secondary"
+                      }
+                      className="text-xs font-semibold"
+                    >
+                      {art.status}
+                    </Badge>
+                    <span className="text-xs text-slate-500 font-medium">
+                      {art.category_name || "건강 & 웰니스"}
+                    </span>
+                    <span className="text-xs text-slate-400 font-mono">
+                      • {art.primary_keyword}
+                    </span>
+                    <span className="text-xs text-slate-400">• {art.word_count || 1400} 단어</span>
+                    <span className="text-xs text-slate-400">• {formatDate(art.created_at)}</span>
+                  </div>
+
+                  <Link
+                    href={`/articles/${art.id}`}
+                    className="font-bold text-base text-slate-900 dark:text-slate-100 hover:text-blue-600 transition-colors block"
                   >
-                    {art.status}
-                  </Badge>
-                  <span className="text-xs text-slate-400 font-mono">
-                    {art.primary_keyword}
-                  </span>
-                  <span className="text-xs text-slate-400">• {art.word_count || 1400} words</span>
-                  <span className="text-xs text-slate-400">• {formatDate(art.created_at)}</span>
+                    {art.title}
+                  </Link>
+
+                  <p className="text-xs text-slate-500 line-clamp-1">
+                    {art.excerpt || art.meta_description}
+                  </p>
                 </div>
 
-                <Link
-                  href={`/articles/${art.id}`}
-                  className="font-bold text-base text-slate-900 dark:text-slate-100 hover:text-blue-600 transition-colors block"
-                >
-                  {art.title}
-                </Link>
-
-                <p className="text-xs text-slate-500 line-clamp-1">
-                  {art.excerpt || art.meta_description}
-                </p>
-              </div>
-
-              {/* Scores & Review Button */}
-              <div className="flex items-center gap-5 shrink-0 border-t md:border-t-0 pt-3 md:pt-0 border-slate-100 dark:border-slate-800">
-                <div className="flex items-center gap-4 text-center text-xs">
-                  <div>
-                    <span className="text-[10px] text-slate-400 block">SEO Score</span>
-                    <span className="font-extrabold text-emerald-600 text-sm">
-                      {art.seo_score || 94}
-                    </span>
+                {/* Scores & Review Button */}
+                <div className="flex items-center gap-5 shrink-0 border-t md:border-t-0 pt-3 md:pt-0 border-slate-100 dark:border-slate-800">
+                  <div className="flex items-center gap-4 text-center text-xs">
+                    <div>
+                      <span className="text-[10px] text-slate-400 block">SEO Score</span>
+                      <span className="font-extrabold text-emerald-600 text-sm">
+                        {art.seo_score || 94}
+                      </span>
+                    </div>
+                    <div>
+                      <span className="text-[10px] text-slate-400 block">Fact Check</span>
+                      <span className="font-extrabold text-blue-600 text-sm">
+                        {art.fact_check_score || 96}%
+                      </span>
+                    </div>
                   </div>
-                  <div>
-                    <span className="text-[10px] text-slate-400 block">Fact Check</span>
-                    <span className="font-extrabold text-blue-600 text-sm">
-                      {art.fact_check_score || 96}%
-                    </span>
-                  </div>
+
+                  <Link href={`/articles/${art.id}`}>
+                    <Button variant="default" size="sm" className="gap-1.5 font-semibold shadow-sm">
+                      Editor & Review
+                      <ArrowUpRight className="h-3.5 w-3.5" />
+                    </Button>
+                  </Link>
                 </div>
-
-                <Link href={`/articles/${art.id}`}>
-                  <Button variant="default" size="sm" className="gap-1.5 font-semibold">
-                    Editor & Review
-                    <ArrowUpRight className="h-3.5 w-3.5" />
-                  </Button>
-                </Link>
               </div>
-            </div>
-          </Card>
-        ))}
+            </Card>
+          );
+        })}
       </div>
     </div>
   );

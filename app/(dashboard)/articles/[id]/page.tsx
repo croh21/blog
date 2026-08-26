@@ -24,6 +24,9 @@ import {
   Trash2,
   Lock,
   Wand2,
+  Eye,
+  Edit3,
+  ImageIcon,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
@@ -34,6 +37,7 @@ import { Progress } from "@/components/ui/progress";
 import { QualityGateBanner } from "@/components/articles/quality-gate-banner";
 import { PublishPreviewModal } from "@/components/articles/publish-preview-modal";
 import { SourceManageModal } from "@/components/articles/source-manage-modal";
+import { MarkdownPreview } from "@/components/articles/markdown-preview";
 import {
   Article,
   ArticleClaim,
@@ -56,11 +60,13 @@ export default function ArticleEditorPage() {
   const [qualityGate, setQualityGate] = useState<QualityGateResult | null>(null);
 
   const [activeTab, setActiveTab] = useState<"SEO" | "FACT_CHECK" | "SOURCES" | "INTERNAL_LINKS">("SEO");
+  const [viewMode, setViewMode] = useState<"EDIT" | "PREVIEW">("PREVIEW");
   const [content, setContent] = useState("");
   const [title, setTitle] = useState("");
   const [slug, setSlug] = useState("");
   const [metaDescription, setMetaDescription] = useState("");
   const [primaryKeyword, setPrimaryKeyword] = useState("");
+  const [featuredImageUrl, setFeaturedImageUrl] = useState("");
 
   const [saving, setSaving] = useState(false);
   const [reanalyzingSeo, setReanalyzingSeo] = useState(false);
@@ -91,6 +97,7 @@ export default function ArticleEditorPage() {
         setContent(data.article.content || "");
         setMetaDescription(data.article.meta_description || "");
         setPrimaryKeyword(data.article.primary_keyword || "");
+        setFeaturedImageUrl(data.article.featured_image_url || "");
         setClaims(data.claims || []);
         setSources(data.sources || []);
         setInternalLinks(data.internalLinks || []);
@@ -111,6 +118,7 @@ export default function ArticleEditorPage() {
         content,
         meta_description: metaDescription,
         primary_keyword: primaryKeyword,
+        featured_image_url: featuredImageUrl,
         status: statusOverride || article?.status || "HUMAN_REVIEW",
       };
 
@@ -402,9 +410,40 @@ export default function ArticleEditorPage() {
 
       {/* Main Two-Column Layout */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
-        {/* Left 7 Cols: Article Editor */}
+        {/* Left 7 Cols: Article Editor / Visual Preview */}
         <div className="lg:col-span-7 space-y-4">
           <Card className="p-5 space-y-4">
+            {/* View Mode Toggle */}
+            <div className="flex items-center justify-between border-b pb-3 border-slate-100 dark:border-slate-800">
+              <div className="flex items-center gap-1 bg-slate-100 dark:bg-slate-800 p-1 rounded-lg">
+                <button
+                  onClick={() => setViewMode("PREVIEW")}
+                  className={`px-3 py-1 rounded text-xs font-semibold flex items-center gap-1.5 transition-colors ${
+                    viewMode === "PREVIEW"
+                      ? "bg-white dark:bg-slate-900 text-blue-600 dark:text-blue-400 shadow-sm"
+                      : "text-slate-500 hover:text-slate-900"
+                  }`}
+                >
+                  <Eye className="h-3.5 w-3.5" /> 실제 블로그 뷰 (이미지 렌더링)
+                </button>
+                <button
+                  onClick={() => setViewMode("EDIT")}
+                  className={`px-3 py-1 rounded text-xs font-semibold flex items-center gap-1.5 transition-colors ${
+                    viewMode === "EDIT"
+                      ? "bg-white dark:bg-slate-900 text-blue-600 dark:text-blue-400 shadow-sm"
+                      : "text-slate-500 hover:text-slate-900"
+                  }`}
+                >
+                  <Edit3 className="h-3.5 w-3.5" /> 마크다운 원본 편집
+                </button>
+              </div>
+
+              <span className="text-[11px] text-slate-400 font-mono">
+                {wordCount} 단어 ({charCount}자)
+              </span>
+            </div>
+
+            {/* Title & Slug Form */}
             <div className="space-y-1">
               <label className="text-xs font-semibold text-slate-500">글 제목 (H1 Title)</label>
               <Input
@@ -449,21 +488,23 @@ export default function ArticleEditorPage() {
               />
             </div>
 
-            <div className="space-y-1">
-              <div className="flex items-center justify-between">
-                <label className="text-xs font-semibold text-slate-500">본문 내용 (Markdown)</label>
-                <span className="text-[11px] text-slate-400 font-mono">
-                  {wordCount} 단어 ({charCount}자)
-                </span>
+            {/* View Mode: PREVIEW vs EDIT */}
+            {viewMode === "PREVIEW" ? (
+              <div className="p-4 sm:p-6 bg-slate-50/70 dark:bg-slate-900/60 rounded-xl border border-slate-200/80 dark:border-slate-800 min-h-[500px]">
+                <MarkdownPreview content={content} />
               </div>
-              <Textarea
-                value={content}
-                onChange={(e) => setContent(e.target.value)}
-                rows={26}
-                className="font-mono text-xs leading-relaxed p-4 bg-slate-50/50 dark:bg-slate-900/50"
-                placeholder="마크다운 형식의 본문을 작성하거나 수정하세요..."
-              />
-            </div>
+            ) : (
+              <div className="space-y-1">
+                <label className="text-xs font-semibold text-slate-500">본문 내용 (Markdown 원본)</label>
+                <Textarea
+                  value={content}
+                  onChange={(e) => setContent(e.target.value)}
+                  rows={26}
+                  className="font-mono text-xs leading-relaxed p-4 bg-slate-50/50 dark:bg-slate-900/50"
+                  placeholder="마크다운 형식의 본문을 작성하거나 수정하세요..."
+                />
+              </div>
+            )}
           </Card>
         </div>
 

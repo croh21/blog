@@ -117,6 +117,7 @@ export interface Article {
   meta_description: string;
   primary_keyword: string;
   secondary_keywords: string[];
+  featured_image_url?: string;
   word_count: number;
   seo_score: number;
   fact_check_score: number;

@@ -25,12 +25,51 @@ export interface PipelineProgressCallback {
   (step: number, stepName: string, detail: string): void;
 }
 
+export function getTopicCuratedImages(topic: Topic): { featured: string; inBody: string; featuredCaption: string; inBodyCaption: string } {
+  const text = `${topic.title} ${topic.primary_keyword} ${topic.why_this_topic}`.toLowerCase();
+
+  if (text.includes("마그네슘") || text.includes("수면") || text.includes("불면") || text.includes("피로")) {
+    return {
+      featured: "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=1200&q=80",
+      inBody: "https://images.unsplash.com/photo-1511295742362-92c96b124e52?auto=format&fit=crop&w=1200&q=80",
+      featuredCaption: "▲ 흡수율과 생체 이용률이 높은 마그네슘 형태별 영양 솔루션",
+      inBodyCaption: "▲ 렘수면과 딥슬립을 유도하는 편안한 수면 환경 및 이완 루틴",
+    };
+  }
+
+  if (text.includes("단식") || text.includes("오토파지") || text.includes("공복")) {
+    return {
+      featured: "https://images.unsplash.com/photo-1490645935967-10de6ba17061?auto=format&fit=crop&w=1200&q=80",
+      inBody: "https://images.unsplash.com/photo-1505576399279-565b52d4ac71?auto=format&fit=crop&w=1200&q=80",
+      featuredCaption: "▲ 16:8 간헐적 단식과 세포 자가포식(오토파지) 활성화 타이밍",
+      inBodyCaption: "▲ 공복 시간 유지와 클린 식단을 통한 체지방 감량 및 대사 개선",
+    };
+  }
+
+  if (text.includes("식단") || text.includes("노화") || text.includes("혈당") || text.includes("건강") || text.includes("영양")) {
+    return {
+      featured: "https://images.unsplash.com/photo-1498837167922-ddd27525d352?auto=format&fit=crop&w=1200&q=80",
+      inBody: "https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=1200&q=80",
+      featuredCaption: "▲ 혈당 스파이크를 예방하는 신선한 채소와 통곡물 기반 저속노화 식단",
+      inBodyCaption: "▲ 식이섬유 -> 단백질 -> 복합 탄수화물 순서로 구성한 균형 잡힌 실전 밥상",
+    };
+  }
+
+  // Tech / AI / SEO
+  return {
+    featured: "https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=1200&q=80",
+    inBody: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80",
+    featuredCaption: "▲ 차세대 자율 AI 에이전트와 지능형 워크플로우 자동화",
+    inBodyCaption: "▲ 데이터 분석 및 실시간 성능 모니터링 대시보드",
+  };
+}
+
 /**
  * Intelligent domain article synthesizer:
- * Generates an extensive, highly structured, expert-level blog article
- * when live LLM is offline or needs complete fallback.
+ * Generates an extensive, highly structured, expert-level blog article with rich visual images.
  */
 function synthesizeDomainArticle(topic: Topic, outline: ArticleOutlineSection[]): string {
+  const images = getTopicCuratedImages(topic);
   const isHealth =
     topic.title.includes("식단") ||
     topic.title.includes("노화") ||
@@ -43,6 +82,9 @@ function synthesizeDomainArticle(topic: Topic, outline: ArticleOutlineSection[])
 
   if (isHealth) {
     return `# ${topic.title}
+
+![${topic.title}](${images.featured})
+*${images.featuredCaption}*
 
 ## 핵심 요약 (Key Takeaways)
 - **개념**: **${topic.primary_keyword}**은(는) 일상 생활에서 혈당 급상승(스파이크)을 억제하고 신체 세포의 만성 염증을 줄여 활력과 노화 속도를 조절하는 과학적 건강 관리법입니다.
@@ -64,7 +106,10 @@ function synthesizeDomainArticle(topic: Topic, outline: ArticleOutlineSection[])
 
 ---
 
-## 3. 심층 분석 및 실전 7일 식단 가이드
+## 3. 심층 분석 및 실전 식단 가이드
+
+![${topic.primary_keyword} 실전 가이드](${images.inBody})
+*${images.inBodyCaption}*
 
 ### 1) 혈당 스파이크를 막는 황금 식사 순서
 - **1단계 (식이섬유)**: 식사 시작 전 신선한 채소나 샐러드를 먼저 섭취하여 장벽에 천연 그물망을 형성합니다.
@@ -100,6 +145,9 @@ function synthesizeDomainArticle(topic: Topic, outline: ArticleOutlineSection[])
   // General Tech / Business / SEO Article Synthesis
   return `# ${topic.title}
 
+![${topic.title}](${images.featured})
+*${images.featuredCaption}*
+
 ## 핵심 요약 (Key Takeaways)
 - **개념**: **${topic.primary_keyword}**은(는) 현대 기술 및 비즈니스 환경에서 생산성을 극대화하고 운영 효율을 혁신하는 핵심 전략입니다.
 - **핵심 가치**: 기존의 파편화된 수동 작업과 복잡한 절차를 표준화하여 프로세스 처리 속도를 300% 이상 단축합니다.
@@ -122,6 +170,9 @@ function synthesizeDomainArticle(topic: Topic, outline: ArticleOutlineSection[])
 ---
 
 ## 3. 심층 분석 및 실무 가이드
+
+![${topic.primary_keyword} 실무 최적화](${images.inBody})
+*${images.inBodyCaption}*
 
 ### 1) 핵심 아키텍처 및 도입 프로세스
 실제 현장에 성공적으로 안착시키기 위해 다음 3단계를 순차적으로 적용하는 것이 권장됩니다:
@@ -159,6 +210,8 @@ export async function runFullArticlePipeline(
   onProgress?: PipelineProgressCallback
 ): Promise<Article> {
   const articleId = nanoid();
+  const images = getTopicCuratedImages(topic);
+
   let currentArticle: Article = {
     id: articleId,
     topic_id: topic.id,
@@ -168,6 +221,7 @@ export async function runFullArticlePipeline(
     title: topic.title,
     slug: topic.primary_keyword.toLowerCase().replace(/[^a-z0-9가-힣]+/g, "-").replace(/^-|-$/g, "") || `post-${articleId.slice(0, 6)}`,
     excerpt: topic.why_this_topic,
+    featured_image_url: images.featured,
     content: "",
     status: "RESEARCHING",
     language: "ko",
@@ -252,11 +306,11 @@ export async function runFullArticlePipeline(
     outline = res.data.outline;
   } catch {
     outline = [
-      { heading: topic.title, level: 1, description: "메인 제목" },
+      { heading: topic.title, level: 1, description: "메인 제목 및 대표 이미지" },
       { heading: "핵심 요약 (Key Takeaways)", level: 2, description: "3대 핵심 요약 불릿 포인트" },
       { heading: "1. What Happened? (배경과 현주소)", level: 2, description: "시장 및 건강 트렌드 주요 팩트" },
       { heading: "2. Why It Matters (왜 중요한가)", level: 2, description: "실질적 신체 및 비즈니스 영향" },
-      { heading: "3. 심층 분석 & 실전 가이드", level: 2, description: "구체적 프로세스 및 비교 분석표" },
+      { heading: "3. 심층 분석 & 실전 가이드", level: 2, description: "인포그래픽 이미지 및 비교 분석표" },
       { heading: "4. 자주 묻는 질문 (FAQ)", level: 2, description: "독자 필수 질문 2가지" },
       { heading: "5. 참고 출처 (Sources)", level: 2, description: "공식 문서 및 레퍼런스" },
     ];
@@ -266,7 +320,7 @@ export async function runFullArticlePipeline(
   await saveArticle(currentArticle);
 
   // Step 5: Draft Writing
-  onProgress?.(5, "Draft Writing", "전문성 기반 본문 콘텐츠 작성 중 (2,500자 이상)...");
+  onProgress?.(5, "Draft Writing", "전문성 기반 본문 콘텐츠 및 이미지 삽입 작성 중 (2,500자 이상)...");
   let content = "";
   try {
     const res = await defaultAIProvider.generateText(
@@ -275,6 +329,9 @@ export async function runFullArticlePipeline(
     );
     if (res.text && res.text.trim().length > 300) {
       content = res.text;
+      if (!content.includes("![")) {
+        content = `![${topic.title}](${images.featured})\n*${images.featuredCaption}*\n\n` + content;
+      }
     } else {
       content = synthesizeDomainArticle(topic, outline);
     }

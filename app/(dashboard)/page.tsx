@@ -382,58 +382,68 @@ export default function DashboardPage() {
           </div>
 
           <div className="space-y-2.5">
-            {articles.map((art) => (
-              <Card
-                key={art.id}
-                className="p-4 hover:border-blue-300 dark:hover:border-blue-800 transition-colors"
-              >
-                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-                  <div className="space-y-1 flex-1 min-w-0">
-                    <div className="flex items-center gap-2">
-                      <Badge
-                        variant={
-                          art.status === "PUBLISHED"
-                            ? "success"
-                            : art.status === "APPROVED"
-                            ? "purple"
-                            : art.status === "HUMAN_REVIEW"
-                            ? "warning"
-                            : "secondary"
-                        }
-                        className="text-[10px]"
-                      >
-                        {art.status}
-                      </Badge>
-                      <span className="text-xs text-slate-400 font-mono">
-                        {art.word_count || 1400} 단어
-                      </span>
-                    </div>
-                    <Link
-                      href={`/articles/${art.id}`}
-                      className="font-bold text-sm text-slate-900 dark:text-slate-100 hover:text-blue-600 transition-colors block truncate"
-                    >
-                      {art.title}
-                    </Link>
-                  </div>
+            {articles.map((art) => {
+              const imgMatch = art.content?.match(/!\[.*?\]\((.*?)\)/);
+              const thumbUrl = art.featured_image_url || (imgMatch ? imgMatch[1] : null);
 
-                  <div className="flex items-center gap-4 text-xs shrink-0">
-                    <div className="text-right">
-                      <div className="font-semibold text-emerald-600">
-                        SEO {art.seo_score || 94}/100
+              return (
+                <Card
+                  key={art.id}
+                  className="p-4 hover:border-blue-300 dark:hover:border-blue-800 transition-colors"
+                >
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                    {thumbUrl && (
+                      <div className="w-16 h-12 rounded-lg overflow-hidden shrink-0 border border-slate-200 dark:border-slate-800 bg-slate-100 dark:bg-slate-800">
+                        <img src={thumbUrl} alt={art.title} className="w-full h-full object-cover" />
                       </div>
-                      <div className="text-[10px] text-slate-400">
-                        Fact Check {art.fact_check_score || 96}%
+                    )}
+                    <div className="space-y-1 flex-1 min-w-0">
+                      <div className="flex items-center gap-2">
+                        <Badge
+                          variant={
+                            art.status === "PUBLISHED"
+                              ? "success"
+                              : art.status === "APPROVED"
+                              ? "purple"
+                              : art.status === "HUMAN_REVIEW"
+                              ? "warning"
+                              : "secondary"
+                          }
+                          className="text-[10px]"
+                        >
+                          {art.status}
+                        </Badge>
+                        <span className="text-xs text-slate-400 font-mono">
+                          {art.word_count || 1400} 단어
+                        </span>
                       </div>
+                      <Link
+                        href={`/articles/${art.id}`}
+                        className="font-bold text-sm text-slate-900 dark:text-slate-100 hover:text-blue-600 transition-colors block truncate"
+                      >
+                        {art.title}
+                      </Link>
                     </div>
-                    <Link href={`/articles/${art.id}`}>
-                      <Button size="sm" variant="outline" className="h-8 px-3 text-xs">
-                        검토 및 편집
-                      </Button>
-                    </Link>
+
+                    <div className="flex items-center gap-4 text-xs shrink-0">
+                      <div className="text-right">
+                        <div className="font-semibold text-emerald-600">
+                          SEO {art.seo_score || 94}/100
+                        </div>
+                        <div className="text-[10px] text-slate-400">
+                          Fact Check {art.fact_check_score || 96}%
+                        </div>
+                      </div>
+                      <Link href={`/articles/${art.id}`}>
+                        <Button size="sm" variant="outline" className="h-8 px-3 text-xs">
+                          검토 및 편집
+                        </Button>
+                      </Link>
+                    </div>
                   </div>
-                </div>
-              </Card>
-            ))}
+                </Card>
+              );
+            })}
           </div>
         </div>
 
