@@ -13,6 +13,7 @@ import {
   DollarSign,
   Settings,
   Zap,
+  Globe,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -21,6 +22,7 @@ const NAV_ITEMS = [
   { label: "Trends", href: "/trends", icon: TrendingUp },
   { label: "Topics", href: "/topics", icon: Sparkles },
   { label: "Articles", href: "/articles", icon: FileText },
+  { label: "Public Blog", href: "/blog", icon: Globe },
   { label: "Sources", href: "/sources", icon: BookmarkCheck },
   { label: "SEO Engine", href: "/seo", icon: Search },
   { label: "Analytics", href: "/analytics", icon: BarChart3 },

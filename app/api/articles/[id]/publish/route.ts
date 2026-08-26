@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { getArticleById, getClaims, getSources, saveArticle } from "@/lib/db";
 import { evaluateQualityGate } from "@/lib/scoring/quality-gate";
+import { publishToLocalAndGitHub } from "@/lib/providers/github";
 import { tistoryProvider } from "@/lib/providers/tistory";
 import { wpProvider } from "@/lib/providers/wordpress";
 
@@ -59,7 +60,7 @@ export async function POST(
       body = await req.json();
     } catch {}
 
-    const platform = body?.platform || "TISTORY"; // "TISTORY" | "WORDPRESS"
+    const platform = body?.platform || "GITHUB_BLOG"; // "GITHUB_BLOG" | "TISTORY" | "WORDPRESS"
     const visibility = body?.visibility ?? 3; // 3: 공개, 0: 비공개(초안)
 
     // Quality gate validation
@@ -79,10 +80,22 @@ export async function POST(
       );
     }
 
-    const htmlContent = markdownToHTML(article.content);
     let publishResult: any;
 
-    if (platform === "TISTORY") {
+    if (platform === "GITHUB_BLOG") {
+      // Direct Markdown Publish for GitHub & Vercel
+      article.status = "PUBLISHED";
+      article.published_at = new Date().toISOString();
+      article.updated_at = new Date().toISOString();
+      const res = await publishToLocalAndGitHub(article);
+      publishResult = {
+        id: article.id,
+        url: res.publicUrl,
+        filePath: res.filePath,
+        status: "PUBLISHED",
+      };
+    } else if (platform === "TISTORY") {
+      const htmlContent = markdownToHTML(article.content);
       publishResult = await tistoryProvider.createPost({
         title: article.title,
         content: htmlContent,
@@ -91,6 +104,7 @@ export async function POST(
         slogan: article.slug,
       });
     } else {
+      const htmlContent = markdownToHTML(article.content);
       publishResult = await wpProvider.createPost({
         title: article.title,
         content: htmlContent,
@@ -111,7 +125,13 @@ export async function POST(
       platform,
       publishResult,
       article,
-      message: `${platform === "TISTORY" ? "티스토리(Tistory)" : "워드프레스(WordPress)"}에 성공적으로 발행되었습니다!`,
+      message: `${
+        platform === "GITHUB_BLOG"
+          ? "자체 GitHub / Vercel 블로그"
+          : platform === "TISTORY"
+          ? "티스토리"
+          : "워드프레스"
+      }에 성공적으로 발행되었습니다!`,
     });
   } catch (error: any) {
     console.error("Publish error:", error);

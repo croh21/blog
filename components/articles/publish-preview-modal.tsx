@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Send, X, Globe, CheckCircle2, ShieldCheck, FileText, AlertCircle, ExternalLink } from "lucide-react";
+import { Send, X, Globe, CheckCircle2, ShieldCheck, FileText, AlertCircle, ExternalLink, Github, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Article } from "@/types";
@@ -9,7 +9,7 @@ import { Article } from "@/types";
 interface PublishPreviewModalProps {
   isOpen: boolean;
   onClose: () => void;
-  onConfirm: (platform: "TISTORY" | "WORDPRESS", visibility: 0 | 3) => void;
+  onConfirm: (platform: "GITHUB_BLOG" | "TISTORY" | "WORDPRESS", visibility: 0 | 3) => void;
   article: Article;
   loading: boolean;
   publishedUrl?: string | null;
@@ -23,7 +23,7 @@ export function PublishPreviewModal({
   loading,
   publishedUrl,
 }: PublishPreviewModalProps) {
-  const [platform, setPlatform] = useState<"TISTORY" | "WORDPRESS">("TISTORY");
+  const [platform, setPlatform] = useState<"GITHUB_BLOG" | "TISTORY" | "WORDPRESS">("GITHUB_BLOG");
   const [visibility, setVisibility] = useState<0 | 3>(3); // 3: 공개, 0: 비공개
 
   if (!isOpen) return null;
@@ -37,8 +37,8 @@ export function PublishPreviewModal({
         {/* Header */}
         <div className="px-6 py-4 border-b border-slate-100 dark:border-slate-800 flex items-center justify-between">
           <div className="flex items-center gap-2.5">
-            <div className="h-8 w-8 rounded-lg bg-orange-100 dark:bg-orange-950/60 text-orange-600 dark:text-orange-300 flex items-center justify-center font-bold">
-              T
+            <div className="h-8 w-8 rounded-lg bg-blue-100 dark:bg-blue-950/60 text-blue-600 dark:text-blue-300 flex items-center justify-center font-bold">
+              <Globe className="h-4 w-4" />
             </div>
             <div>
               <h3 className="font-bold text-base text-slate-900 dark:text-slate-100">
@@ -56,67 +56,68 @@ export function PublishPreviewModal({
         <div className="p-6 space-y-4 text-xs">
           {/* Platform Selector */}
           <div className="space-y-1.5">
-            <label className="font-bold text-slate-700 dark:text-slate-300">발행할 블로그 플랫폼</label>
-            <div className="grid grid-cols-2 gap-2">
+            <label className="font-bold text-slate-700 dark:text-slate-300">발행 대상 플랫폼</label>
+            <div className="grid grid-cols-3 gap-2">
+              {/* Option 1: GitHub / Vercel Blog */}
+              <button
+                type="button"
+                onClick={() => setPlatform("GITHUB_BLOG")}
+                className={`p-3 rounded-xl border flex flex-col items-start justify-between gap-1.5 transition-all text-left ${
+                  platform === "GITHUB_BLOG"
+                    ? "bg-blue-50 dark:bg-blue-950/40 border-blue-500 text-blue-900 dark:text-blue-100 ring-2 ring-blue-500"
+                    : "bg-slate-50 dark:bg-slate-800 border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-400"
+                }`}
+              >
+                <div className="flex items-center justify-between w-full">
+                  <div className="flex items-center gap-1.5 font-bold text-xs">
+                    <Github className="h-4 w-4 text-slate-800 dark:text-white" />
+                    <span>자체 깃허브/Vercel</span>
+                  </div>
+                  {platform === "GITHUB_BLOG" && <CheckCircle2 className="h-3.5 w-3.5 text-blue-600 shrink-0" />}
+                </div>
+                <Badge variant="opportunity" className="text-[9px] px-1 py-0 font-semibold">
+                  추천 • 무료 호스팅
+                </Badge>
+              </button>
+
+              {/* Option 2: Tistory */}
               <button
                 type="button"
                 onClick={() => setPlatform("TISTORY")}
-                className={`p-3 rounded-xl border flex items-center justify-between transition-all ${
+                className={`p-3 rounded-xl border flex flex-col items-start justify-between gap-1.5 transition-all text-left ${
                   platform === "TISTORY"
                     ? "bg-orange-50 dark:bg-orange-950/40 border-orange-400 text-orange-900 dark:text-orange-100 ring-2 ring-orange-400"
                     : "bg-slate-50 dark:bg-slate-800 border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-400"
                 }`}
               >
-                <div className="flex items-center gap-2 font-bold text-xs">
-                  <span className="w-5 h-5 rounded bg-orange-500 text-white flex items-center justify-center font-extrabold text-[11px]">T</span>
-                  티스토리 (Tistory)
+                <div className="flex items-center justify-between w-full">
+                  <div className="flex items-center gap-1.5 font-bold text-xs">
+                    <span className="w-4 h-4 rounded bg-orange-500 text-white flex items-center justify-center font-extrabold text-[10px]">T</span>
+                    <span>티스토리</span>
+                  </div>
+                  {platform === "TISTORY" && <CheckCircle2 className="h-3.5 w-3.5 text-orange-600 shrink-0" />}
                 </div>
-                {platform === "TISTORY" && <CheckCircle2 className="h-4 w-4 text-orange-600 shrink-0" />}
+                <span className="text-[10px] text-slate-400">카카오 API</span>
               </button>
 
+              {/* Option 3: WordPress */}
               <button
                 type="button"
                 onClick={() => setPlatform("WORDPRESS")}
-                className={`p-3 rounded-xl border flex items-center justify-between transition-all ${
+                className={`p-3 rounded-xl border flex flex-col items-start justify-between gap-1.5 transition-all text-left ${
                   platform === "WORDPRESS"
-                    ? "bg-blue-50 dark:bg-blue-950/40 border-blue-400 text-blue-900 dark:text-blue-100 ring-2 ring-blue-400"
+                    ? "bg-slate-100 dark:bg-slate-800 border-slate-400 text-slate-900 dark:text-slate-100 ring-2 ring-slate-400"
                     : "bg-slate-50 dark:bg-slate-800 border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-400"
                 }`}
               >
-                <div className="flex items-center gap-2 font-bold text-xs">
-                  <span className="w-5 h-5 rounded bg-blue-600 text-white flex items-center justify-center font-extrabold text-[11px]">W</span>
-                  워드프레스 (WordPress)
+                <div className="flex items-center justify-between w-full">
+                  <div className="flex items-center gap-1.5 font-bold text-xs">
+                    <span className="w-4 h-4 rounded bg-blue-600 text-white flex items-center justify-center font-extrabold text-[10px]">W</span>
+                    <span>워드프레스</span>
+                  </div>
+                  {platform === "WORDPRESS" && <CheckCircle2 className="h-3.5 w-3.5 text-blue-600 shrink-0" />}
                 </div>
-                {platform === "WORDPRESS" && <CheckCircle2 className="h-4 w-4 text-blue-600 shrink-0" />}
-              </button>
-            </div>
-          </div>
-
-          {/* Visibility Selector */}
-          <div className="space-y-1.5">
-            <label className="font-bold text-slate-700 dark:text-slate-300">발행 공개 상태</label>
-            <div className="grid grid-cols-2 gap-2">
-              <button
-                type="button"
-                onClick={() => setVisibility(3)}
-                className={`p-2.5 rounded-lg border text-center font-semibold transition-all ${
-                  visibility === 3
-                    ? "bg-emerald-50 dark:bg-emerald-950/40 border-emerald-500 text-emerald-800 dark:text-emerald-200"
-                    : "bg-slate-50 dark:bg-slate-800 border-slate-200 dark:border-slate-700"
-                }`}
-              >
-                🚀 즉시 공개 발행 (Public)
-              </button>
-              <button
-                type="button"
-                onClick={() => setVisibility(0)}
-                className={`p-2.5 rounded-lg border text-center font-semibold transition-all ${
-                  visibility === 0
-                    ? "bg-amber-50 dark:bg-amber-950/40 border-amber-500 text-amber-800 dark:text-amber-200"
-                    : "bg-slate-50 dark:bg-slate-800 border-slate-200 dark:border-slate-700"
-                }`}
-              >
-                📝 비공개 / 초안 저장 (Draft)
+                <span className="text-[10px] text-slate-400">REST API</span>
               </button>
             </div>
           </div>
@@ -132,8 +133,8 @@ export function PublishPreviewModal({
 
             <div className="grid grid-cols-2 gap-2 pt-1 border-t border-slate-200/50 dark:border-slate-700/50">
               <div>
-                <span className="text-[10px] text-slate-400 block">태그 (Tags)</span>
-                <span className="font-medium text-slate-700 dark:text-slate-300">#{article.primary_keyword}</span>
+                <span className="text-[10px] text-slate-400 block">발행 URL 경로</span>
+                <span className="font-mono text-blue-600 dark:text-blue-400">/blog/{article.slug}</span>
               </div>
               <div>
                 <span className="text-[10px] text-slate-400 block">카테고리</span>
@@ -162,18 +163,21 @@ export function PublishPreviewModal({
 
           {/* Published Result link */}
           {publishedUrl && (
-            <div className="p-3 rounded-lg bg-emerald-50 dark:bg-emerald-950/50 border border-emerald-300 text-emerald-800 dark:text-emerald-300 flex items-center justify-between">
+            <div className="p-3.5 rounded-xl bg-emerald-50 dark:bg-emerald-950/50 border border-emerald-300 text-emerald-800 dark:text-emerald-300 flex items-center justify-between">
               <div className="flex items-center gap-2">
-                <CheckCircle2 className="h-4 w-4 text-emerald-600 shrink-0" />
-                <span className="font-bold">성공적으로 발행되었습니다!</span>
+                <CheckCircle2 className="h-5 w-5 text-emerald-600 shrink-0" />
+                <div>
+                  <span className="font-bold block">블로그 발행이 완료되었습니다!</span>
+                  <span className="text-[11px] text-slate-500 dark:text-slate-400 font-mono">{publishedUrl}</span>
+                </div>
               </div>
               <a
                 href={publishedUrl}
                 target="_blank"
                 rel="noreferrer"
-                className="font-bold underline flex items-center gap-1 text-xs"
+                className="font-bold underline flex items-center gap-1 text-xs bg-emerald-600 text-white px-3 py-1.5 rounded-lg shadow-sm hover:bg-emerald-700 transition-colors"
               >
-                발행글 확인하기 <ExternalLink className="h-3 w-3" />
+                발행글 보기 <ExternalLink className="h-3.5 w-3.5" />
               </a>
             </div>
           )}
@@ -182,17 +186,17 @@ export function PublishPreviewModal({
         {/* Footer actions */}
         <div className="px-6 py-4 border-t border-slate-100 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-900/50 flex items-center justify-end gap-2.5">
           <Button variant="outline" size="sm" onClick={onClose} disabled={loading} className="text-xs">
-            닫기
+            {publishedUrl ? "닫기" : "취소"}
           </Button>
           <Button
             variant="gradient"
             size="sm"
             onClick={() => onConfirm(platform, visibility)}
             disabled={loading}
-            className="text-xs font-bold gap-1.5 shadow-md bg-gradient-to-r from-orange-500 to-amber-600 hover:from-orange-600 hover:to-amber-700 text-white border-0"
+            className="text-xs font-bold gap-1.5 shadow-md"
           >
             <Send className="h-3.5 w-3.5" />
-            {loading ? "발행 처리 중..." : `${platform === "TISTORY" ? "티스토리에" : "워드프레스에"} 최종 발행`}
+            {loading ? "발행 처리 중..." : "최종 승인 및 블로그에 발행"}
           </Button>
         </div>
       </div>

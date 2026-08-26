@@ -182,7 +182,7 @@ export default function ArticleEditorPage() {
 
   const [publishedUrl, setPublishedUrl] = useState<string | null>(null);
 
-  async function handleConfirmPublish(platform: "TISTORY" | "WORDPRESS" = "TISTORY", visibility: 0 | 3 = 3) {
+  async function handleConfirmPublish(platform: "GITHUB_BLOG" | "TISTORY" | "WORDPRESS" = "GITHUB_BLOG", visibility: 0 | 3 = 3) {
     setPublishing(true);
     try {
       const res = await fetch(`/api/articles/${articleId}/publish`, {
