@@ -27,6 +27,106 @@
   ],
   "trends": [
     {
+      "title": "Perplexity & AI 검색 엔진 대상 Citation 인용 최적화 가이드",
+      "description": "기존 구글 백링크 중심 SEO에서 벗어나 LLM이 답변 생성 시 신뢰할 수 있는 출처로 채택하도록 구조화된 데이터를 제공하는 새로운 방법론.",
+      "category_name": "디지털 마케팅 & SEO",
+      "source_url": "https://searchengineland.com",
+      "source_name": "Search Marketing Daily",
+      "published_at": "2026-08-26T12:07:41.513Z",
+      "collected_at": "2026-08-26T12:07:41.513Z",
+      "trend_score": 94,
+      "search_growth": 95,
+      "search_volume": 84,
+      "competition_score": 40,
+      "commercial_score": 92,
+      "evergreen_score": 86,
+      "social_score": 90,
+      "status": "SELECTED",
+      "id": "QodeaIQ00x9BvyvLw_f-f",
+      "opportunity_score": 87.3,
+      "created_at": "2026-08-26T12:07:41.513Z"
+    },
+    {
+      "title": "Next.js 15 & React 19 서버 컴포넌트 마이그레이션 모범 사례",
+      "description": "Async Request APIs, Partial Prerendering(PPR) 및 Server Actions 최적화를 통한 웹 퍼포먼스 및 Core Web Vitals 개선 사례 분석.",
+      "category_name": "생산성 & SaaS 테크",
+      "source_url": "https://nextjs.org/blog",
+      "source_name": "Vercel Next.js Team",
+      "published_at": "2026-08-26T12:07:41.513Z",
+      "collected_at": "2026-08-26T12:07:41.513Z",
+      "trend_score": 85,
+      "search_growth": 78,
+      "search_volume": 88,
+      "competition_score": 55,
+      "commercial_score": 75,
+      "evergreen_score": 92,
+      "social_score": 70,
+      "status": "DISCOVERED",
+      "id": "bK3_ouG1fFBOTyYUBfZ6t",
+      "opportunity_score": 77.6,
+      "created_at": "2026-08-26T12:07:41.513Z"
+    },
+    {
+      "title": "AI 에이전트 결제 표준(x402 & Agentic Commerce)의 시작",
+      "description": "인간의 직접 결제 대신 AI 에이전트가 API 및 토큰 기반으로 상품을 비교 구매하는 자율 상거래 표준 프로토콜이 공개되었습니다.",
+      "category_name": "AI & 자율 에이전트",
+      "source_url": "https://coinbase.com/developer-platform",
+      "source_name": "Agentic Commerce Protocol",
+      "published_at": "2026-08-26T12:07:41.513Z",
+      "collected_at": "2026-08-26T12:07:41.513Z",
+      "trend_score": 92,
+      "search_growth": 89,
+      "search_volume": 79,
+      "competition_score": 25,
+      "commercial_score": 98,
+      "evergreen_score": 88,
+      "social_score": 86,
+      "status": "DISCOVERED",
+      "id": "gkAO7OqMEfH1WMAzzpU18",
+      "opportunity_score": 87.8,
+      "created_at": "2026-08-26T12:07:41.513Z"
+    },
+    {
+      "title": "소형 온디바이스 SLM 모델과 웹 브라우저 내 로컬 AI 혁신",
+      "description": "WebGPU와 WebAssembly를 활용해 서버 비용 없이 브라우저 내에서 직접 구동되는 초경량 언어 모델(Small Language Model) 생태계가 급팽창하고 있습니다.",
+      "category_name": "생산성 & SaaS 테크",
+      "source_url": "https://web.dev/explore/ai",
+      "source_name": "Google Web Developers",
+      "published_at": "2026-08-26T12:07:41.513Z",
+      "collected_at": "2026-08-26T12:07:41.513Z",
+      "trend_score": 88,
+      "search_growth": 82,
+      "search_volume": 75,
+      "competition_score": 38,
+      "commercial_score": 84,
+      "evergreen_score": 90,
+      "social_score": 80,
+      "status": "DISCOVERED",
+      "id": "de_0oEuTtdfLsxVHMRs1u",
+      "opportunity_score": 81,
+      "created_at": "2026-08-26T12:07:41.513Z"
+    },
+    {
+      "title": "Claude 3.7 Sonnet & 하이브리드 추론 모델의 실전 업무 자동화",
+      "description": "즉각적인 답변과 심층 추론(Thinking)을 결합한 하이브리드 AI 모델의 도입으로 복잡한 코드 리팩토링 및 전략 기획이 자동화되고 있습니다.",
+      "category_name": "AI & 자율 에이전트",
+      "source_url": "https://anthropic.com/news/claude-3-7-sonnet",
+      "source_name": "Anthropic Official Announcement",
+      "published_at": "2026-08-26T12:07:41.513Z",
+      "collected_at": "2026-08-26T12:07:41.513Z",
+      "trend_score": 98,
+      "search_growth": 96,
+      "search_volume": 92,
+      "competition_score": 30,
+      "commercial_score": 95,
+      "evergreen_score": 85,
+      "social_score": 94,
+      "status": "SELECTED",
+      "id": "EiadzT6fGcRqNQwLCs4HX",
+      "opportunity_score": 90.9,
+      "created_at": "2026-08-26T12:07:41.513Z"
+    },
+    {
       "id": "trend-1",
       "title": "AI 에이전트 워크플로우 자동화 및 MCP 프로토콜 급부상",
       "description": "Model Context Protocol(MCP)을 활용한 로컬 도구 연동 및 다중 에이전트 오케스트레이션이 기업 업무 환경을 재편하고 있습니다.",
@@ -92,6 +192,28 @@
   ],
   "topics": [
     {
+      "id": "3NFMtHHilfIZSVh5ZlIyz",
+      "trend_id": "trend-1",
+      "title": "AI 에이전트 워크플로우 자동화 및 MCP 프로토콜 급부상: 실무자를 위한 완벽 가이드",
+      "primary_keyword": "AI 기술 도입",
+      "secondary_keywords": [
+        "AI 생산성",
+        "업무 자동화",
+        "ROI 분석"
+      ],
+      "search_intent": "실무 가이드 및 비교",
+      "content_type": "EXPLAINER",
+      "estimated_traffic": 11000,
+      "competition": "LOW",
+      "commercial_value": 90,
+      "evergreen_score": 88,
+      "opportunity_score": 93.5,
+      "why_this_topic": "최근 30일 검색 관심도가 폭발적으로 증가했으며 실전 가이드 희소성이 높습니다.",
+      "recommended_length": 2600,
+      "status": "PROPOSED",
+      "created_at": "2026-08-26T12:07:41.557Z"
+    },
+    {
       "id": "topic-1",
       "trend_id": "trend-1",
       "title": "MCP(Model Context Protocol) 완벽 가이드: AI 에이전트와 도구를 연결하는 표준 프로토콜",
@@ -140,6 +262,78 @@
   ],
   "sources": [
     {
+      "id": "NB1akM0EI5mjfWI9SHKIf",
+      "title": "AI 에이전트 워크플로우 자동화 및 MCP 프로토콜 급부상: 실무자를 위한 완벽 가이드 시장 분석 리포트",
+      "url": "https://research.analyst.example/reports/3NFMtHHilfIZSVh5ZlIyz",
+      "publisher": "Global Tech Insights",
+      "source_type": "RESEARCH",
+      "tier": 1,
+      "reliability_score": 92,
+      "published_at": "2026-08-26T12:07:56.798Z",
+      "accessed_at": "2026-08-26T12:07:56.798Z",
+      "created_at": "2026-08-26T12:07:56.798Z"
+    },
+    {
+      "id": "qiwJHMRZqbOccZaZfPZ8x",
+      "title": "AI 기술 도입 공식 사양 및 백서",
+      "url": "https://techdocs.example.org/AI-기술-도입",
+      "publisher": "Official Documentation & Working Group",
+      "source_type": "OFFICIAL",
+      "tier": 1,
+      "reliability_score": 96,
+      "published_at": "2026-08-26T12:07:56.798Z",
+      "accessed_at": "2026-08-26T12:07:56.798Z",
+      "created_at": "2026-08-26T12:07:56.798Z"
+    },
+    {
+      "id": "XYO1dgc6rN-INyjrhmA0_",
+      "title": "MCP(Model Context Protocol) 완벽 가이드: AI 에이전트와 도구를 연결하는 표준 프로토콜 시장 분석 리포트",
+      "url": "https://research.analyst.example/reports/topic-1",
+      "publisher": "Global Tech Insights",
+      "source_type": "RESEARCH",
+      "tier": 1,
+      "reliability_score": 92,
+      "published_at": "2026-08-26T12:05:29.789Z",
+      "accessed_at": "2026-08-26T12:05:29.789Z",
+      "created_at": "2026-08-26T12:05:29.789Z"
+    },
+    {
+      "id": "B4_xX7HXtRYyjqBSpHVsA",
+      "title": "MCP 프로토콜 공식 사양 및 백서",
+      "url": "https://techdocs.example.org/MCP-프로토콜",
+      "publisher": "Official Documentation & Working Group",
+      "source_type": "OFFICIAL",
+      "tier": 1,
+      "reliability_score": 96,
+      "published_at": "2026-08-26T12:05:29.788Z",
+      "accessed_at": "2026-08-26T12:05:29.788Z",
+      "created_at": "2026-08-26T12:05:29.788Z"
+    },
+    {
+      "id": "t6kjDjo9N_fV-Yg0KZAyX",
+      "title": "MCP(Model Context Protocol) 완벽 가이드: AI 에이전트와 도구를 연결하는 표준 프로토콜 시장 분석 리포트",
+      "url": "https://research.analyst.example/reports/topic-1",
+      "publisher": "Global Tech Insights",
+      "source_type": "RESEARCH",
+      "tier": 1,
+      "reliability_score": 92,
+      "published_at": "2026-08-26T12:03:29.320Z",
+      "accessed_at": "2026-08-26T12:03:29.320Z",
+      "created_at": "2026-08-26T12:03:29.320Z"
+    },
+    {
+      "id": "au25i5yCTjjTUaKxAwpo6",
+      "title": "MCP 프로토콜 공식 사양 및 백서",
+      "url": "https://techdocs.example.org/MCP-프로토콜",
+      "publisher": "Official Documentation & Working Group",
+      "source_type": "OFFICIAL",
+      "tier": 1,
+      "reliability_score": 96,
+      "published_at": "2026-08-26T12:03:29.320Z",
+      "accessed_at": "2026-08-26T12:03:29.320Z",
+      "created_at": "2026-08-26T12:03:29.320Z"
+    },
+    {
       "id": "src-1",
       "title": "Model Context Protocol Specification & Architecture",
       "url": "https://modelcontextprotocol.io/introduction",
@@ -178,6 +372,239 @@
   ],
   "articles": [
     {
+      "id": "u1wafLaeaucecpsJVx5Kn",
+      "topic_id": "3NFMtHHilfIZSVh5ZlIyz",
+      "category_name": "AI & 자율 에이전트",
+      "title": "AI 에이전트 워크플로우 자동화 및 MCP 프로토콜 급부상: 실무자를 위한 완벽 가이드",
+      "slug": "ai-기술-도입",
+      "excerpt": "최근 30일 검색 관심도가 폭발적으로 증가했으며 실전 가이드 희소성이 높습니다.",
+      "content": "[AI Generated Content for: 제목: AI 에이전트 워크플로우 자동화 및 MCP 프로토콜 급부상: 실무...]",
+      "status": "HUMAN_REVIEW",
+      "language": "ko",
+      "seo_title": "AI 에이전트 워크플로우 자동화 및 MCP 프로토콜 급부상: 실무자를 위한 완벽 가이드 | 완벽 가이드",
+      "meta_description": "AI 기술 도입의 핵심 개념과 실전 활용 전략을 정리한 가이드입니다.",
+      "primary_keyword": "AI 기술 도입",
+      "secondary_keywords": [
+        "AI 생산성",
+        "업무 자동화",
+        "ROI 분석"
+      ],
+      "word_count": 14,
+      "seo_score": 62,
+      "fact_check_score": 83,
+      "created_at": "2026-08-26T12:07:56.777Z",
+      "updated_at": "2026-08-26T12:07:56.871Z",
+      "research_plan": {
+        "coreQuestions": [
+          "AI 기술 도입의 실제 개념과 동작 원리는 무엇인가?",
+          "기존 솔루션 대비 어떤 차별점과 ROI가 있는가?",
+          "실무에 즉시 도입할 때 고려해야 할 핵심 체크리스트는 무엇인가?"
+        ],
+        "targetAudience": "테크 리더, 실무 기획자, 개발자 및 비즈니스 의사결정권자",
+        "dataPointsNeeded": [
+          "성능 벤치마크 데이터",
+          "시장 성장률 수치",
+          "실제 구축 사례"
+        ],
+        "differentiators": [
+          "단순 요약이 아닌 실전 아키텍처 다이어그램 및 장단점 비교표 포함"
+        ]
+      },
+      "outline": [
+        {
+          "heading": "AI 에이전트 워크플로우 자동화 및 MCP 프로토콜 급부상: 실무자를 위한 완벽 가이드",
+          "level": 1,
+          "description": "메인 제목"
+        },
+        {
+          "heading": "핵심 요약 (Key Takeaways)",
+          "level": 2,
+          "description": "3대 핵심 요약 불릿 포인트"
+        },
+        {
+          "heading": "1. What Happened? (트렌드 배경과 현주소)",
+          "level": 2,
+          "description": "시장 변화 및 주요 팩트"
+        },
+        {
+          "heading": "2. Why It Matters (왜 지금 주목해야 하는가)",
+          "level": 2,
+          "description": "비즈니스 및 실무적 파급 효과"
+        },
+        {
+          "heading": "3. 심층 분석 & 실전 활용 가이드",
+          "level": 2,
+          "description": "구체적 프로세스 및 비교 분석표"
+        },
+        {
+          "heading": "4. 자주 묻는 질문 (FAQ)",
+          "level": 2,
+          "description": "독자 필수 질문 3가지"
+        },
+        {
+          "heading": "5. 참고 출처 (Sources)",
+          "level": 2,
+          "description": "공식 문서 및 레퍼런스"
+        }
+      ]
+    },
+    {
+      "id": "-MqJOOzwj01jlxm6Bpa7g",
+      "topic_id": "topic-1",
+      "category_name": "AI & 자율 에이전트",
+      "title": "MCP(Model Context Protocol) 완벽 가이드: AI 에이전트와 도구를 연결하는 표준 프로토콜",
+      "slug": "mcp-프로토콜",
+      "excerpt": "최근 개발자와 테크 기획자 사이에서 검색 관심도가 187% 폭증했으나, 한글로 작성된 실전 구축 가이드 및 아키텍처 비교 자료가 희소하여 상위 랭킹 선점이 매우 유리합니다.",
+      "content": "[AI Generated Content for: 제목: MCP(Model Context Protocol) 완벽 가이드: ...]",
+      "status": "HUMAN_REVIEW",
+      "language": "ko",
+      "seo_title": "MCP(Model Context Protocol) 완벽 가이드: AI 에이전트와 도구를 연결하는 표준 프로토콜 | 완벽 가이드",
+      "meta_description": "MCP 프로토콜의 핵심 개념과 실전 활용 전략을 정리한 가이드입니다.",
+      "primary_keyword": "MCP 프로토콜",
+      "secondary_keywords": [
+        "Model Context Protocol",
+        "AI 에이전트 도구 연동",
+        "MCP 서버 구축",
+        "Anthropic MCP"
+      ],
+      "word_count": 11,
+      "seo_score": 62,
+      "fact_check_score": 83,
+      "created_at": "2026-08-26T12:05:29.769Z",
+      "updated_at": "2026-08-26T12:05:29.875Z",
+      "research_plan": {
+        "coreQuestions": [
+          "MCP 프로토콜의 실제 개념과 동작 원리는 무엇인가?",
+          "기존 솔루션 대비 어떤 차별점과 ROI가 있는가?",
+          "실무에 즉시 도입할 때 고려해야 할 핵심 체크리스트는 무엇인가?"
+        ],
+        "targetAudience": "테크 리더, 실무 기획자, 개발자 및 비즈니스 의사결정권자",
+        "dataPointsNeeded": [
+          "성능 벤치마크 데이터",
+          "시장 성장률 수치",
+          "실제 구축 사례"
+        ],
+        "differentiators": [
+          "단순 요약이 아닌 실전 아키텍처 다이어그램 및 장단점 비교표 포함"
+        ]
+      },
+      "outline": [
+        {
+          "heading": "MCP(Model Context Protocol) 완벽 가이드: AI 에이전트와 도구를 연결하는 표준 프로토콜",
+          "level": 1,
+          "description": "메인 제목"
+        },
+        {
+          "heading": "핵심 요약 (Key Takeaways)",
+          "level": 2,
+          "description": "3대 핵심 요약 불릿 포인트"
+        },
+        {
+          "heading": "1. What Happened? (트렌드 배경과 현주소)",
+          "level": 2,
+          "description": "시장 변화 및 주요 팩트"
+        },
+        {
+          "heading": "2. Why It Matters (왜 지금 주목해야 하는가)",
+          "level": 2,
+          "description": "비즈니스 및 실무적 파급 효과"
+        },
+        {
+          "heading": "3. 심층 분석 & 실전 활용 가이드",
+          "level": 2,
+          "description": "구체적 프로세스 및 비교 분석표"
+        },
+        {
+          "heading": "4. 자주 묻는 질문 (FAQ)",
+          "level": 2,
+          "description": "독자 필수 질문 3가지"
+        },
+        {
+          "heading": "5. 참고 출처 (Sources)",
+          "level": 2,
+          "description": "공식 문서 및 레퍼런스"
+        }
+      ]
+    },
+    {
+      "id": "pp_LBRXfnvPCpUp_aQdMH",
+      "topic_id": "topic-1",
+      "category_name": "AI & 자율 에이전트",
+      "title": "MCP(Model Context Protocol) 완벽 가이드: AI 에이전트와 도구를 연결하는 표준 프로토콜",
+      "slug": "mcp-프로토콜",
+      "excerpt": "최근 개발자와 테크 기획자 사이에서 검색 관심도가 187% 폭증했으나, 한글로 작성된 실전 구축 가이드 및 아키텍처 비교 자료가 희소하여 상위 랭킹 선점이 매우 유리합니다.",
+      "content": "[AI Generated Content for: 제목: MCP(Model Context Protocol) 완벽 가이드: ...]",
+      "status": "HUMAN_REVIEW",
+      "language": "ko",
+      "seo_title": "MCP(Model Context Protocol) 완벽 가이드: AI 에이전트와 도구를 연결하는 표준 프로토콜 | 완벽 가이드",
+      "meta_description": "MCP 프로토콜의 핵심 개념과 실전 활용 전략을 정리한 가이드입니다.",
+      "primary_keyword": "MCP 프로토콜",
+      "secondary_keywords": [
+        "Model Context Protocol",
+        "AI 에이전트 도구 연동",
+        "MCP 서버 구축",
+        "Anthropic MCP"
+      ],
+      "word_count": 11,
+      "seo_score": 62,
+      "fact_check_score": 30,
+      "created_at": "2026-08-26T12:03:29.231Z",
+      "updated_at": "2026-08-26T12:05:20.046Z",
+      "research_plan": {
+        "coreQuestions": [
+          "MCP 프로토콜의 실제 개념과 동작 원리는 무엇인가?",
+          "기존 솔루션 대비 어떤 차별점과 ROI가 있는가?",
+          "실무에 즉시 도입할 때 고려해야 할 핵심 체크리스트는 무엇인가?"
+        ],
+        "targetAudience": "테크 리더, 실무 기획자, 개발자 및 비즈니스 의사결정권자",
+        "dataPointsNeeded": [
+          "성능 벤치마크 데이터",
+          "시장 성장률 수치",
+          "실제 구축 사례"
+        ],
+        "differentiators": [
+          "단순 요약이 아닌 실전 아키텍처 다이어그램 및 장단점 비교표 포함"
+        ]
+      },
+      "outline": [
+        {
+          "heading": "MCP(Model Context Protocol) 완벽 가이드: AI 에이전트와 도구를 연결하는 표준 프로토콜",
+          "level": 1,
+          "description": "메인 제목"
+        },
+        {
+          "heading": "핵심 요약 (Key Takeaways)",
+          "level": 2,
+          "description": "3대 핵심 요약 불릿 포인트"
+        },
+        {
+          "heading": "1. What Happened? (트렌드 배경과 현주소)",
+          "level": 2,
+          "description": "시장 변화 및 주요 팩트"
+        },
+        {
+          "heading": "2. Why It Matters (왜 지금 주목해야 하는가)",
+          "level": 2,
+          "description": "비즈니스 및 실무적 파급 효과"
+        },
+        {
+          "heading": "3. 심층 분석 & 실전 활용 가이드",
+          "level": 2,
+          "description": "구체적 프로세스 및 비교 분석표"
+        },
+        {
+          "heading": "4. 자주 묻는 질문 (FAQ)",
+          "level": 2,
+          "description": "독자 필수 질문 3가지"
+        },
+        {
+          "heading": "5. 참고 출처 (Sources)",
+          "level": 2,
+          "description": "공식 문서 및 레퍼런스"
+        }
+      ]
+    },
+    {
       "id": "art-1",
       "topic_id": "topic-1",
       "category_id": "cat-1",
@@ -186,7 +613,7 @@
       "slug": "mcp-model-context-protocol-guide",
       "excerpt": "Anthropic이 오픈소스로 공개한 MCP(Model Context Protocol)의 핵심 아키텍처와 로컬 도구 연동 방법을 심층 분석합니다.",
       "content": "# MCP(Model Context Protocol) 완벽 가이드: AI 에이전트 연결 표준과 실전 활용\n\n## 핵심 요약 (Key Takeaways)\n- **개념**: MCP는 LLM(언어 모델)과 로컬/원격 데이터 소스 및 도구(Tools)를 안전하고 표준화된 방식으로 연결하는 오픈 프로토콜입니다.\n- **배경**: 기존의 커스텀 API 통합 방식의 파편화를 해결하고 플러그 앤 플레이 방식의 생태계를 구축합니다.\n- **주요 구성요소**: Host Application(Claude Desktop, IDE), Client, 그리고 Server(DB, Git, Local Files).\n\n---\n\n## 1. What Happened? (무엇이 변화하고 있는가)\n인공지능 모델이 단순한 텍스트 생성을 넘어 사용자의 실제 컴퓨터 환경과 시스템 도구를 조작하는 '자율 에이전트(Autonomous Agent)'로 진화하면서, 각 시스템 간 연결 규격의 표준화가 시급한 과제로 떠올랐습니다. \n\nAnthropic은 이를 해결하기 위해 **Model Context Protocol(MCP)**을 오픈소스로 발표하였으며, 이는 USB-C 포트가 다양한 전자기기의 연결 표준이 된 것처럼 AI 생태계의 유니버설 커넥터 역할을 수행하고 있습니다.\n\n## 2. Why It Matters (왜 중요한가)\n기존의 함수 호출(Function Calling)이나 개별 플러그인 방식은 LLM 모델마다 형식이 다르고 유지보수 비용이 높았습니다. MCP를 도입하면:\n1. **단일 구현으로 다중 클라이언트 지원**: 한 번 작성한 MCP 서버는 모든 MCP 호환 클라이언트에서 즉시 작동합니다.\n2. **보안과 격리**: 사용자의 명시적 승인 하에 로컬 자원에 접근하여 보안 리스크를 최소화합니다.\n3. **확장성**: 데이터베이스, 로컬 파일시스템, Git 저장소 등을 손쉽게 AI 컨텍스트로 주입할 수 있습니다.\n\n## 3. 핵심 아키텍처와 작동 원리\nMCP는 클라이언트-서버 구조로 동작합니다.\n- **Host**: 사용자가 상호작용하는 UI (예: IDE, AI Assistant)\n- **Client**: Host 내부에서 서버와의 연결 상태와 권한을 중계하는 프로토콜 클라이언트\n- **Server**: 특정 도구나 데이터(예: PostgreSQL, GitHub API, 파일 시스템)를 표준 프로토콜로 노출하는 경량 프로그램\n\n## 4. 자주 묻는 질문 (FAQ)\n### Q1. MCP는 특정 AI 모델(Claude 등)에만 종속되나요?\n아닙니다. MCP는 오픈 프로토콜 규격으로 OpenAI, 오픈소스 LLM 등 모든 모델과 런타임에서 사용할 수 있습니다.\n\n### Q2. 기존 API와 무엇이 다른가요?\n기존 API가 시스템 간의 원시 데이터 교환이라면, MCP는 AI 모델이 이해하기 쉬운 형태(리소스, 프롬프트, 도구)로 컨텍스트를 규격화하여 제공합니다.\n\n---\n\n## 5. 참고 출처 (Sources)\n- [Anthropic Model Context Protocol Specification](https://modelcontextprotocol.io) (Tier 1 공식 표준 문서)\n- [AI Research Institute 2026 Agent Report](https://research.techplatform.example) (Tier 1 연구 보고서)\n",
-      "status": "HUMAN_REVIEW",
+      "status": "PUBLISHED",
       "language": "ko",
       "seo_title": "MCP(Model Context Protocol) 완벽 가이드 | AI 에이전트 표준",
       "meta_description": "MCP(Model Context Protocol)의 개념, 아키텍처, 기존 API와의 차이점 및 실전 활용법을 총정리한 완벽 가이드입니다.",
@@ -197,14 +624,63 @@
         "Anthropic MCP"
       ],
       "word_count": 1450,
-      "seo_score": 94,
-      "fact_check_score": 96,
+      "seo_score": 83,
+      "fact_check_score": 100,
       "created_at": "2026-08-25T12:01:24.648Z",
-      "updated_at": "2026-08-26T12:01:24.648Z",
+      "updated_at": "2026-08-26T12:09:44.490Z",
       "published_at": null
     }
   ],
   "articleClaims": [
+    {
+      "id": "y2f9RTO4RItnGZvN_NJ39",
+      "article_id": "u1wafLaeaucecpsJVx5Kn",
+      "claim": "기존 방식 대비 생산성 300% 향상 및 구축 속도 단축",
+      "source_name": "Global Tech Insights",
+      "source_url": "https://research.analyst.example/reports/3NFMtHHilfIZSVh5ZlIyz",
+      "confidence": 0.88,
+      "verification_status": "PARTIALLY_VERIFIED",
+      "category": "STATISTICS",
+      "notes": "벤치마크 환경에 따라 차이 가능"
+    },
+    {
+      "id": "m0m1zvwuGy_L9mdH3WrSt",
+      "article_id": "u1wafLaeaucecpsJVx5Kn",
+      "claim": "AI 기술 도입 관련 공식 사양 및 프로토콜 규격 발표",
+      "source_name": "Official Documentation & Working Group",
+      "source_url": "https://techdocs.example.org/AI-기술-도입",
+      "confidence": 0.95,
+      "verification_status": "VERIFIED",
+      "category": "SPECS",
+      "notes": "공식 문서 검증 완료"
+    },
+    {
+      "id": "G3DUoms974Z47ug0bnqio",
+      "article_id": "-MqJOOzwj01jlxm6Bpa7g",
+      "claim": "기존 방식 대비 생산성 300% 향상 및 구축 속도 단축",
+      "source_name": "Global Tech Insights",
+      "source_url": "https://research.analyst.example/reports/topic-1",
+      "confidence": 0.88,
+      "verification_status": "PARTIALLY_VERIFIED",
+      "category": "STATISTICS",
+      "notes": "벤치마크 환경에 따라 차이 가능"
+    },
+    {
+      "id": "LVZ7VOWGuQNaoZjLLusY-",
+      "article_id": "-MqJOOzwj01jlxm6Bpa7g",
+      "claim": "MCP 프로토콜 관련 공식 사양 및 프로토콜 규격 발표",
+      "source_name": "Official Documentation & Working Group",
+      "source_url": "https://techdocs.example.org/MCP-프로토콜",
+      "confidence": 0.95,
+      "verification_status": "VERIFIED",
+      "category": "SPECS",
+      "notes": "공식 문서 검증 완료"
+    },
+    {
+      "id": "JXpGB1BhrMbwCjyvPACMn",
+      "verification_status": "UNVERIFIED",
+      "article_id": "pp_LBRXfnvPCpUp_aQdMH"
+    },
     {
       "id": "clm-1",
       "article_id": "art-1",
@@ -245,6 +721,39 @@
     }
   ],
   "internalLinks": [
+    {
+      "id": "e5hOEd9KoZ0CY1K9P3rT6",
+      "source_article_id": "u1wafLaeaucecpsJVx5Kn",
+      "target_article_id": "-MqJOOzwj01jlxm6Bpa7g",
+      "target_title": "MCP(Model Context Protocol) 완벽 가이드: AI 에이전트와 도구를 연결하는 표준 프로토콜",
+      "target_slug": "mcp-프로토콜",
+      "relevance_score": 91,
+      "anchor_text": "MCP 프로토콜",
+      "recommended_location": "섹션 2(Why It Matters)의 연관 개념 문맥",
+      "applied": false
+    },
+    {
+      "id": "wLOudWW4y2rcrdtSqSu9Z",
+      "source_article_id": "-MqJOOzwj01jlxm6Bpa7g",
+      "target_article_id": "pp_LBRXfnvPCpUp_aQdMH",
+      "target_title": "MCP(Model Context Protocol) 완벽 가이드: AI 에이전트와 도구를 연결하는 표준 프로토콜",
+      "target_slug": "mcp-프로토콜",
+      "relevance_score": 91,
+      "anchor_text": "MCP 프로토콜",
+      "recommended_location": "섹션 2(Why It Matters)의 연관 개념 문맥",
+      "applied": false
+    },
+    {
+      "id": "vg36gjNwLchhM--7ZoQZB",
+      "source_article_id": "pp_LBRXfnvPCpUp_aQdMH",
+      "target_article_id": "art-1",
+      "target_title": "MCP(Model Context Protocol) 완벽 가이드: AI 에이전트 연결 표준과 실전 활용",
+      "target_slug": "mcp-model-context-protocol-guide",
+      "relevance_score": 91,
+      "anchor_text": "MCP 프로토콜",
+      "recommended_location": "섹션 2(Why It Matters)의 연관 개념 문맥",
+      "applied": false
+    },
     {
       "id": "il-1",
       "source_article_id": "art-1",
