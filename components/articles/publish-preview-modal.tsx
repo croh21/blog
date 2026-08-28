@@ -1,7 +1,18 @@
 "use client";
 
 import { useState } from "react";
-import { Send, X, Globe, CheckCircle2, ShieldCheck, FileText, AlertCircle, ExternalLink, Github, Sparkles } from "lucide-react";
+import {
+  Send,
+  X,
+  Globe,
+  CheckCircle2,
+  Copy,
+  ExternalLink,
+  Github,
+  Check,
+  FileText,
+  Sparkles,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Article } from "@/types";
@@ -9,7 +20,7 @@ import { Article } from "@/types";
 interface PublishPreviewModalProps {
   isOpen: boolean;
   onClose: () => void;
-  onConfirm: (platform: "GITHUB_BLOG" | "TISTORY" | "WORDPRESS", visibility: 0 | 3) => void;
+  onConfirm: (platform: "GITHUB_BLOG" | "NAVER_BLOG" | "WORDPRESS" | "TISTORY", visibility: 0 | 3) => void;
   article: Article;
   loading: boolean;
   publishedUrl?: string | null;
@@ -23,13 +34,52 @@ export function PublishPreviewModal({
   loading,
   publishedUrl,
 }: PublishPreviewModalProps) {
-  const [platform, setPlatform] = useState<"GITHUB_BLOG" | "TISTORY" | "WORDPRESS">("GITHUB_BLOG");
+  const [platform, setPlatform] = useState<"GITHUB_BLOG" | "NAVER_BLOG" | "WORDPRESS">("NAVER_BLOG");
   const [visibility, setVisibility] = useState<0 | 3>(3); // 3: 공개, 0: 비공개
+  const [copied, setCopied] = useState(false);
+  const [copiedTitle, setCopiedTitle] = useState(false);
+  const [copiedTags, setCopiedTags] = useState(false);
 
   if (!isOpen) return null;
 
   const wordCount = article.word_count || article.content.split(/\s+/).filter(Boolean).length;
   const charCount = article.content.length;
+  const tagsString = [article.primary_keyword, ...(article.secondary_keywords || [])]
+    .filter(Boolean)
+    .map((t) => `#${t}`)
+    .join(" ");
+
+  const naverId = process.env.NEXT_PUBLIC_NAVER_BLOG_ID || "myblog";
+  const naverPostWriteUrl = `https://blog.naver.com/${naverId}/postwrite`;
+
+  // HTML 클립보드 복사 (스마트에디터 ONE 붙여넣기용)
+  const handleCopyRichContent = async () => {
+    try {
+      const type = "text/html";
+      const blob = new Blob([article.content], { type });
+      const data = [new ClipboardItem({ [type]: blob, "text/plain": new Blob([article.content], { type: "text/plain" }) })];
+      await navigator.clipboard.write(data);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2500);
+    } catch {
+      // Fallback
+      await navigator.clipboard.writeText(article.content);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2500);
+    }
+  };
+
+  const handleCopyTitle = async () => {
+    await navigator.clipboard.writeText(article.title);
+    setCopiedTitle(true);
+    setTimeout(() => setCopiedTitle(false), 2000);
+  };
+
+  const handleCopyTags = async () => {
+    await navigator.clipboard.writeText(tagsString);
+    setCopiedTags(true);
+    setTimeout(() => setCopiedTags(false), 2000);
+  };
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4 animate-in fade-in duration-150">
@@ -37,14 +87,14 @@ export function PublishPreviewModal({
         {/* Header */}
         <div className="px-6 py-4 border-b border-slate-100 dark:border-slate-800 flex items-center justify-between">
           <div className="flex items-center gap-2.5">
-            <div className="h-8 w-8 rounded-lg bg-blue-100 dark:bg-blue-950/60 text-blue-600 dark:text-blue-300 flex items-center justify-center font-bold">
+            <div className="h-8 w-8 rounded-lg bg-emerald-100 dark:bg-emerald-950/60 text-emerald-600 dark:text-emerald-300 flex items-center justify-center font-bold">
               <Globe className="h-4 w-4" />
             </div>
             <div>
               <h3 className="font-bold text-base text-slate-900 dark:text-slate-100">
-                블로그 자동 발행 전 최종 미리보기
+                블로그 발행 및 스마트에디터 연동
               </h3>
-              <p className="text-xs text-slate-400">발행 플랫폼 선택 및 콘텐츠 검토</p>
+              <p className="text-xs text-slate-400">발행 플랫폼 선택 및 네이버 스마트에디터 ONE 서식 변환</p>
             </div>
           </div>
           <button onClick={onClose} className="text-slate-400 hover:text-slate-600">
@@ -58,7 +108,29 @@ export function PublishPreviewModal({
           <div className="space-y-1.5">
             <label className="font-bold text-slate-700 dark:text-slate-300">발행 대상 플랫폼</label>
             <div className="grid grid-cols-3 gap-2">
-              {/* Option 1: GitHub / Vercel Blog */}
+              {/* Option 1: Naver Blog (Default Recommended) */}
+              <button
+                type="button"
+                onClick={() => setPlatform("NAVER_BLOG")}
+                className={`p-3 rounded-xl border flex flex-col items-start justify-between gap-1.5 transition-all text-left ${
+                  platform === "NAVER_BLOG"
+                    ? "bg-emerald-50 dark:bg-emerald-950/40 border-[#03C75A] text-emerald-900 dark:text-emerald-100 ring-2 ring-[#03C75A]"
+                    : "bg-slate-50 dark:bg-slate-800 border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-400"
+                }`}
+              >
+                <div className="flex items-center justify-between w-full">
+                  <div className="flex items-center gap-1.5 font-bold text-xs">
+                    <span className="w-4 h-4 rounded bg-[#03C75A] text-white flex items-center justify-center font-black text-[10px]">N</span>
+                    <span>네이버 블로그</span>
+                  </div>
+                  {platform === "NAVER_BLOG" && <CheckCircle2 className="h-3.5 w-3.5 text-[#03C75A] shrink-0" />}
+                </div>
+                <Badge variant="opportunity" className="text-[9px] px-1 py-0 font-semibold bg-emerald-600 text-white">
+                  국내 검색 1위 • 추천
+                </Badge>
+              </button>
+
+              {/* Option 2: GitHub / Vercel Blog */}
               <button
                 type="button"
                 onClick={() => setPlatform("GITHUB_BLOG")}
@@ -75,29 +147,7 @@ export function PublishPreviewModal({
                   </div>
                   {platform === "GITHUB_BLOG" && <CheckCircle2 className="h-3.5 w-3.5 text-blue-600 shrink-0" />}
                 </div>
-                <Badge variant="opportunity" className="text-[9px] px-1 py-0 font-semibold">
-                  추천 • 무료 호스팅
-                </Badge>
-              </button>
-
-              {/* Option 2: Tistory */}
-              <button
-                type="button"
-                onClick={() => setPlatform("TISTORY")}
-                className={`p-3 rounded-xl border flex flex-col items-start justify-between gap-1.5 transition-all text-left ${
-                  platform === "TISTORY"
-                    ? "bg-orange-50 dark:bg-orange-950/40 border-orange-400 text-orange-900 dark:text-orange-100 ring-2 ring-orange-400"
-                    : "bg-slate-50 dark:bg-slate-800 border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-400"
-                }`}
-              >
-                <div className="flex items-center justify-between w-full">
-                  <div className="flex items-center gap-1.5 font-bold text-xs">
-                    <span className="w-4 h-4 rounded bg-orange-500 text-white flex items-center justify-center font-extrabold text-[10px]">T</span>
-                    <span>티스토리</span>
-                  </div>
-                  {platform === "TISTORY" && <CheckCircle2 className="h-3.5 w-3.5 text-orange-600 shrink-0" />}
-                </div>
-                <span className="text-[10px] text-slate-400">카카오 API</span>
+                <span className="text-[10px] text-slate-400">마크다운 직접 배포</span>
               </button>
 
               {/* Option 3: WordPress */}
@@ -121,6 +171,66 @@ export function PublishPreviewModal({
               </button>
             </div>
           </div>
+
+          {/* Naver Blog Quick Helper Tools */}
+          {platform === "NAVER_BLOG" && (
+            <div className="p-3.5 rounded-xl bg-emerald-50/70 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800/60 space-y-2.5">
+              <div className="flex items-center justify-between">
+                <span className="font-bold text-emerald-800 dark:text-emerald-300 flex items-center gap-1.5 text-xs">
+                  <Sparkles className="h-3.5 w-3.5 text-[#03C75A]" />
+                  스마트에디터 ONE 원클릭 도구
+                </span>
+                <span className="text-[10px] text-emerald-600 dark:text-emerald-400">서식/이미지 자동 보정 완료</span>
+              </div>
+
+              <div className="grid grid-cols-3 gap-2">
+                <Button
+                  type="button"
+                  size="sm"
+                  variant="outline"
+                  onClick={handleCopyTitle}
+                  className="h-8 text-[11px] gap-1 bg-white dark:bg-slate-800 border-emerald-200 hover:bg-emerald-50 text-emerald-800 dark:text-emerald-300"
+                >
+                  {copiedTitle ? <Check className="h-3 w-3 text-emerald-600" /> : <Copy className="h-3 w-3" />}
+                  {copiedTitle ? "제목 복사됨" : "1. 제목 복사"}
+                </Button>
+
+                <Button
+                  type="button"
+                  size="sm"
+                  variant="outline"
+                  onClick={handleCopyRichContent}
+                  className="h-8 text-[11px] gap-1 bg-white dark:bg-slate-800 border-emerald-200 hover:bg-emerald-50 text-emerald-800 dark:text-emerald-300 font-bold"
+                >
+                  {copied ? <Check className="h-3 w-3 text-emerald-600" /> : <FileText className="h-3 w-3" />}
+                  {copied ? "본문 복사완료!" : "2. 본문 서식 복사"}
+                </Button>
+
+                <Button
+                  type="button"
+                  size="sm"
+                  variant="outline"
+                  onClick={handleCopyTags}
+                  className="h-8 text-[11px] gap-1 bg-white dark:bg-slate-800 border-emerald-200 hover:bg-emerald-50 text-emerald-800 dark:text-emerald-300"
+                >
+                  {copiedTags ? <Check className="h-3 w-3 text-emerald-600" /> : <Copy className="h-3 w-3" />}
+                  {copiedTags ? "태그 복사됨" : "3. 태그 복사"}
+                </Button>
+              </div>
+
+              <div className="flex items-center justify-between pt-1 text-[11px] text-slate-500">
+                <span>태그: <span className="font-mono text-emerald-700 dark:text-emerald-400">{tagsString || "#블로그 #포스팅"}</span></span>
+                <a
+                  href={naverPostWriteUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="text-[#03C75A] font-bold flex items-center gap-1 hover:underline ml-2 shrink-0"
+                >
+                  네이버 글쓰기 열기 <ExternalLink className="h-3 w-3" />
+                </a>
+              </div>
+            </div>
+          )}
 
           {/* Article Info Box */}
           <div className="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200/60 dark:border-slate-700/60 space-y-2">
@@ -167,7 +277,7 @@ export function PublishPreviewModal({
               <div className="flex items-center gap-2">
                 <CheckCircle2 className="h-5 w-5 text-emerald-600 shrink-0" />
                 <div>
-                  <span className="font-bold block">블로그 발행이 완료되었습니다!</span>
+                  <span className="font-bold block">블로그 발행 처리가 완료되었습니다!</span>
                   <span className="text-[11px] text-slate-500 dark:text-slate-400 font-mono">{publishedUrl}</span>
                 </div>
               </div>
@@ -177,7 +287,7 @@ export function PublishPreviewModal({
                 rel="noreferrer"
                 className="font-bold underline flex items-center gap-1 text-xs bg-emerald-600 text-white px-3 py-1.5 rounded-lg shadow-sm hover:bg-emerald-700 transition-colors"
               >
-                발행글 보기 <ExternalLink className="h-3.5 w-3.5" />
+                블로그 열기 <ExternalLink className="h-3.5 w-3.5" />
               </a>
             </div>
           )}
@@ -193,10 +303,10 @@ export function PublishPreviewModal({
             size="sm"
             onClick={() => onConfirm(platform, visibility)}
             disabled={loading}
-            className="text-xs font-bold gap-1.5 shadow-md"
+            className="text-xs font-bold gap-1.5 shadow-md bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700"
           >
             <Send className="h-3.5 w-3.5" />
-            {loading ? "발행 처리 중..." : "최종 승인 및 블로그에 발행"}
+            {loading ? "발행 처리 중..." : platform === "NAVER_BLOG" ? "네이버 블로그 발행 및 서식 적용" : "최종 승인 및 블로그에 발행"}
           </Button>
         </div>
       </div>

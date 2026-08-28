@@ -38,6 +38,7 @@ import { QualityGateBanner } from "@/components/articles/quality-gate-banner";
 import { PublishPreviewModal } from "@/components/articles/publish-preview-modal";
 import { SourceManageModal } from "@/components/articles/source-manage-modal";
 import { MarkdownPreview } from "@/components/articles/markdown-preview";
+import { NaverPasteHelper } from "@/components/articles/naver-paste-helper";
 import {
   Article,
   ArticleClaim,
@@ -182,7 +183,7 @@ export default function ArticleEditorPage() {
 
   const [publishedUrl, setPublishedUrl] = useState<string | null>(null);
 
-  async function handleConfirmPublish(platform: "GITHUB_BLOG" | "TISTORY" | "WORDPRESS" = "GITHUB_BLOG", visibility: 0 | 3 = 3) {
+  async function handleConfirmPublish(platform: "GITHUB_BLOG" | "NAVER_BLOG" | "WORDPRESS" | "TISTORY" = "NAVER_BLOG", visibility: 0 | 3 = 3) {
     setPublishing(true);
     try {
       const res = await fetch(`/api/articles/${articleId}/publish`, {
@@ -206,6 +207,14 @@ export default function ArticleEditorPage() {
     } finally {
       setPublishing(false);
     }
+  }
+
+  async function handleMarkPublished() {
+    await handleSave("PUBLISHED");
+    setNotification({
+      type: "success",
+      text: "네이버 블로그 등록 완료로 상태가 변경되었습니다!",
+    });
   }
 
   async function handleRegenerateArticle(mode: "FULL" | "SEO") {
@@ -380,13 +389,13 @@ export default function ArticleEditorPage() {
               size="sm"
               onClick={() => setPublishModalOpen(true)}
               disabled={!isQualityPassed}
-              className={`text-xs font-bold gap-1.5 shadow-sm bg-gradient-to-r from-orange-500 via-amber-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white border-0 ${
+              className={`text-xs font-bold gap-1.5 shadow-sm bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white border-0 ${
                 !isQualityPassed ? "opacity-50 cursor-not-allowed" : ""
               }`}
             >
               {!isQualityPassed && <Lock className="h-3 w-3 text-white/80" />}
               <Send className="h-3.5 w-3.5" />
-              티스토리 / 블로그 발행
+              네이버 블로그 / 배포 발행
             </Button>
           </div>
         </div>
@@ -410,6 +419,9 @@ export default function ArticleEditorPage() {
         {/* Quality Gate Banner */}
         <QualityGateBanner qualityGate={qualityGate} />
       </div>
+
+      {/* Naver Blog Quick Paste Helper */}
+      <NaverPasteHelper article={{ ...article, title, content }} onMarkPublished={handleMarkPublished} />
 
       {/* Main Two-Column Layout */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">

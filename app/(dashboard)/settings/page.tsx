@@ -270,47 +270,46 @@ export default function SettingsPage() {
         </div>
       </Card>
 
-      {/* Tistory & Blog Integration Config */}
+      {/* Naver Blog Integration Config */}
       <Card className="p-6 space-y-4">
         <div className="flex items-center justify-between">
           <div>
             <CardTitle className="text-base font-bold flex items-center gap-2">
-              <span className="w-5 h-5 rounded bg-orange-500 text-white flex items-center justify-center font-extrabold text-xs">T</span>
-              티스토리 (Tistory) 자동 발행 연동 설정
+              <span className="w-5 h-5 rounded bg-[#03C75A] text-white flex items-center justify-center font-black text-xs">N</span>
+              네이버 블로그 (Naver Blog) 스마트에디터 연동 설정
             </CardTitle>
             <CardDescription className="text-xs">
-              카카오 티스토리 오픈 API를 통한 블로그 원클릭 자동 발행 및 예약 관리
+              국내 1위 검색 포털 유입을 위한 네이버 스마트에디터 ONE 서식 최적화 및 계정 연결
             </CardDescription>
           </div>
-          <Badge variant="warning" className="text-xs">
-            Open API
+          <Badge variant="opportunity" className="text-xs bg-emerald-600 text-white">
+            SmartEditor ONE
           </Badge>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
           <div className="space-y-1">
             <label className="font-semibold text-slate-600 dark:text-slate-300">
-              티스토리 블로그 이름 (Blog Name)
+              네이버 블로그 아이디 (Naver ID)
             </label>
             <Input
-              defaultValue={process.env.NEXT_PUBLIC_TISTORY_BLOG_NAME || ""}
-              placeholder="예: myhealth (myhealth.tistory.com인 경우 myhealth)"
+              defaultValue={process.env.NEXT_PUBLIC_NAVER_BLOG_ID || ""}
+              placeholder="예: your_naver_id (blog.naver.com/your_naver_id)"
               className="text-xs font-mono"
             />
-            <p className="text-[10px] text-slate-400">내 티스토리 주소 앞부분 아이디를 입력합니다.</p>
+            <p className="text-[10px] text-slate-400">네이버 블로그 글쓰기 에디터 자동 연결에 사용되는 네이버 ID입니다.</p>
           </div>
 
           <div className="space-y-1">
             <label className="font-semibold text-slate-600 dark:text-slate-300">
-              티스토리 Access Token
+              기본 발행 카테고리
             </label>
             <Input
-              type="password"
-              defaultValue={process.env.NEXT_PUBLIC_TISTORY_ACCESS_TOKEN || ""}
-              placeholder="카카오 오픈 API에서 발급받은 Access Token"
+              defaultValue="건강/의학"
+              placeholder="예: 건강정보, 트렌드, IT리뷰"
               className="text-xs font-mono"
             />
-            <p className="text-[10px] text-slate-400">카카오 개발자 콘솔에서 발급한 티스토리 Access Token입니다.</p>
+            <p className="text-[10px] text-slate-400">네이버 블로그에 포스팅 시 적용할 기본 분류 카테고리입니다.</p>
           </div>
         </div>
       </Card>

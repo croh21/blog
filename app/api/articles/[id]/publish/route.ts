@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { getArticleById, getClaims, getSources, saveArticle } from "@/lib/db";
 import { evaluateQualityGate } from "@/lib/scoring/quality-gate";
 import { publishToLocalAndGitHub } from "@/lib/providers/github";
-import { tistoryProvider } from "@/lib/providers/tistory";
+import { naverBlogProvider } from "@/lib/providers/naver";
 import { wpProvider } from "@/lib/providers/wordpress";
 
 function markdownToHTML(markdown: string): string {
@@ -60,7 +60,7 @@ export async function POST(
       body = await req.json();
     } catch {}
 
-    const platform = body?.platform || "GITHUB_BLOG"; // "GITHUB_BLOG" | "TISTORY" | "WORDPRESS"
+    const platform = body?.platform || "GITHUB_BLOG"; // "GITHUB_BLOG" | "NAVER_BLOG" | "WORDPRESS" | "TISTORY"
     const visibility = body?.visibility ?? 3; // 3: 공개, 0: 비공개(초안)
 
     // Quality gate validation
@@ -94,14 +94,13 @@ export async function POST(
         filePath: res.filePath,
         status: "PUBLISHED",
       };
-    } else if (platform === "TISTORY") {
-      const htmlContent = markdownToHTML(article.content);
-      publishResult = await tistoryProvider.createPost({
+    } else if (platform === "NAVER_BLOG" || platform === "TISTORY") {
+      publishResult = await naverBlogProvider.createPost({
         title: article.title,
-        content: htmlContent,
-        visibility: visibility,
-        tag: [article.primary_keyword, ...(article.secondary_keywords || [])],
-        slogan: article.slug,
+        content: article.content,
+        tags: [article.primary_keyword, ...(article.secondary_keywords || [])],
+        category: article.category_name || "건강 & 웰니스",
+        slug: article.slug,
       });
     } else {
       const htmlContent = markdownToHTML(article.content);
@@ -120,18 +119,19 @@ export async function POST(
     article.updated_at = new Date().toISOString();
     await saveArticle(article);
 
+    const platformLabel =
+      platform === "GITHUB_BLOG"
+        ? "자체 GitHub / Vercel 블로그"
+        : platform === "NAVER_BLOG" || platform === "TISTORY"
+        ? "네이버 블로그 (스마트에디터 ONE 서식)"
+        : "워드프레스";
+
     return NextResponse.json({
       success: true,
       platform,
       publishResult,
       article,
-      message: `${
-        platform === "GITHUB_BLOG"
-          ? "자체 GitHub / Vercel 블로그"
-          : platform === "TISTORY"
-          ? "티스토리"
-          : "워드프레스"
-      }에 성공적으로 발행되었습니다!`,
+      message: `${platformLabel} 발행 및 서식 생성이 완료되었습니다!`,
     });
   } catch (error: any) {
     console.error("Publish error:", error);
