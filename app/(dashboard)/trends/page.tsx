@@ -56,10 +56,25 @@ function TrendsContent() {
     }
   }
 
-  async function handleDiscoverTrends() {
+  const CATEGORIES = [
+    { id: "ALL", label: "⚡ 전체 종합", color: "bg-slate-100 text-slate-700 dark:bg-slate-800 dark:text-slate-300" },
+    { id: "여행 & 관광", label: "✈️ 여행 & 관광", color: "bg-sky-50 text-sky-700 dark:bg-sky-950 dark:text-sky-300 border-sky-200" },
+    { id: "맛집 & 요리", label: "🍳 맛집 & 요리", color: "bg-amber-50 text-amber-700 dark:bg-amber-950 dark:text-amber-300 border-amber-200" },
+    { id: "AI & 테크", label: "💻 AI & 테크", color: "bg-indigo-50 text-indigo-700 dark:bg-indigo-950 dark:text-indigo-300 border-indigo-200" },
+    { id: "재테크 & 금융", label: "💰 재테크 & 금융", color: "bg-emerald-50 text-emerald-700 dark:bg-emerald-950 dark:text-emerald-300 border-emerald-200" },
+    { id: "건강 & 웰니스", label: "🌿 건강 & 웰니스", color: "bg-rose-50 text-rose-700 dark:bg-rose-950 dark:text-rose-300 border-rose-200" },
+    { id: "자기계발 & 라이프", label: "📚 자기계발", color: "bg-purple-50 text-purple-700 dark:bg-purple-950 dark:text-purple-300 border-purple-200" },
+  ];
+
+  async function handleDiscoverTrends(categoryOverride?: string) {
+    const targetCat = categoryOverride !== undefined ? categoryOverride : selectedCategory;
     setLoading(true);
     try {
-      const res = await fetch("/api/trends/discover", { method: "POST" });
+      const res = await fetch("/api/trends/discover", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ category: targetCat !== "ALL" ? targetCat : undefined }),
+      });
       if (res.ok) {
         const data = await res.json();
         setTrends(data.trends || []);
@@ -69,6 +84,10 @@ function TrendsContent() {
     }
   }
 
+  async function handleCategoryTabClick(catId: string) {
+    setSelectedCategory(catId);
+    await handleDiscoverTrends(catId);
+  }
 
   async function handleCreateTopics(trend: Trend) {
     setGeneratingTopicId(trend.id);
@@ -103,7 +122,6 @@ function TrendsContent() {
     return matchesSearch && matchesCat && matchesScore;
   });
 
-
   return (
     <div className="space-y-6">
       {/* Header */}
@@ -114,12 +132,12 @@ function TrendsContent() {
             Trend Discovery & Opportunity Radar
           </h1>
           <p className="text-sm text-slate-500">
-            글로벌 검색량, 뉴스 모멘텀, 소셜 반응 및 상업적 가치를 종합 분석한 실시간 트렌드
+            원하는 카테고리를 선택하여 AI 및 실시간 검색량 기반의 맞춤 핫 트렌드를 즉시 발굴하세요.
           </p>
         </div>
 
         <Button
-          onClick={handleDiscoverTrends}
+          onClick={() => handleDiscoverTrends()}
           disabled={loading}
           variant="gradient"
           className="gap-2 font-semibold shadow-md"
@@ -127,16 +145,38 @@ function TrendsContent() {
           {loading ? (
             <>
               <RefreshCw className="h-4 w-4 animate-spin" />
-              트렌드 수집 중...
+              {selectedCategory === "ALL" ? "전체 트렌드 발굴 중..." : `${selectedCategory} 트렌드 발굴 중...`}
             </>
           ) : (
             <>
               <Flame className="h-4 w-4 fill-current" />
-              Discover Fresh Trends
+              {selectedCategory === "ALL" ? "Discover Fresh Trends" : `[${selectedCategory}] 트렌드 집중 발굴`}
             </>
           )}
         </Button>
       </div>
+
+      {/* Category Quick Selector Pills */}
+      <div className="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none">
+        {CATEGORIES.map((cat) => {
+          const isSelected = selectedCategory === cat.id;
+          return (
+            <button
+              key={cat.id}
+              onClick={() => handleCategoryTabClick(cat.id)}
+              disabled={loading}
+              className={`flex-shrink-0 px-3.5 py-1.5 rounded-full text-xs font-semibold border transition-all duration-150 ${
+                isSelected
+                  ? "bg-blue-600 text-white border-blue-600 shadow-sm scale-105"
+                  : "bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-300 border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800"
+              }`}
+            >
+              {cat.label}
+            </button>
+          );
+        })}
+      </div>
+
 
       {/* Filter Bar */}
       <Card className="p-4 bg-white dark:bg-slate-900">

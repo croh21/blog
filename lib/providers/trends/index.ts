@@ -433,12 +433,23 @@ const EXTENSIVE_TREND_POOL: Array<Omit<Trend, "id" | "opportunity_score" | "crea
 
 ];
 
+export interface TrendProvider {
+  name: string;
+  discoverTrends(category?: string): Promise<Trend[]>;
+}
+
 export class DefaultTrendProvider implements TrendProvider {
   name = "Trend Discovery Engine";
 
-  async discoverTrends(): Promise<Trend[]> {
+  async discoverTrends(category?: string): Promise<Trend[]> {
+    const isSpecificCategory = category && category !== "ALL";
+
     // 1. AI 실시간 트렌드 발굴 시도
     try {
+      const promptText = isSpecificCategory
+        ? `현재 2026년 최신 [${category}] 분야에서 검색량이 급상승 중이고 블로그 독자의 관심도가 높은 핫 트렌드 8개를 발굴해 JSON으로 응답하세요.`
+        : "현재 2026년 최신 검색 트렌드 중 검색량이 급상승 중이고 상업적 가치가 높은 트렌드 8개를 발굴하세요. (여행, 맛집/요리, AI/테크, 재테크, 웰니스, 자기계발 등)";
+
       const aiRes = await defaultAIProvider.generateJSON<{
         trends: Array<{
           title: string;
@@ -454,7 +465,7 @@ export class DefaultTrendProvider implements TrendProvider {
           socialScore: number;
         }>;
       }>(
-        "현재 2026년 최신 검색 트렌드 중 검색량이 급상승 중이고 광고 수익화 가치가 높은 트렌드 8개를 JSON으로 발굴하세요. (건강/웰니스, AI/테크, 재테크/투자, 디지털마케팅 등 다양한 분야 포함)",
+        promptText,
         "당신은 글로벌 트렌드 빅데이터 분석가입니다. 정확한 JSON 응답을 반환하십시오."
       );
 
@@ -463,7 +474,7 @@ export class DefaultTrendProvider implements TrendProvider {
           const candidate: Omit<Trend, "id" | "opportunity_score" | "created_at"> = {
             title: t.title,
             description: t.description,
-            category_name: t.categoryName || "트렌드 & 비즈니스",
+            category_name: t.categoryName || category || "트렌드 & 비즈니스",
             source_url: t.sourceUrl || "https://trendpilot.ai",
             source_name: t.sourceName || "Global Trend Analytics",
             published_at: new Date().toISOString(),
@@ -486,37 +497,54 @@ export class DefaultTrendProvider implements TrendProvider {
         });
       }
     } catch {
-      // AI 실패 시 방대한 트렌드 풀에서 랜덤 셔플 & 최신 점수로 선별
+      // AI 실패 시 방대한 트렌드 풀에서 선별
     }
 
-    // 2. Fallback & Local Selection: 카테고리별로 1개씩 골고루 섞어 완벽한 다양성 보장
-    const categories = Array.from(new Set(EXTENSIVE_TREND_POOL.map((t) => t.category_name)));
-    
-    // 카테고리 셔플
-    for (let i = categories.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [categories[i], categories[j]] = [categories[j], categories[i]];
-    }
+    // 2. Local Pool Selection: 특정 카테고리가 선택된 경우 해당 카테고리 우선 선별
+    let selected: Array<Omit<Trend, "id" | "opportunity_score" | "created_at">> = [];
 
-    const selected: Array<Omit<Trend, "id" | "opportunity_score" | "created_at">> = [];
+    if (isSpecificCategory) {
+      const matched = EXTENSIVE_TREND_POOL.filter((t) => t.category_name === category);
+      // Fisher-Yates shuffle
+      const pool = [...matched];
+      for (let i = pool.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [pool[i], pool[j]] = [pool[j], pool[i]];
+      }
+      selected = pool;
 
-    // 각 카테고리에서 무작위 1개씩 선택
-    for (const cat of categories) {
-      const itemsInCat = EXTENSIVE_TREND_POOL.filter((t) => t.category_name === cat);
-      if (itemsInCat.length > 0) {
-        const randomItem = itemsInCat[Math.floor(Math.random() * itemsInCat.length)];
-        selected.push(randomItem);
+      // 만약 개수가 부족하면 다른 카테고리에서 보충
+      if (selected.length < 6) {
+        const others = EXTENSIVE_TREND_POOL.filter((t) => t.category_name !== category);
+        for (let i = others.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [others[i], others[j]] = [others[j], others[i]];
+        }
+        selected = [...selected, ...others.slice(0, 8 - selected.length)];
+      }
+    } else {
+      // 전 카테고리 균등 분산 선별
+      const categories = Array.from(new Set(EXTENSIVE_TREND_POOL.map((t) => t.category_name)));
+      for (let i = categories.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [categories[i], categories[j]] = [categories[j], categories[i]];
+      }
+
+      for (const cat of categories) {
+        const itemsInCat = EXTENSIVE_TREND_POOL.filter((t) => t.category_name === cat);
+        if (itemsInCat.length > 0) {
+          const randomItem = itemsInCat[Math.floor(Math.random() * itemsInCat.length)];
+          selected.push(randomItem);
+        }
+      }
+
+      for (let i = selected.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [selected[i], selected[j]] = [selected[j], selected[i]];
       }
     }
 
-    // 결과 목록 셔플 (Fisher-Yates)
-    for (let i = selected.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [selected[i], selected[j]] = [selected[j], selected[i]];
-    }
-
     return selected.slice(0, 8).map((c) => {
-      // 점수 약간의 무작위 변동으로 실시간 역동성 부여
       const randomized = {
         ...c,
         search_growth: Math.min(99, Math.max(70, c.search_growth + Math.floor(Math.random() * 7) - 3)),
@@ -535,5 +563,6 @@ export class DefaultTrendProvider implements TrendProvider {
 }
 
 export const trendProvider = new DefaultTrendProvider();
+
 
 
