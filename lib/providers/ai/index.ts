@@ -7,6 +7,24 @@ export interface AIProvider {
   generateJSON<T>(prompt: string, systemPrompt?: string, model?: string): Promise<{ data: T; inputTokens: number; outputTokens: number }>;
 }
 
+let cachedOmniRouteModel: string | null = null;
+
+async function getAvailableModel(preferredModel: string): Promise<string> {
+  if (cachedOmniRouteModel) return cachedOmniRouteModel;
+  try {
+    const list = await aiClient.models.list();
+    if (list.data && list.data.length > 0) {
+      // Find matching or fallback to first available
+      const found = list.data.find((m) => m.id === preferredModel || m.id.includes("auto") || m.id.includes("free"));
+      cachedOmniRouteModel = found ? found.id : list.data[0].id;
+      return cachedOmniRouteModel;
+    }
+  } catch {
+    // ignore
+  }
+  return preferredModel;
+}
+
 export class OmniRouteAIProvider implements AIProvider {
   name = "OmniRoute";
 
@@ -15,9 +33,10 @@ export class OmniRouteAIProvider implements AIProvider {
     systemPrompt?: string,
     model: string = AI_MODELS.DEFAULT
   ) {
+    const resolvedModel = await getAvailableModel(model);
     try {
       const response = await aiClient.chat.completions.create({
-        model,
+        model: resolvedModel,
         messages: [
           ...(systemPrompt ? [{ role: "system" as const, content: systemPrompt }] : []),
           { role: "user" as const, content: prompt },
@@ -32,7 +51,7 @@ export class OmniRouteAIProvider implements AIProvider {
 
         await logAIUsage({
           provider: "omniroute",
-          model,
+          model: resolvedModel,
           operation: "TEXT_GENERATION",
           inputTokens,
           outputTokens,
@@ -43,7 +62,7 @@ export class OmniRouteAIProvider implements AIProvider {
       throw new Error("Empty or insufficient response from LLM");
     } catch (error) {
       console.warn("OmniRoute Live API error, delegating to intelligent content synthesis engine:", error);
-      throw error; // Throw so pipeline fallback can synthesize rich domain-specific article
+      throw error;
     }
   }
 
@@ -52,9 +71,10 @@ export class OmniRouteAIProvider implements AIProvider {
     systemPrompt?: string,
     model: string = AI_MODELS.DEFAULT
   ): Promise<{ data: T; inputTokens: number; outputTokens: number }> {
+    const resolvedModel = await getAvailableModel(model);
     try {
       const response = await aiClient.chat.completions.create({
-        model,
+        model: resolvedModel,
         messages: [
           ...(systemPrompt
             ? [{ role: "system" as const, content: `${systemPrompt}\nIMPORTANT: You must respond ONLY with valid JSON.` }]
@@ -72,7 +92,7 @@ export class OmniRouteAIProvider implements AIProvider {
 
       await logAIUsage({
         provider: "omniroute",
-        model,
+        model: resolvedModel,
         operation: "JSON_GENERATION",
         inputTokens,
         outputTokens,
@@ -85,5 +105,6 @@ export class OmniRouteAIProvider implements AIProvider {
     }
   }
 }
+
 
 export const defaultAIProvider = new OmniRouteAIProvider();

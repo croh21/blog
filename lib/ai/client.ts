@@ -15,8 +15,9 @@ export const aiClient = new OpenAI({
 });
 
 export const AI_MODELS = {
-  DEFAULT: process.env.DEFAULT_AI_MODEL || "gpt-4o",
-  FAST: process.env.FAST_AI_MODEL || "gpt-4o-mini",
-  REASONING: "claude-3-7-sonnet",
+  DEFAULT: process.env.DEFAULT_AI_MODEL || "auto/best",
+  FAST: process.env.FAST_AI_MODEL || "auto/best-fast",
+  REASONING: "auto/best-coding",
 };
+
 
