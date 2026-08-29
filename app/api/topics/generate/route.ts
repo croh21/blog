@@ -1,15 +1,20 @@
 import { NextResponse } from "next/server";
 import { defaultAIProvider } from "@/lib/providers/ai";
 import { PROMPTS } from "@/lib/ai/prompts";
-import { getTrendById, saveTopics, getTopics } from "@/lib/db";
+import { getTrendById, saveTopics, getTopics, getTrends } from "@/lib/db";
 import { nanoid } from "nanoid";
 import { Topic } from "@/types";
 
 export async function POST(req: Request) {
   try {
-    const body = await req.json();
+    let body: any = {};
+    try {
+      body = await req.json();
+    } catch {}
+    const trendId = body?.trendId;
     const allTrends = await getTrends();
     let trend = trendId ? await getTrendById(trendId) : undefined;
+
     if (!trend && allTrends.length > 0) {
       // 랜덤 트렌드 선택
       trend = allTrends[Math.floor(Math.random() * allTrends.length)];

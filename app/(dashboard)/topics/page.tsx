@@ -32,8 +32,14 @@ function TopicsContent() {
   const [generatingId, setGeneratingId] = useState<string | null>(null);
 
   useEffect(() => {
-    loadTopics();
-  }, []);
+    const action = searchParams.get("action");
+    if (action === "generate") {
+      handleGenerateMoreTopics();
+    } else {
+      loadTopics();
+    }
+  }, [searchParams]);
+
 
   async function loadTopics() {
     try {

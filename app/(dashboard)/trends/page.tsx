@@ -20,9 +20,13 @@ import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { Trend } from "@/types";
 import { formatDate } from "@/lib/utils";
+import { useSearchParams } from "next/navigation";
+import { Suspense } from "react";
 
-export default function TrendsPage() {
+
+function TrendsContent() {
   const router = useRouter();
+  const searchParams = useSearchParams();
   const [trends, setTrends] = useState<Trend[]>([]);
   const [search, setSearch] = useState("");
   const [selectedCategory, setSelectedCategory] = useState<string>("ALL");
@@ -30,9 +34,15 @@ export default function TrendsPage() {
   const [loading, setLoading] = useState(false);
   const [generatingTopicId, setGeneratingTopicId] = useState<string | null>(null);
 
+
   useEffect(() => {
-    loadTrends();
-  }, []);
+    const action = searchParams.get("action");
+    if (action === "discover") {
+      handleDiscoverTrends();
+    } else {
+      loadTrends();
+    }
+  }, [searchParams]);
 
   async function loadTrends() {
     try {
@@ -58,6 +68,7 @@ export default function TrendsPage() {
       setLoading(false);
     }
   }
+
 
   async function handleCreateTopics(trend: Trend) {
     setGeneratingTopicId(trend.id);
@@ -282,3 +293,12 @@ export default function TrendsPage() {
     </div>
   );
 }
+
+export default function TrendsPage() {
+  return (
+    <Suspense fallback={<div className="p-8 text-center text-slate-400">트렌드 로딩 중...</div>}>
+      <TrendsContent />
+    </Suspense>
+  );
+}
+

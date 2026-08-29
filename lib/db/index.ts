@@ -368,9 +368,16 @@ class PersistentDatabase {
   get trends(): Trend[] {
     return this.data.trends;
   }
+  set trends(val: Trend[]) {
+    this.data.trends = val;
+  }
   get topics(): Topic[] {
     return this.data.topics;
   }
+  set topics(val: Topic[]) {
+    this.data.topics = val;
+  }
+
   get articles(): Article[] {
     return this.data.articles;
   }
@@ -402,24 +409,37 @@ export const dbInstance = new PersistentDatabase();
 
 // Unified Database Access Functions
 export async function getTrends(): Promise<Trend[]> {
-  return [...dbInstance.trends].sort((a, b) => b.opportunity_score - a.opportunity_score);
+  return [...dbInstance.trends].sort((a, b) => {
+    // 1. 최신 수집/발굴순 우선, 그 다음 기회 점수
+    const timeA = new Date(a.collected_at || a.created_at).getTime();
+    const timeB = new Date(b.collected_at || b.created_at).getTime();
+    if (Math.abs(timeB - timeA) > 1000) {
+      return timeB - timeA;
+    }
+    return b.opportunity_score - a.opportunity_score;
+  });
 }
 
 export async function getTrendById(id: string): Promise<Trend | undefined> {
   return dbInstance.trends.find((t) => t.id === id);
 }
 
-export async function saveTrends(newTrends: Trend[]): Promise<void> {
-  for (const item of newTrends) {
-    const idx = dbInstance.trends.findIndex((t) => t.id === item.id || t.title === item.title);
-    if (idx >= 0) {
-      dbInstance.trends[idx] = { ...dbInstance.trends[idx], ...item };
-    } else {
-      dbInstance.trends.unshift(item);
+export async function saveTrends(newTrends: Trend[], replaceAll: boolean = false): Promise<void> {
+  if (replaceAll) {
+    dbInstance.trends = newTrends;
+  } else {
+    for (const item of newTrends) {
+      const idx = dbInstance.trends.findIndex((t) => t.id === item.id || t.title === item.title);
+      if (idx >= 0) {
+        dbInstance.trends[idx] = { ...dbInstance.trends[idx], ...item, collected_at: new Date().toISOString() };
+      } else {
+        dbInstance.trends.unshift(item);
+      }
     }
   }
   dbInstance.sync();
 }
+
 
 export async function updateTrendStatus(id: string, status: Trend["status"]): Promise<void> {
   const trend = dbInstance.trends.find((t) => t.id === id);
@@ -430,24 +450,37 @@ export async function updateTrendStatus(id: string, status: Trend["status"]): Pr
 }
 
 export async function getTopics(): Promise<Topic[]> {
-  return [...dbInstance.topics].sort((a, b) => b.opportunity_score - a.opportunity_score);
+  return [...dbInstance.topics].sort((a, b) => {
+    const timeA = new Date(a.created_at).getTime();
+    const timeB = new Date(b.created_at).getTime();
+    if (Math.abs(timeB - timeA) > 1000) {
+      return timeB - timeA;
+    }
+    return b.opportunity_score - a.opportunity_score;
+  });
 }
 
 export async function getTopicById(id: string): Promise<Topic | undefined> {
   return dbInstance.topics.find((t) => t.id === id);
 }
 
-export async function saveTopics(newTopics: Topic[]): Promise<void> {
-  for (const item of newTopics) {
-    const idx = dbInstance.topics.findIndex((t) => t.id === item.id || t.title === item.title);
-    if (idx >= 0) {
-      dbInstance.topics[idx] = { ...dbInstance.topics[idx], ...item };
-    } else {
-      dbInstance.topics.unshift(item);
+export async function saveTopics(newTopics: Topic[], replaceAll: boolean = false): Promise<void> {
+  if (replaceAll) {
+    dbInstance.topics = newTopics;
+  } else {
+    for (const item of newTopics) {
+      const idx = dbInstance.topics.findIndex((t) => t.id === item.id || t.title === item.title);
+      if (idx >= 0) {
+        dbInstance.topics[idx] = { ...dbInstance.topics[idx], ...item, created_at: new Date().toISOString() };
+      } else {
+        dbInstance.topics.unshift(item);
+      }
     }
   }
   dbInstance.sync();
 }
+
+
 
 export async function getArticles(): Promise<Article[]> {
   return [...dbInstance.articles].sort(
