@@ -2316,6 +2316,10 @@
       "temperature": 0.7,
       "contentLanguage": "ko",
       "defaultArticleLength": 2500
+    },
+    "wordpress": {
+      "siteId": "0",
+      "token": "iiAg%xy9Bjirc3)s(%nuQIWEPSsk$jxO^9xJd4@Gc6YZAVZ85C%&o(V0p6!&exqw"
     }
   }
 }

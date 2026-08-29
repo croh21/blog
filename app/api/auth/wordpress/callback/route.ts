@@ -26,7 +26,11 @@ export async function GET(req: Request) {
         const hash = window.location.hash.substring(1);
         const params = new URLSearchParams(hash);
         const accessToken = params.get('access_token');
-        const blogId = params.get('site_id') || params.get('blog_id') || 'hanabird2.wordpress.com';
+        let blogId = params.get('site_id') || params.get('blog_id') || 'hanabird2.wordpress.com';
+        if (!blogId || blogId === '0') {
+          blogId = 'hanabird2.wordpress.com';
+        }
+
 
         if (accessToken) {
           await fetch('/api/settings', {

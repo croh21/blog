@@ -4,8 +4,12 @@ export async function POST(req: Request) {
   try {
     const { siteId, token } = await req.json();
 
-    const targetSiteId = siteId || process.env.WP_SITE_ID;
+    let targetSiteId = siteId || process.env.WP_SITE_ID || "hanabird2.wordpress.com";
+    if (targetSiteId === "0" || targetSiteId === 0) {
+      targetSiteId = "hanabird2.wordpress.com";
+    }
     const targetToken = token || process.env.WP_ACCESS_TOKEN;
+
 
     if (!targetSiteId || !targetToken) {
       return NextResponse.json({
