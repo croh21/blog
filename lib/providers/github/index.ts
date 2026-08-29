@@ -12,15 +12,7 @@ export interface GitHubBlogPublishResult {
   message: string;
 }
 
-/**
- * Ensures the content/posts directory exists and writes the article
- * as a clean markdown file with rich YAML frontmatter for static site generation.
- */
 export async function publishToLocalAndGitHub(article: Article): Promise<GitHubBlogPublishResult> {
-  if (!fs.existsSync(POSTS_DIR)) {
-    fs.mkdirSync(POSTS_DIR, { recursive: true });
-  }
-
   const slug = article.slug || `post-${article.id.slice(0, 8)}`;
   const fileName = `${slug}.mdx`;
   const filePath = path.join(POSTS_DIR, fileName);
@@ -45,7 +37,16 @@ author: "TrendPilot AI Editorial Team"
 ${article.content}
 `;
 
-  fs.writeFileSync(filePath, frontmatter, "utf-8");
+  try {
+    if (!fs.existsSync(POSTS_DIR)) {
+      fs.mkdirSync(POSTS_DIR, { recursive: true });
+    }
+    fs.writeFileSync(filePath, frontmatter, "utf-8");
+  } catch (err) {
+    console.warn("Local post file write skipped (serverless environment):", err);
+  }
+
+
 
   // Check if GitHub token is configured for remote automated commit
   const githubToken = process.env.GITHUB_TOKEN;

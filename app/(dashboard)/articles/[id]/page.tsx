@@ -200,8 +200,10 @@ export default function ArticleEditorPage() {
           text: data.message || "글이 성공적으로 발행되었습니다!",
         });
       } else {
-        setNotification({ type: "error", text: data.error || "발행에 실패했습니다." });
+        const detailMsg = data.missingReasons?.length ? `: ${data.missingReasons.join(", ")}` : "";
+        setNotification({ type: "error", text: `${data.error || "발행에 실패했습니다."}${detailMsg}` });
       }
+
     } catch (err: any) {
       setNotification({ type: "error", text: err.message });
     } finally {
