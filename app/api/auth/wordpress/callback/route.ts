@@ -1,80 +1,64 @@
 import { NextResponse } from "next/server";
-import { updateSettings } from "@/lib/db";
-import fs from "fs";
-import path from "path";
-
 
 export async function GET(req: Request) {
-  const { searchParams, origin } = new URL(req.url);
-  const code = searchParams.get("code");
-  const error = searchParams.get("error");
+  // Return an interactive HTML helper that parses the #access_token=... hash fragment from WordPress OAuth
+  const html = `<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>WordPress OAuth 연동 중...</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; display: flex; align-items: center; justify-content: center; height: 100vh; margin: 0; background: #0f172a; color: #f8fafc; text-align: center; }
+    .card { background: #1e293b; padding: 2rem; border-radius: 1rem; box-shadow: 0 10px 25px rgba(0,0,0,0.5); max-width: 400px; }
+    .spinner { border: 3px solid rgba(255,255,255,0.1); border-top: 3px solid #3b82f6; border-radius: 50%; width: 36px; height: 36px; animation: spin 1s linear infinite; margin: 0 auto 1rem; }
+    @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="spinner"></div>
+    <h3>워드프레스 계정 연동 처리 중...</h3>
+    <p style="font-size: 13px; color: #94a3b8;">토큰을 안전하게 등록하고 있습니다.</p>
+  </div>
+  <script>
+    (async function() {
+      try {
+        const hash = window.location.hash.substring(1);
+        const params = new URLSearchParams(hash);
+        const accessToken = params.get('access_token');
+        const blogId = params.get('site_id') || params.get('blog_id') || 'hanabird2.wordpress.com';
 
-  if (error || !code) {
-    return NextResponse.redirect(`${origin}/settings?wp_auth=failed&error=${encodeURIComponent(error || "No code provided")}`);
-  }
-
-  const clientId = process.env.WP_CLIENT_ID || "146939";
-  const clientSecret = process.env.WP_CLIENT_SECRET || "LEKOMLEUXY1DBetDzpxmq7Ujni6urD4XvgTiC8yATSciqFfubvWoY3yjvmcQ4rYy";
-  const redirectUri = `${origin}/api/auth/wordpress/callback`;
-
-  try {
-    const tokenRes = await fetch("https://public-api.wordpress.com/oauth2/token", {
-      method: "POST",
-      headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: new URLSearchParams({
-        client_id: clientId,
-        client_secret: clientSecret,
-        redirect_uri: redirectUri,
-        code,
-        grant_type: "authorization_code",
-      }),
-    });
-
-    const tokenData = await tokenRes.json();
-
-    if (!tokenRes.ok || tokenData.error) {
-      console.error("WordPress OAuth Token Error:", tokenData);
-      return NextResponse.redirect(
-        `${origin}/settings?wp_auth=failed&error=${encodeURIComponent(tokenData.error_description || tokenData.error || "Token exchange failed")}`
-      );
-    }
-
-    const accessToken = tokenData.access_token;
-    const blogId = tokenData.blog_id || "hanabird2.wordpress.com";
-    const blogUrl = tokenData.blog_url || "https://hanabird2.wordpress.com";
-
-    // 1. Save to DB settings
-    await updateSettings("wordpress", {
-      siteId: blogId.toString(),
-      token: accessToken,
-    });
-
-
-    // 2. Also update local .env file if available
-    try {
-      const envPath = path.join(process.cwd(), ".env");
-      if (fs.existsSync(envPath)) {
-        let envContent = fs.readFileSync(envPath, "utf-8");
-        envContent = envContent.replace(/WP_ACCESS_TOKEN=.*/g, `WP_ACCESS_TOKEN=${accessToken}`);
-        envContent = envContent.replace(/WP_SITE_ID=.*/g, `WP_SITE_ID=${blogId}`);
-        if (!envContent.includes("WP_ACCESS_TOKEN=")) {
-          envContent += `\nWP_ACCESS_TOKEN=${accessToken}`;
+        if (accessToken) {
+          await fetch('/api/settings', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              wordpress: {
+                siteId: blogId,
+                token: accessToken
+              }
+            })
+          });
+          window.location.href = '/settings?wp_auth=success';
+        } else {
+          // Check query params if code
+          const queryParams = new URLSearchParams(window.location.search);
+          const error = queryParams.get('error');
+          if (error) {
+            window.location.href = '/settings?wp_auth=failed&error=' + encodeURIComponent(error);
+          } else {
+            window.location.href = '/settings';
+          }
         }
-        if (!envContent.includes("WP_SITE_ID=")) {
-          envContent += `\nWP_SITE_ID=${blogId}`;
-        }
-        fs.writeFileSync(envPath, envContent, "utf-8");
+      } catch (e) {
+        window.location.href = '/settings?wp_auth=failed&error=' + encodeURIComponent(e.message);
       }
-    } catch (e) {
-      console.warn("Could not write to .env file:", e);
-    }
+    })();
+  </script>
+</body>
+</html>`;
 
-    process.env.WP_ACCESS_TOKEN = accessToken;
-    process.env.WP_SITE_ID = blogId.toString();
-
-    return NextResponse.redirect(`${origin}/settings?wp_auth=success&site=${encodeURIComponent(blogUrl)}`);
-  } catch (err: any) {
-    console.error("WordPress callback exception:", err);
-    return NextResponse.redirect(`${origin}/settings?wp_auth=failed&error=${encodeURIComponent(err.message || "Unknown error")}`);
-  }
+  return new NextResponse(html, {
+    headers: { "Content-Type": "text/html; charset=utf-8" },
+  });
 }

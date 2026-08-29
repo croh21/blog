@@ -50,12 +50,41 @@ export default function SettingsPage() {
   const [savedMessage, setSavedMessage] = useState(false);
 
   useEffect(() => {
+    // 1. Check if hash contains token
+    if (typeof window !== "undefined" && window.location.hash.includes("access_token")) {
+      const hash = window.location.hash.substring(1);
+      const params = new URLSearchParams(hash);
+      const accessToken = params.get("access_token");
+      const blogId = params.get("site_id") || params.get("blog_id") || "hanabird2.wordpress.com";
+      if (accessToken) {
+        fetch("/api/settings", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            wordpress: {
+              siteId: blogId,
+              token: accessToken,
+            },
+          }),
+        }).then(() => {
+          setWpConfig({ siteId: blogId, token: accessToken });
+          window.history.replaceState(null, "", "/settings?wp_auth=success");
+          handleTestWithToken(blogId, accessToken);
+        });
+      }
+    }
+
     fetch("/api/settings")
       .then((r) => r.json())
       .then((d) => {
         if (d.settings?.scoring_weights) setWeights(d.settings.scoring_weights);
         if (d.settings?.ai_config) setAiConfig(d.settings.ai_config);
-        if (d.settings?.wordpress) setWpConfig(d.settings.wordpress);
+        if (d.settings?.wordpress) {
+          setWpConfig(d.settings.wordpress);
+          if (window.location.search.includes("wp_auth=success") && d.settings.wordpress.token) {
+            handleTestWithToken(d.settings.wordpress.siteId, d.settings.wordpress.token);
+          }
+        }
       })
       .catch(console.error);
 
@@ -67,17 +96,14 @@ export default function SettingsPage() {
       .catch(console.error);
   }, []);
 
-  async function handleTestWordPress() {
+  async function handleTestWithToken(siteId: string, token: string) {
     setWpTestStatus("testing");
     setWpTestResult("");
     try {
       const res = await fetch("/api/settings/test-wordpress", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          siteId: wpConfig.siteId,
-          token: wpConfig.token,
-        }),
+        body: JSON.stringify({ siteId, token }),
       });
       const data = await res.json();
       if (data.success) {
@@ -92,6 +118,11 @@ export default function SettingsPage() {
       setWpTestResult(err.message || "연결 중 오류가 발생했습니다.");
     }
   }
+
+  async function handleTestWordPress() {
+    return handleTestWithToken(wpConfig.siteId, wpConfig.token);
+  }
+
 
 
   async function handleSaveSettings() {
