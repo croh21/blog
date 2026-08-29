@@ -16,9 +16,8 @@ client = OpenAI(
 )
 
 try:
-    # 기본 모델 호출 테스트 (OmniRoute 대시보드에서 활성화된 모델 이름으로 변경 가능)
     response = client.chat.completions.create(
-        model="gpt-4o",  # 또는 claude-3-7-sonnet, deepseek-chat 등
+        model="gpt-4o",
         messages=[
             {"role": "user", "content": "Hello OmniRoute! 간단히 1문장으로 인사해줘."}
         ]
@@ -27,3 +26,6 @@ try:
     print(response.choices[0].message.content)
 except Exception as e:
     print(f"Error connecting to OmniRoute: {e}")
+
+
+

@@ -172,6 +172,22 @@ export function PublishPreviewModal({
             </div>
           </div>
 
+          {/* WordPress Helper Tools & Status */}
+          {platform === "WORDPRESS" && (
+            <div className="p-3.5 rounded-xl bg-blue-50/70 dark:bg-blue-950/40 border border-blue-200 dark:border-blue-800/60 space-y-2">
+              <div className="flex items-center justify-between">
+                <span className="font-bold text-blue-800 dark:text-blue-300 flex items-center gap-1.5 text-xs">
+                  <span className="w-4 h-4 rounded bg-blue-600 text-white flex items-center justify-center font-extrabold text-[10px]">W</span>
+                  워드프레스 REST API 연결됨
+                </span>
+                <Badge className="bg-blue-600 text-white text-[10px]">hanabird2.wordpress.com</Badge>
+              </div>
+              <p className="text-[11px] text-blue-600 dark:text-blue-300">
+                버튼을 누르면 <strong>hanabird2.wordpress.com</strong>에 HTML 서식, 이미지, 태그가 포함되어 즉시 발행됩니다.
+              </p>
+            </div>
+          )}
+
           {/* Naver Blog Quick Helper Tools */}
           {platform === "NAVER_BLOG" && (
             <div className="p-3.5 rounded-xl bg-emerald-50/70 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800/60 space-y-2.5">
@@ -182,6 +198,7 @@ export function PublishPreviewModal({
                 </span>
                 <span className="text-[10px] text-emerald-600 dark:text-emerald-400">서식/이미지 자동 보정 완료</span>
               </div>
+
 
               <div className="grid grid-cols-3 gap-2">
                 <Button
