@@ -52,12 +52,35 @@ export function PublishPreviewModal({
   const naverId = process.env.NEXT_PUBLIC_NAVER_BLOG_ID || "myblog";
   const naverPostWriteUrl = `https://blog.naver.com/${naverId}/postwrite`;
 
+  function convertMarkdownToHtml(md: string): string {
+    let html = md
+      // Image markdown: ![alt](url) -> <p><img src="url" alt="alt" style="max-width:100%; border-radius:8px;" /></p>
+      .replace(/!\[(.*?)\]\((.*?)\)/g, '<p><img src="$2" alt="$1" style="max-width: 100%; height: auto; border-radius: 8px; margin: 16px 0;" /></p>')
+      // Headers
+      .replace(/^### (.*$)/gim, '<h3 style="font-size: 1.25rem; font-weight: bold; margin-top: 24px; margin-bottom: 12px; color: #1e293b;">$1</h3>')
+      .replace(/^## (.*$)/gim, '<h2 style="font-size: 1.5rem; font-weight: bold; margin-top: 32px; margin-bottom: 16px; color: #0f172a; border-bottom: 2px solid #e2e8f0; padding-bottom: 8px;">$1</h2>')
+      .replace(/^# (.*$)/gim, '<h1 style="font-size: 1.85rem; font-weight: 800; margin-bottom: 20px; color: #0f172a;">$1</h1>')
+      // Bold & Italic
+      .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+      .replace(/\*(.*?)\*/g, '<em>$1</em>')
+      // Unordered lists
+      .replace(/^\s*-\s+(.*$)/gim, '<li style="margin-bottom: 6px; line-height: 1.6;">$1</li>')
+      // Blockquotes
+      .replace(/^\> (.*$)/gim, '<blockquote style="border-left: 4px solid #3b82f6; padding-left: 16px; margin: 16px 0; color: #475569; background-color: #f8fafc; padding-top: 8px; padding-bottom: 8px;">$1</blockquote>')
+      // Line breaks & paragraphs
+      .replace(/\n\n/g, '</p><p style="margin-bottom: 16px; line-height: 1.75; font-size: 16px; color: #334155;">')
+      .replace(/\n/g, '<br />');
+
+    return `<div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.75; color: #334155;"><p style="margin-bottom: 16px; line-height: 1.75; font-size: 16px;">${html}</p></div>`;
+  }
+
   // HTML 클립보드 복사 (스마트에디터 ONE 붙여넣기용)
   const handleCopyRichContent = async () => {
     try {
-      const type = "text/html";
-      const blob = new Blob([article.content], { type });
-      const data = [new ClipboardItem({ [type]: blob, "text/plain": new Blob([article.content], { type: "text/plain" }) })];
+      const htmlContent = convertMarkdownToHtml(article.content);
+      const blobHtml = new Blob([htmlContent], { type: "text/html" });
+      const blobPlain = new Blob([article.content], { type: "text/plain" });
+      const data = [new ClipboardItem({ "text/html": blobHtml, "text/plain": blobPlain })];
       await navigator.clipboard.write(data);
       setCopied(true);
       setTimeout(() => setCopied(false), 2500);
@@ -68,6 +91,7 @@ export function PublishPreviewModal({
       setTimeout(() => setCopied(false), 2500);
     }
   };
+
 
   const handleCopyTitle = async () => {
     await navigator.clipboard.writeText(article.title);

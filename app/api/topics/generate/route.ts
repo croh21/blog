@@ -11,20 +11,26 @@ export async function POST(req: Request) {
     try {
       body = await req.json();
     } catch {}
+    const customPrompt = body?.customPrompt || body?.keyword;
     const trendId = body?.trendId;
     const allTrends = await getTrends();
     let trend = trendId ? await getTrendById(trendId) : undefined;
 
-    if (!trend && allTrends.length > 0) {
+    if (!trend && !customPrompt && allTrends.length > 0) {
       // 랜덤 트렌드 선택
       trend = allTrends[Math.floor(Math.random() * allTrends.length)];
     }
 
-    const trendTitle = trend?.title || "2026 차세대 트렌드와 라이프스타일 혁신";
-    const trendCategory = trend?.category_name || "종합 트렌드";
-    const trendDesc = trend?.description || "최신 검색량 급상승 및 고수익 전환 키워드 분석";
+    const trendTitle = customPrompt
+      ? `사용자 직접 지정 주제: ${customPrompt}`
+      : (trend?.title || "2026 차세대 트렌드와 라이프스타일 혁신");
+    const trendCategory = trend?.category_name || (customPrompt ? "맞춤 기획" : "종합 트렌드");
+    const trendDesc = customPrompt
+      ? `사용자 입력 문장: ${customPrompt} (해당 주제에 최적화된 고수익 파워블로그 토픽 도출)`
+      : (trend?.description || "최신 검색량 급상승 및 고수익 전환 키워드 분석");
 
-    const trendContext = `트렌드 제목: ${trendTitle}\n설명: ${trendDesc}\n분야: ${trendCategory}\n생성시간: ${new Date().toISOString()}`;
+    const trendContext = `주제/트렌드: ${trendTitle}\n설명: ${trendDesc}\n분야: ${trendCategory}\n생성시간: ${new Date().toISOString()}`;
+
 
     let generatedTopics: Topic[] = [];
 

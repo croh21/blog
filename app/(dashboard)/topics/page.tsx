@@ -96,6 +96,29 @@ function TopicsContent() {
     return matchesSearch && matchesType;
   });
 
+  const [customKeyword, setCustomKeyword] = useState("");
+  const [customLoading, setCustomLoading] = useState(false);
+
+  async function handleGenerateCustomTopic(e?: React.FormEvent) {
+    if (e) e.preventDefault();
+    if (!customKeyword.trim()) return;
+    setCustomLoading(true);
+    try {
+      const res = await fetch("/api/topics/generate", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ customPrompt: customKeyword.trim() }),
+      });
+      if (res.ok) {
+        const data = await res.json();
+        setTopics(data.topics || []);
+        setCustomKeyword("");
+      }
+    } finally {
+      setCustomLoading(false);
+    }
+  }
+
   return (
     <div className="space-y-6">
       {/* Header */}
@@ -119,16 +142,48 @@ function TopicsContent() {
           {loading ? (
             <>
               <RefreshCw className="h-4 w-4 animate-spin" />
-              AI 토픽 10선 생성 중...
+              AI 트렌드 토픽 도출 중...
             </>
           ) : (
             <>
               <Sparkles className="h-4 w-4" />
-              Generate 10 Topic Ideas
+              Generate Trending Topics
             </>
           )}
         </Button>
       </div>
+
+      {/* 2단계: 사용자 맞춤 직접 키워드/문장 입력 바 (Custom Prompt Bar) */}
+      <Card className="p-4 bg-gradient-to-r from-amber-500/10 via-orange-500/10 to-indigo-500/10 border-amber-300 dark:border-amber-700/60 shadow-sm">
+        <form onSubmit={handleGenerateCustomTopic} className="flex flex-col sm:flex-row gap-3 items-stretch sm:items-center">
+          <div className="flex-1 relative">
+            <Sparkles className="absolute left-3.5 top-3 h-4 w-4 text-amber-600 dark:text-amber-400" />
+            <Input
+              placeholder="직접 작성하고 싶은 주제나 키워드를 입력하세요 (예: 2026 청약통장 전환 꿀팁, 직장인 저속노화 식단 루틴 등)..."
+              value={customKeyword}
+              onChange={(e) => setCustomKeyword(e.target.value)}
+              className="pl-10 h-11 text-sm bg-white dark:bg-slate-900 border-amber-300 dark:border-amber-800"
+            />
+          </div>
+          <Button
+            type="submit"
+            disabled={customLoading || !customKeyword.trim()}
+            className="h-11 px-6 font-semibold bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white shadow-md gap-2 shrink-0"
+          >
+            {customLoading ? (
+              <>
+                <RefreshCw className="h-4 w-4 animate-spin" />
+                AI 분석 및 기획 중...
+              </>
+            ) : (
+              <>
+                <Plus className="h-4 w-4" />
+                맞춤 주제 즉시 생성
+              </>
+            )}
+          </Button>
+        </form>
+      </Card>
 
       {/* Filter Bar */}
       <Card className="p-4">
@@ -138,6 +193,7 @@ function TopicsContent() {
             <Input
               placeholder="주제명, 핵심 키워드, 선정 이유 검색..."
               value={search}
+
               onChange={(e) => setSearch(e.target.value)}
               className="pl-9 text-sm"
             />

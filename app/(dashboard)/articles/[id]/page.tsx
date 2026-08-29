@@ -219,6 +219,36 @@ export default function ArticleEditorPage() {
     });
   }
 
+  const [aiPromptInput, setAiPromptInput] = useState("");
+  const [aiEditing, setAiEditing] = useState(false);
+
+  async function handleAiEdit(customInstruction?: string) {
+    const instructionToUse = customInstruction || aiPromptInput;
+    if (!instructionToUse.trim()) return;
+    setAiEditing(true);
+    try {
+      const res = await fetch(`/api/articles/${articleId}/edit-ai`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ instruction: instructionToUse }),
+      });
+      const data = await res.json();
+      if (res.ok && data.success && data.article) {
+        setContent(data.article.content);
+        setArticle(data.article);
+        setAiPromptInput("");
+        setNotification({ type: "success", text: "AI가 본문을 요청하신 내용에 맞춰 성공적으로 수정했습니다!" });
+      } else {
+        setNotification({ type: "error", text: data.error || "AI 수정에 실패했습니다." });
+      }
+    } catch (err: any) {
+      setNotification({ type: "error", text: err.message });
+    } finally {
+      setAiEditing(false);
+      setTimeout(() => setNotification(null), 4000);
+    }
+  }
+
   async function handleRegenerateArticle(mode: "FULL" | "SEO") {
     setRegenerating(true);
     try {
@@ -236,6 +266,7 @@ export default function ArticleEditorPage() {
       setRegenerating(false);
     }
   }
+
 
   async function handleClaimStatusChange(claimId: string, newStatus: ArticleClaim["verification_status"]) {
     try {
@@ -430,6 +461,70 @@ export default function ArticleEditorPage() {
         {/* Left 7 Cols: Article Editor / Visual Preview */}
         <div className="lg:col-span-7 space-y-4">
           <Card className="p-5 space-y-4">
+            {/* 4단계: AI Prompt Co-Pilot (내용 검토 및 실시간 AI 수정) */}
+            <div className="p-3.5 rounded-xl bg-gradient-to-r from-blue-500/10 via-indigo-500/10 to-purple-500/10 border border-blue-200 dark:border-blue-800/60 space-y-2.5">
+              <div className="flex items-center justify-between">
+                <span className="text-xs font-bold text-blue-700 dark:text-blue-300 flex items-center gap-1.5">
+                  <Sparkles className="h-3.5 w-3.5 text-blue-600 animate-spin" />
+                  AI Co-Pilot 본문 에디터 (프롬프트로 실시간 수정)
+                </span>
+                <span className="text-[11px] text-slate-500">원하는 지시사항을 입력하세요</span>
+              </div>
+              <div className="flex gap-2">
+                <Input
+                  placeholder="예: '더 친근한 말투로 바꿔줘', '비교표를 더 자세히 보강해줘', '결론에 요약 박스 추가'..."
+                  value={aiPromptInput}
+                  onChange={(e) => setAiPromptInput(e.target.value)}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter" && !e.shiftKey) {
+                      e.preventDefault();
+                      handleAiEdit();
+                    }
+                  }}
+                  className="h-9 text-xs bg-white dark:bg-slate-900"
+                />
+                <Button
+                  size="sm"
+                  variant="gradient"
+                  disabled={aiEditing || !aiPromptInput.trim()}
+                  onClick={() => handleAiEdit()}
+                  className="h-9 px-4 text-xs font-semibold shrink-0 gap-1.5 shadow-sm bg-gradient-to-r from-blue-600 to-indigo-600"
+                >
+                  {aiEditing ? (
+                    <>
+                      <RefreshCw className="h-3.5 w-3.5 animate-spin" />
+                      수정 중...
+                    </>
+                  ) : (
+                    <>
+                      <Sparkles className="h-3.5 w-3.5" />
+                      AI 수정 적용
+                    </>
+                  )}
+                </Button>
+              </div>
+              {/* Quick Prompt Presets */}
+              <div className="flex flex-wrap gap-1.5 items-center pt-0.5">
+                <span className="text-[10px] text-slate-400 font-medium mr-1">빠른 추천:</span>
+                {[
+                  "친근한 구어체로 변경",
+                  "실전 비교표 보강",
+                  "핵심 꿀팁 3가지 추가",
+                  "초보자 Q&A 보강",
+                  "결론에 실천 체크리스트 추가",
+                ].map((preset) => (
+                  <button
+                    key={preset}
+                    onClick={() => handleAiEdit(preset)}
+                    disabled={aiEditing}
+                    className="text-[11px] px-2 py-0.5 rounded-md bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 hover:border-blue-400 hover:text-blue-600 transition-colors shadow-2xs"
+                  >
+                    + {preset}
+                  </button>
+                ))}
+              </div>
+            </div>
+
             {/* View Mode Toggle */}
             <div className="flex items-center justify-between border-b pb-3 border-slate-100 dark:border-slate-800">
               <div className="flex items-center gap-1 bg-slate-100 dark:bg-slate-800 p-1 rounded-lg">
@@ -448,6 +543,7 @@ export default function ArticleEditorPage() {
                   className={`px-3 py-1 rounded text-xs font-semibold flex items-center gap-1.5 transition-colors ${
                     viewMode === "EDIT"
                       ? "bg-white dark:bg-slate-900 text-blue-600 dark:text-blue-400 shadow-sm"
+
                       : "text-slate-500 hover:text-slate-900"
                   }`}
                 >
