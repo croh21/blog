@@ -28,8 +28,98 @@ export interface PipelineProgressCallback {
 export function getTopicCuratedImages(topic: Topic): { featured: string; inBody: string; featuredCaption: string; inBodyCaption: string } {
   const text = `${topic.title} ${topic.primary_keyword} ${topic.why_this_topic}`.toLowerCase();
 
-  // 1. 마그네슘, 수면, 불면, 만성피로, 스트레스
-  if (text.includes("마그네슘") || text.includes("수면") || text.includes("불면") || text.includes("피로") || text.includes("스트레스") || text.includes("이완")) {
+  // 1. 자동차, 온디바이스 AI, 모빌리티, 자율주행, 전기차, 테슬라, 현대차
+  if (text.includes("자동차") || text.includes("차량") || text.includes("전기차") || text.includes("자율주행") || text.includes("모빌리티") || text.includes("테슬라") || text.includes("온디바이스 ai") || text.includes("스마트카") || text.includes("sdv")) {
+    return {
+      featured: "https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1200&q=80",
+      inBody: "https://images.unsplash.com/photo-1551522435-a13afa10f103?auto=format&fit=crop&w=1200&q=80",
+      featuredCaption: "▲ 온디바이스 AI 칩셋과 스마트 인포테인먼트가 적용된 차세대 모빌리티 콕핏",
+      inBodyCaption: "▲ 실시간 엣지 추론(Edge AI) 기반 자율주행 센서 및 커넥티비티 아키텍처",
+    };
+  }
+
+  // 2. 제주도 여행, 숙소, 감성 독채, 오션뷰, 힐링 여행
+  if (text.includes("제주") || text.includes("오션뷰") || text.includes("독채") || text.includes("감성 숙소") || text.includes("로드트립")) {
+    return {
+      featured: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80",
+      inBody: "https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1200&q=80",
+      featuredCaption: "▲ 푸른 바다와 자연이 어우러진 제주 에메랄드빛 해안 드라이브 코스",
+      inBodyCaption: "▲ 고즈넉한 힐링과 프라이빗한 휴식을 제공하는 감성 독채 스테이 인테리어",
+    };
+  }
+
+  // 3. 해외 여행, 일본, 료칸, 온천, 항공권, 소도시
+  if (text.includes("일본") || text.includes("도쿄") || text.includes("후쿠오카") || text.includes("료칸") || text.includes("온천") || text.includes("해외여행") || text.includes("비행기") || text.includes("환율")) {
+    return {
+      featured: "https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?auto=format&fit=crop&w=1200&q=80",
+      inBody: "https://images.unsplash.com/photo-1503899036084-c55cdd92da26?auto=format&fit=crop&w=1200&q=80",
+      featuredCaption: "▲ 고즈넉한 온천 마을과 미식 가이세키를 만끽하는 힐링 료칸 풍경",
+      inBodyCaption: "▲ 현지 로컬 골목 투어와 알짜배기 소도시 여행 코스",
+    };
+  }
+
+  // 4. 캠핑, 차박, 텐트, 오토캠핑, 불멍, 글램핑
+  if (text.includes("캠핑") || text.includes("차박") || text.includes("텐트") || text.includes("글램핑") || text.includes("아웃도어") || text.includes("화로대")) {
+    return {
+      featured: "https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?auto=format&fit=crop&w=1200&q=80",
+      inBody: "https://images.unsplash.com/photo-1510312305653-8ed496efae75?auto=format&fit=crop&w=1200&q=80",
+      featuredCaption: "▲ 숲속의 맑은 공기와 함께하는 감성 오토캠핑 & 불멍 힐링 셋팅",
+      inBodyCaption: "▲ 초보 캠퍼도 쉽게 설치하는 미니멀 차박 매트리스 및 조명 연출",
+    };
+  }
+
+  // 5. 요리, 레시피, 김치찌개, 원팬 요리, 집밥, 밀프랩
+  if (text.includes("요리") || text.includes("레시피") || text.includes("찌개") || text.includes("집밥") || text.includes("원팬") || text.includes("에어프라이어") || text.includes("반찬") || text.includes("밀프랩")) {
+    return {
+      featured: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=1200&q=80",
+      inBody: "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=1200&q=80",
+      featuredCaption: "▲ 신선한 식재료와 깊은 풍미를 완성하는 황금 시즈닝 배합",
+      inBodyCaption: "▲ 실패 없는 15분 초간단 조리 과정과 깔끔한 홈쿠킹 테이블",
+    };
+  }
+
+  // 6. 홈카페, 원두, 핸드드립, 에스프레소, 커피머신, 바리스타
+  if (text.includes("커피") || text.includes("원두") || text.includes("핸드드립") || text.includes("카페") || text.includes("에스프레소") || text.includes("디저트") || text.includes("베이킹")) {
+    return {
+      featured: "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=1200&q=80",
+      inBody: "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=1200&q=80",
+      featuredCaption: "▲ 스페셜티 싱글 오리진 원두 추출과 황금 브루잉 프로파일",
+      inBodyCaption: "▲ 균일한 분쇄도와 정밀한 물 온도 세팅으로 완성한 홈카페 라떼아트",
+    };
+  }
+
+  // 7. 청약, 부동산, 디딤돌 대출, 아파트, 내집마련, 전세
+  if (text.includes("청약") || text.includes("주택") || text.includes("아파트") || text.includes("부동산") || text.includes("대출") || text.includes("디딤돌") || text.includes("전세") || text.includes("분양")) {
+    return {
+      featured: "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=1200&q=80",
+      inBody: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=1200&q=80",
+      featuredCaption: "▲ 무주택 서민 및 청년을 위한 공공 주거복지 정책 및 신축 단지 조감도",
+      inBodyCaption: "▲ 가점 계산 및 자격 조건 충족을 위한 청약 통장 실전 관리 로드맵",
+    };
+  }
+
+  // 8. 주식, 미국 ETF, 절세 ISA, 배당금, 복리 투자
+  if (text.includes("주식") || text.includes("etf") || text.includes("isa") || text.includes("배당") || text.includes("절세") || text.includes("투자") || text.includes("재테크") || text.includes("s&p500")) {
+    return {
+      featured: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&fit=crop&w=1200&q=80",
+      inBody: "https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?auto=format&fit=crop&w=1200&q=80",
+      featuredCaption: "▲ 장기 복리 효과 극대화를 위한 미국 배당 성장 ETF 자산 배분",
+      inBodyCaption: "▲ 일반 과세 계좌 대비 비과세 계좌(ISA/연금)의 실질 순수익 시뮬레이션",
+    };
+  }
+
+  // 9. AI 에이전트, Claude, MCP, 코딩, 개발, 노코드, n8n
+  if (text.includes("claude") || text.includes("mcp") || text.includes("에이전트") || text.includes("코딩") || text.includes("n8n") || text.includes("개발") || text.includes("프롬프트") || text.includes("llm")) {
+    return {
+      featured: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=1200&q=80",
+      inBody: "https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=1200&q=80",
+      featuredCaption: "▲ 차세대 자율 AI 에이전트와 도구 연동을 위한 표준 MCP 프로토콜",
+      inBodyCaption: "▲ 복잡한 비즈니스 로직을 24시간 자율 수행하는 노코드 자동화 파이프라인",
+    };
+  }
+
+  // 10. 마그네슘, 수면, 불면, 만성피로, 스트레스
+  if (text.includes("마그네슘") || text.includes("수면") || text.includes("불면") || text.includes("피로") || text.includes("스트레스") || text.includes("영양제")) {
     return {
       featured: "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=1200&q=80",
       inBody: "https://images.unsplash.com/photo-1511295742362-92c96b124e52?auto=format&fit=crop&w=1200&q=80",
@@ -38,134 +128,45 @@ export function getTopicCuratedImages(topic: Topic): { featured: string; inBody:
     };
   }
 
-  // 2. 간헐적 단식, 공복, 오토파지, 디톡스
-  if (text.includes("단식") || text.includes("오토파지") || text.includes("공복") || text.includes("디톡스") || text.includes("클렌즈")) {
+  // 11. 간헐적 단식, 저속노화, 혈당 관리, 다이어트
+  if (text.includes("단식") || text.includes("노화") || text.includes("혈당") || text.includes("다이어트") || text.includes("식단") || text.includes("오토파지")) {
     return {
       featured: "https://images.unsplash.com/photo-1490645935967-10de6ba17061?auto=format&fit=crop&w=1200&q=80",
-      inBody: "https://images.unsplash.com/photo-1505576399279-565b52d4ac71?auto=format&fit=crop&w=1200&q=80",
-      featuredCaption: "▲ 16:8 간헐적 단식과 세포 자가포식(오토파지) 활성화 타이밍",
-      inBodyCaption: "▲ 공복 시간 유지와 클린 식단을 통한 체지방 감량 및 대사 개선",
+      inBody: "https://images.unsplash.com/photo-1498837167922-ddd27525d352?auto=format&fit=crop&w=1200&q=80",
+      featuredCaption: "▲ 혈당 스파이크를 방지하고 오토파지를 활성화하는 저속노화 식단",
+      inBodyCaption: "▲ 식이섬유 -> 단백질 -> 복합 탄수화물 순서의 균형 잡힌 다이어트 식사법",
     };
   }
 
-  // 3. 건강 식단, 저속노화, 혈당, 다이어트, 영양, 슈퍼푸드
-  if (text.includes("식단") || text.includes("노화") || text.includes("혈당") || text.includes("당뇨") || text.includes("영양") || text.includes("다이어트") || text.includes("비타민") || text.includes("칼로리")) {
-    return {
-      featured: "https://images.unsplash.com/photo-1498837167922-ddd27525d352?auto=format&fit=crop&w=1200&q=80",
-      inBody: "https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=1200&q=80",
-      featuredCaption: "▲ 혈당 스파이크를 예방하는 신선한 채소와 통곡물 기반 건강 식단",
-      inBodyCaption: "▲ 식이섬유 -> 단백질 -> 복합 탄수화물 순서로 구성한 균형 잡힌 실전 밥상",
-    };
-  }
-
-  // 4. 운동, 헬스, 피트니스, 러닝, 홈트, 근력, 체형교정
-  if (text.includes("운동") || text.includes("헬스") || text.includes("피트니스") || text.includes("러닝") || text.includes("홈트") || text.includes("근육") || text.includes("필라테스") || text.includes("요가")) {
-    return {
-      featured: "https://images.unsplash.com/photo-1517838277536-f5f99be501cd?auto=format&fit=crop&w=1200&q=80",
-      inBody: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=1200&q=80",
-      featuredCaption: "▲ 기초 대사량 향상과 신체 활력을 돕는 맞춤형 운동 루틴",
-      inBodyCaption: "▲ 부상 방지와 코어 강화를 위한 바른 자세 및 실천 스트레칭",
-    };
-  }
-
-  // 5. AI, 챗GPT, 인공지능, LLM, 프롬프트, 자동화, 머신러닝
-  if (text.includes("ai") || text.includes("gpt") || text.includes("인공지능") || text.includes("프롬프트") || text.includes("자동화") || text.includes("머신러닝") || text.includes("딥러닝") || text.includes("에이전트")) {
-    return {
-      featured: "https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=1200&q=80",
-      inBody: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80",
-      featuredCaption: "▲ 차세대 자율 AI 에이전트와 지능형 워크플로우 자동화 기술",
-      inBodyCaption: "▲ 데이터 처리 최적화 및 실시간 AI 성능 모니터링 아키텍처",
-    };
-  }
-
-  // 6. 주식, 투자, 재테크, 부동산, 금융, 경제, 암호화폐, 코인, 세금
-  if (text.includes("주식") || text.includes("투자") || text.includes("재테크") || text.includes("부동산") || text.includes("금융") || text.includes("경제") || text.includes("비트코인") || text.includes("자산") || text.includes("절세") || text.includes("청약")) {
-    return {
-      featured: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&fit=crop&w=1200&q=80",
-      inBody: "https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?auto=format&fit=crop&w=1200&q=80",
-      featuredCaption: "▲ 시장 변동성 분석과 데이터 기반 포트폴리오 자산 배분 전략",
-      inBodyCaption: "▲ 복리 효과 극대화와 리스크 헷지를 위한 체계적 투자 로드맵",
-    };
-  }
-
-  // 7. 마케팅, SEO, 블로그 수익화, SNS, 인스타그램, 유튜브, 애드센스
-  if (text.includes("마케팅") || text.includes("seo") || text.includes("수익") || text.includes("블로그") || text.includes("인스타") || text.includes("유튜브") || text.includes("트래픽") || text.includes("브랜딩") || text.includes("광고") || text.includes("커머스")) {
-    return {
-      featured: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80",
-      inBody: "https://images.unsplash.com/photo-1533750349088-cd871a92f312?auto=format&fit=crop&w=1200&q=80",
-      featuredCaption: "▲ 검색 엔진 상위 노출과 트래픽 급상승을 위한 10-Factor SEO 전략",
-      inBodyCaption: "▲ 전환율 최적화(CRO) 및 지속 가능한 디지털 콘텐츠 수익화 파이프라인",
-    };
-  }
-
-  // 8. 코딩, 프로그래밍, 개발, 웹, 앱, 소프트웨어, 클라우드
-  if (text.includes("코딩") || text.includes("개발") || text.includes("프로그래밍") || text.includes("웹") || text.includes("앱") || text.includes("클라우드") || text.includes("서버") || text.includes("react") || text.includes("next")) {
-    return {
-      featured: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=1200&q=80",
-      inBody: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1200&q=80",
-      featuredCaption: "▲ 확장성 높은 모던 소프트웨어 개발 및 클라우드 아키텍처",
-      inBodyCaption: "▲ 코드 리팩토링 및 고성능 풀스택 시스템 구축 프로세스",
-    };
-  }
-
-  // 9. 여행, 관광, 호텔, 항공, 휴가, 명소
-  if (text.includes("여행") || text.includes("관광") || text.includes("호텔") || text.includes("항공") || text.includes("휴가") || text.includes("명소") || text.includes("캠핑")) {
-    return {
-      featured: "https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=1200&q=80",
-      inBody: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80",
-      featuredCaption: "▲ 힐링과 재충전을 위한 여행지 추천 및 최적의 동선 가이드",
-      inBodyCaption: "▲ 현지 로컬 명소와 감성적인 여행 꿀팁 총정리",
-    };
-  }
-
-  // 10. 맛집, 카페, 요리, 레시피, 커피, 베이킹
-  if (text.includes("맛집") || text.includes("카페") || text.includes("요리") || text.includes("레시피") || text.includes("커피") || text.includes("디저트") || text.includes("음식")) {
-    return {
-      featured: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1200&q=80",
-      inBody: "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=1200&q=80",
-      featuredCaption: "▲ 신선한 재료 본연의 맛을 살린 시그니처 메뉴와 다이닝 공간",
-      inBodyCaption: "▲ 누구나 쉽게 따라 할 수 있는 단계별 황금 레시피와 홈카페 노하우",
-    };
-  }
-
-  // 11. 뷰티, 피부, 패션, 화장품, 스타일, 헤어
-  if (text.includes("뷰티") || text.includes("피부") || text.includes("패션") || text.includes("화장품") || text.includes("스타일") || text.includes("메이크업") || text.includes("헤어")) {
-    return {
-      featured: "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=1200&q=80",
-      inBody: "https://images.unsplash.com/photo-1512290900672-1f48039c336b?auto=format&fit=crop&w=1200&q=80",
-      featuredCaption: "▲ 피부 장벽 강화와 빛나는 피부 톤을 위한 단계별 데일리 케어",
-      inBodyCaption: "▲ 트렌디한 스타일링과 나만의 개성을 살리는 뷰티 루틴",
-    };
-  }
-
-  // 12. 자기계발, 독서, 생산성, 습관, 심리학, 공부
-  if (text.includes("자기계발") || text.includes("독서") || text.includes("생산성") || text.includes("습관") || text.includes("심리") || text.includes("공부") || text.includes("동기부여") || text.includes("시간관리")) {
+  // 12. 미라클모닝, 노션, 생산성, 공부법, 습관, 독서
+  if (text.includes("루틴") || text.includes("노션") || text.includes("습관") || text.includes("생산성") || text.includes("공부") || text.includes("독서") || text.includes("미라클")) {
     return {
       featured: "https://images.unsplash.com/photo-1499750310107-5fef28a66643?auto=format&fit=crop&w=1200&q=80",
       inBody: "https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?auto=format&fit=crop&w=1200&q=80",
-      featuredCaption: "▲ 지속적인 성장을 이끄는 아침 루틴과 몰입(Flow) 환경 구축",
-      inBodyCaption: "▲ 목표 달성을 가속화하는 실행력 강화 및 멘탈 관리 전략",
+      featuredCaption: "▲ 하루 몰입도와 성취감을 극대화하는 아침 30분 모닝 루틴",
+      inBodyCaption: "▲ 생각 정리와 프로젝트 목표 달성을 돕는 올인원 노션 생산성 템플릿",
     };
   }
 
-  // 13. 자동차, 모빌리티, 테크기기, 스마트폰, 전자기기
-  if (text.includes("자동차") || text.includes("전기차") || text.includes("스마트폰") || text.includes("아이폰") || text.includes("갤럭시") || text.includes("노트북") || text.includes("모빌리티")) {
+  // 13. 운동, 러닝, 피트니스, 헬스, Zone 2
+  if (text.includes("운동") || text.includes("러닝") || text.includes("헬스") || text.includes("피트니스") || text.includes("zone 2") || text.includes("유산소")) {
     return {
-      featured: "https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1200&q=80",
-      inBody: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1200&q=80",
-      featuredCaption: "▲ 혁신적인 기술이 집약된 차세대 디바이스 및 스마트 모빌리티",
-      inBodyCaption: "▲ 실사용 환경에서의 성능 벤치마크 및 주요 스펙 비교 분석",
+      featured: "https://images.unsplash.com/photo-1517838277536-f5f99be501cd?auto=format&fit=crop&w=1200&q=80",
+      inBody: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=1200&q=80",
+      featuredCaption: "▲ 미토콘드리아 활성화와 지방 연소를 돕는 존 2 심박수 유산소 트레이닝",
+      inBodyCaption: "▲ 부상 없는 지속 가능한 운동을 위한 워밍업 및 코어 강화 루틴",
     };
   }
 
-  // 기본값 (세련된 모던 비즈니스/라이프스타일 이미지)
+  // 기본값 (세련된 고화질 맞춤형 테마 이미지)
   return {
-    featured: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1200&q=80",
-    inBody: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?auto=format&fit=crop&w=1200&q=80",
-    featuredCaption: `▲ ${topic.primary_keyword} 관련 주요 트렌드 및 핵심 인사이트`,
-    inBodyCaption: `▲ ${topic.primary_keyword} 실전 적용을 위한 심층 가이드`,
+    featured: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?auto=format&fit=crop&w=1200&q=80",
+    inBody: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1200&q=80",
+    featuredCaption: `▲ ${topic.primary_keyword} 관련 최신 트렌드 및 핵심 인사이트`,
+    inBodyCaption: `▲ ${topic.primary_keyword} 실전 적용을 위한 단계별 핵심 가이드`,
   };
 }
+
 
 
 /**

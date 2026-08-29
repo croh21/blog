@@ -27,12 +27,12 @@
   ],
   "trends": [
     {
-      "description": "사용자가 검색을 직접 하는 대신 개인 AI 에이전트에게 조건(예산, 취향, 일정)을 부여해 최적의 상품·서비스를 자동 비교, 예약, 결제까지 위임하는 검색 트렌드.",
-      "category_name": "트렌드 & 비즈니스",
+      "title": "폭염을 피하는 차가운 휴양지, 쿨케이션의 부상",
+      "category_name": "여행 & 관광",
       "source_url": "https://trendpilot.ai",
       "source_name": "Global Trend Analytics",
-      "published_at": "2026-08-29T06:19:20.225Z",
-      "collected_at": "2026-08-29T06:19:20.225Z",
+      "published_at": "2026-08-29T06:21:22.421Z",
+      "collected_at": "2026-08-29T06:21:22.421Z",
       "trend_score": null,
       "search_growth": 90,
       "search_volume": 85,
@@ -41,17 +41,17 @@
       "evergreen_score": 85,
       "social_score": 88,
       "status": "DISCOVERED",
-      "id": "K2v-vQPYY3cMsdscEuG60",
+      "id": "zkua2Dj3tBDv2xDQ5UcAc",
       "opportunity_score": null,
-      "created_at": "2026-08-29T06:19:20.225Z"
+      "created_at": "2026-08-29T06:21:22.421Z"
     },
     {
-      "description": "단순한 다이어트를 넘어 혈당 관리, 수면 데이터 최적화, 세포 수준의 항노화 및 생체 나이 단축을 목표로 하는 과학적 웰니스 검색 급증.",
-      "category_name": "트렌드 & 비즈니스",
+      "title": "실시간 상황 맞춤형 AI 여행 에이전트 활용",
+      "category_name": "여행 & 관광",
       "source_url": "https://trendpilot.ai",
       "source_name": "Global Trend Analytics",
-      "published_at": "2026-08-29T06:19:20.225Z",
-      "collected_at": "2026-08-29T06:19:20.225Z",
+      "published_at": "2026-08-29T06:21:22.421Z",
+      "collected_at": "2026-08-29T06:21:22.421Z",
       "trend_score": null,
       "search_growth": 90,
       "search_volume": 85,
@@ -60,17 +60,17 @@
       "evergreen_score": 85,
       "social_score": 88,
       "status": "DISCOVERED",
-      "id": "ZlZd5isN6nXqFD_fh5rZc",
+      "id": "Kh4mF3M6PVr7Y8aFW39d-",
       "opportunity_score": null,
-      "created_at": "2026-08-29T06:19:20.225Z"
+      "created_at": "2026-08-29T06:21:22.421Z"
     },
     {
-      "description": "부동산, 미술품, 희귀 원자재 등 실물 자산의 토큰화(RWA) 투자와 AI 알고리즘 기반 초개인화 포트폴리오 관리 검색 증가.",
-      "category_name": "트렌드 & 비즈니스",
+      "title": "수면 장애 극복과 뇌 휴식을 위한 수면 휴양",
+      "category_name": "여행 & 관광",
       "source_url": "https://trendpilot.ai",
       "source_name": "Global Trend Analytics",
-      "published_at": "2026-08-29T06:19:20.225Z",
-      "collected_at": "2026-08-29T06:19:20.225Z",
+      "published_at": "2026-08-29T06:21:22.421Z",
+      "collected_at": "2026-08-29T06:21:22.421Z",
       "trend_score": null,
       "search_growth": 90,
       "search_volume": 85,
@@ -79,17 +79,17 @@
       "evergreen_score": 85,
       "social_score": 88,
       "status": "DISCOVERED",
-      "id": "z0R3KuQf44SFU8OPCzPV2",
+      "id": "RNSYn-WAByYRUWA8q1F3d",
       "opportunity_score": null,
-      "created_at": "2026-08-29T06:19:20.225Z"
+      "created_at": "2026-08-29T06:21:22.421Z"
     },
     {
-      "description": "원격 근무와 휴양을 결합(Bleisure)하되, 유명 관광지가 아닌 소도시/초지역 기반의 장기 체류형 럭셔리 워케이션 검색 급증.",
-      "category_name": "트렌드 & 비즈니스",
+      "title": "친환경을 넘어 지역 생태계를 복원하는 재생 관광",
+      "category_name": "여행 & 관광",
       "source_url": "https://trendpilot.ai",
       "source_name": "Global Trend Analytics",
-      "published_at": "2026-08-29T06:19:20.225Z",
-      "collected_at": "2026-08-29T06:19:20.225Z",
+      "published_at": "2026-08-29T06:21:22.421Z",
+      "collected_at": "2026-08-29T06:21:22.421Z",
       "trend_score": null,
       "search_growth": 90,
       "search_volume": 85,
@@ -98,17 +98,17 @@
       "evergreen_score": 85,
       "social_score": 88,
       "status": "DISCOVERED",
-      "id": "EOC2915pIzUOrhc1R3G8J",
+      "id": "DjvC8POTCdreYrOgBKuSf",
       "opportunity_score": null,
-      "created_at": "2026-08-29T06:19:20.225Z"
+      "created_at": "2026-08-29T06:21:22.421Z"
     },
     {
-      "description": "맛을 포기하지 않으면서도 혈당 스파이크를 방지하는 대체당, 저탄수 식재료 기반의 고품격 레스토랑 및 가정간편식(HMR) 검색.",
-      "category_name": "트렌드 & 비즈니스",
+      "title": "글로벌 미디어 및 K-콘텐츠 촬영지 스포트라이트 투어",
+      "category_name": "여행 & 관광",
       "source_url": "https://trendpilot.ai",
       "source_name": "Global Trend Analytics",
-      "published_at": "2026-08-29T06:19:20.225Z",
-      "collected_at": "2026-08-29T06:19:20.225Z",
+      "published_at": "2026-08-29T06:21:22.421Z",
+      "collected_at": "2026-08-29T06:21:22.421Z",
       "trend_score": null,
       "search_growth": 90,
       "search_volume": 85,
@@ -117,17 +117,17 @@
       "evergreen_score": 85,
       "social_score": 88,
       "status": "DISCOVERED",
-      "id": "ZFHVnOt89Nt9Q0oqlgKyj",
+      "id": "ZE3-Z9EygfdQuAIUu5ThD",
       "opportunity_score": null,
-      "created_at": "2026-08-29T06:19:20.225Z"
+      "created_at": "2026-08-29T06:21:22.421Z"
     },
     {
-      "description": "거창한 목표 대신 하루 5분 단위의 micro-step을 달성하도록 돕는 실시간 AI 루틴 코칭 및 도파민 리셋 검색 상승.",
-      "category_name": "트렌드 & 비즈니스",
+      "title": "청정야간 다크스카이 & 천문 관측 여행",
+      "category_name": "여행 & 관광",
       "source_url": "https://trendpilot.ai",
       "source_name": "Global Trend Analytics",
-      "published_at": "2026-08-29T06:19:20.225Z",
-      "collected_at": "2026-08-29T06:19:20.225Z",
+      "published_at": "2026-08-29T06:21:22.421Z",
+      "collected_at": "2026-08-29T06:21:22.421Z",
       "trend_score": null,
       "search_growth": 90,
       "search_volume": 85,
@@ -136,17 +136,17 @@
       "evergreen_score": 85,
       "social_score": 88,
       "status": "DISCOVERED",
-      "id": "uLPxYOzLSTyumnyaZzpkc",
+      "id": "U9aGJRmdE973gwZMYcUl6",
       "opportunity_score": null,
-      "created_at": "2026-08-29T06:19:20.225Z"
+      "created_at": "2026-08-29T06:21:22.421Z"
     },
     {
-      "description": "기후 변화, 실내외 온도 차이, 개인 피부 마이크로바이옴 상태에 따라 성분이 가변적으로 반응하는 맞춤형 화장품 기술 검색.",
-      "category_name": "트렌드 & 비즈니스",
+      "title": "워케이션 허브 도시 및 노마드 전용 비자 라이프",
+      "category_name": "여행 & 관광",
       "source_url": "https://trendpilot.ai",
       "source_name": "Global Trend Analytics",
-      "published_at": "2026-08-29T06:19:20.225Z",
-      "collected_at": "2026-08-29T06:19:20.225Z",
+      "published_at": "2026-08-29T06:21:22.421Z",
+      "collected_at": "2026-08-29T06:21:22.421Z",
       "trend_score": null,
       "search_growth": 90,
       "search_volume": 85,
@@ -155,17 +155,17 @@
       "evergreen_score": 85,
       "social_score": 88,
       "status": "DISCOVERED",
-      "id": "cQEAw9d7k6oR4n4IOcwcT",
+      "id": "RZjOa_BTAMxrPDbUB6Ylh",
       "opportunity_score": null,
-      "created_at": "2026-08-29T06:19:20.225Z"
+      "created_at": "2026-08-29T06:21:22.421Z"
     },
     {
-      "description": "스크린 피로감 극복을 위해 화면 없는 명상 공간, 손끝의 촉감을 자극하는 공예/아날로그 경험 중심의 오프라인 공간 검색 트렌드.",
-      "category_name": "트렌드 & 비즈니스",
+      "title": "극지방·지방 노포의 식재료 뿌리를 찾아가는 미식 기행",
+      "category_name": "여행 & 관광",
       "source_url": "https://trendpilot.ai",
       "source_name": "Global Trend Analytics",
-      "published_at": "2026-08-29T06:19:20.225Z",
-      "collected_at": "2026-08-29T06:19:20.225Z",
+      "published_at": "2026-08-29T06:21:22.421Z",
+      "collected_at": "2026-08-29T06:21:22.421Z",
       "trend_score": null,
       "search_growth": 90,
       "search_volume": 85,
@@ -174,12 +174,144 @@
       "evergreen_score": 85,
       "social_score": 88,
       "status": "DISCOVERED",
-      "id": "pYlkRyd1Zs3sFOO4SM4lU",
+      "id": "AaRZQtlafTuMQOJBSAl6s",
       "opportunity_score": null,
-      "created_at": "2026-08-29T06:19:20.225Z"
+      "created_at": "2026-08-29T06:21:22.421Z"
     }
   ],
   "topics": [
+    {
+      "id": "dByqou507De-Kovr1a588",
+      "trend_id": "Kh4mF3M6PVr7Y8aFW39d-",
+      "title": "나만의 24시간 AI 여행 비서 만들기: Custom GPTs 및 실시간 API 연동 구축 가이드",
+      "primary_keyword": "나만의 AI 여행 에이전트 만들기",
+      "secondary_keywords": [
+        "Custom GPTs 여행 비서",
+        "실시간 AI 여행 프롬프트",
+        "AI 여행 에이전트 개발"
+      ],
+      "search_intent": "실무 구축 가이드 및 DIY",
+      "content_type": "HOW_TO",
+      "estimated_traffic": 8900,
+      "competition": "LOW",
+      "commercial_value": 82,
+      "evergreen_score": 86,
+      "opportunity_score": 87.5,
+      "why_this_topic": "자신만의 맞춤형 여행 AI를 직접 세팅하려는 얼리어답터 및 테크 여행족 대상의 고관여 콘텐츠입니다. AI 유료 구독 서비스 제휴 링크 및 테크 분야 고단가 광고 배치가 용이합니다.",
+      "recommended_length": 3100,
+      "status": "PROPOSED",
+      "created_at": "2026-08-29T06:22:02.177Z"
+    },
+    {
+      "id": "2EB3NJeY1W9sEFX7_D807",
+      "trend_id": "Kh4mF3M6PVr7Y8aFW39d-",
+      "title": "언어·현지 예약 걱정 끝! 실시간 음성 통역 AI 여행 에이전트 추천 및 완전 활용법",
+      "primary_keyword": "실시간 음성 AI 여행 에이전트",
+      "secondary_keywords": [
+        "해외여행 AI 통역 앱",
+        "실시간 현지 예약 AI",
+        "해외 응급상황 AI 활용"
+      ],
+      "search_intent": "실무 가이드 및 정보 탐색",
+      "content_type": "EXPLAINER",
+      "estimated_traffic": 14200,
+      "competition": "MEDIUM",
+      "commercial_value": 88,
+      "evergreen_score": 92,
+      "opportunity_score": 90,
+      "why_this_topic": "해외여행 시 언어장벽과 현지 예약 대행 니즈를 실시간 음성 AI로 해결해 주는 핵심 실용 주제입니다. eSIM, 포켓와이파이, 통역 기기 제휴 마케팅 전환율이 매우 높습니다.",
+      "recommended_length": 3000,
+      "status": "PROPOSED",
+      "created_at": "2026-08-29T06:22:02.177Z"
+    },
+    {
+      "id": "WADMpBqSUGo5jgBnwMrBw",
+      "trend_id": "Kh4mF3M6PVr7Y8aFW39d-",
+      "title": "2026 초개인화 AI 여행 에이전트 산업 전망: 실시간 맞춤 여행 플랫폼 트렌드 분석",
+      "primary_keyword": "2026 AI 여행 트렌드",
+      "secondary_keywords": [
+        "실시간 AI 여행 에이전트",
+        "초개인화 여행 서비스",
+        "AI 관광 산업 전망"
+      ],
+      "search_intent": "정보 탐색 및 트렌드 분석",
+      "content_type": "TREND_REPORT",
+      "estimated_traffic": 9800,
+      "competition": "LOW",
+      "commercial_value": 78,
+      "evergreen_score": 75,
+      "opportunity_score": 83.5,
+      "why_this_topic": "B2B 애널리스트, 여행업계 종사자, IT 기획자 유입을 타겟팅하여 애드센스 고단가 IT/비즈니스 광고를 유도합니다. 전문성(E-E-A-T)을 입증하여 블로그 전체 도메인 권위도를 높여줍니다.",
+      "recommended_length": 2600,
+      "status": "PROPOSED",
+      "created_at": "2026-08-29T06:22:02.177Z"
+    },
+    {
+      "id": "HUJ6LNuK9krMEj9i6-8u4",
+      "trend_id": "Kh4mF3M6PVr7Y8aFW39d-",
+      "title": "해외여행 경비 30% 아끼는 법: 실시간 가격 변동 추적 AI 여행 에이전트 세팅 팁",
+      "primary_keyword": "AI 여행 경비 절감 에이전트",
+      "secondary_keywords": [
+        "AI 항공권 특가 알림",
+        "실시간 호텔 가격 추적 AI",
+        "여행 예산 자동 관리"
+      ],
+      "search_intent": "구매 정보 탐색 및 비용 절감",
+      "content_type": "BUYING_GUIDE",
+      "estimated_traffic": 18500,
+      "competition": "MEDIUM",
+      "commercial_value": 95,
+      "evergreen_score": 90,
+      "opportunity_score": 94,
+      "why_this_topic": "여행 분야에서 가장 상업적 가치(CPC)가 높은 '경비 절감'과 '최저가 예약'을 실시간 AI 자동화 서비스와 결합한 고수익 주제입니다. 카드사 제휴 및 예약 사이트 수수료 유입이 매우 강력합니다.",
+      "recommended_length": 3500,
+      "status": "PROPOSED",
+      "created_at": "2026-08-29T06:22:02.177Z"
+    },
+    {
+      "id": "YlcbaW0mKj9qrOcoBFO5R",
+      "trend_id": "Kh4mF3M6PVr7Y8aFW39d-",
+      "title": "현지 돌발상황 10초 해결: ChatGPT·Claude 기반 실시간 여행 동선 재조정 가이드",
+      "primary_keyword": "실시간 AI 여행 동선 변경",
+      "secondary_keywords": [
+        "돌발상황 AI 여행",
+        "여행 일정 자동 수정 AI",
+        "실시간 길찾기 AI 에이전트"
+      ],
+      "search_intent": "실무 가이드 및 사용법 탐색",
+      "content_type": "HOW_TO",
+      "estimated_traffic": 11800,
+      "competition": "LOW",
+      "commercial_value": 85,
+      "evergreen_score": 88,
+      "opportunity_score": 89,
+      "why_this_topic": "여행 중 폭우, 현지 휴무, 교통 체증 등 실시간 변수 발생 시 유저가 즉시 해결책을 찾는 High-intent 키워드입니다. 프롬프트 템플릿 제공 및 앱 추천을 통해 높은 체류 시간과 광고 클릭률을 확보합니다.",
+      "recommended_length": 2900,
+      "status": "PROPOSED",
+      "created_at": "2026-08-29T06:22:02.177Z"
+    },
+    {
+      "id": "s6s2SOyKxteQxJW7YJsih",
+      "trend_id": "Kh4mF3M6PVr7Y8aFW39d-",
+      "title": "실시간 비행기 지연·날씨 변경 완벽 대응! 2026 필수 AI 여행 에이전트 TOP 5 비교",
+      "primary_keyword": "AI 여행 에이전트 추천",
+      "secondary_keywords": [
+        "실시간 여행 AI",
+        "맞춤형 여행 일정 에이전트",
+        "해외여행 AI 가이드"
+      ],
+      "search_intent": "상업적 비교 및 솔루션 탐색",
+      "content_type": "COMPARISON",
+      "estimated_traffic": 15400,
+      "competition": "MEDIUM",
+      "commercial_value": 92,
+      "evergreen_score": 84,
+      "opportunity_score": 91.5,
+      "why_this_topic": "실시간 상황(항공 지연, 기상 악화) 발생 시 여행객의 즉각적인 검색 유입을 유도합니다. OTA 플랫폼(항공/호텔/투어 제휴) 마케팅 연결 시 높은 수수료 수익(CPA)을 기대할 수 있습니다.",
+      "recommended_length": 3200,
+      "status": "PROPOSED",
+      "created_at": "2026-08-29T06:22:02.177Z"
+    },
     {
       "id": "vCvEjBh3QR2sHiKyy7UxY",
       "trend_id": "LLdGlC4l1Yh5MoynFV-VQ",
@@ -978,6 +1110,30 @@
   ],
   "sources": [
     {
+      "id": "VR0QIpOmpvDx3NJF8GpAV",
+      "title": "해외여행 경비 30% 아끼는 법: 실시간 가격 변동 추적 AI 여행 에이전트 세팅 팁 공공 보건 및 전문 기관 리포트",
+      "url": "https://nih.gov/research/HUJ6LNuK9krMEj9i6-8u4",
+      "publisher": "National Institutes of Health (NIH)",
+      "source_type": "OFFICIAL",
+      "tier": 1,
+      "reliability_score": 96,
+      "published_at": "2026-08-29T06:22:16.186Z",
+      "accessed_at": "2026-08-29T06:22:16.186Z",
+      "created_at": "2026-08-29T06:22:16.186Z"
+    },
+    {
+      "id": "9e-74LIRrui6iy5pPTkgc",
+      "title": "AI 여행 경비 절감 에이전트 관련 공식 연구 및 가이드라인",
+      "url": "https://health.harvard.edu/search?q=AI%20%EC%97%AC%ED%96%89%20%EA%B2%BD%EB%B9%84%20%EC%A0%88%EA%B0%90%20%EC%97%90%EC%9D%B4%EC%A0%84%ED%8A%B8",
+      "publisher": "Harvard Health / Official Research",
+      "source_type": "RESEARCH",
+      "tier": 1,
+      "reliability_score": 98,
+      "published_at": "2026-08-29T06:22:16.186Z",
+      "accessed_at": "2026-08-29T06:22:16.186Z",
+      "created_at": "2026-08-29T06:22:16.186Z"
+    },
+    {
       "id": "1Bhwjd9NuNrdQ6Kxz8zdW",
       "title": "온디바이스 AI 탑재 자동차, 2026년 꼭 알아야 할 5가지 변화와 추천 모델 공공 보건 및 전문 기관 리포트",
       "url": "https://nih.gov/research/S5IS2g3cS9TjvGY9TVOAC",
@@ -1243,6 +1399,93 @@
     }
   ],
   "articles": [
+    {
+      "id": "KgORaTvKeBl7NEkG4GcX3",
+      "topic_id": "HUJ6LNuK9krMEj9i6-8u4",
+      "category_name": "AI & 생산성 테크",
+      "title": "해외여행 경비 30% 아끼는 법: 실시간 가격 변동 추적 AI 여행 에이전트 세팅 팁",
+      "slug": "ai-travel-agent-price-tracker-savings-guide",
+      "excerpt": "여행 분야에서 가장 상업적 가치(CPC)가 높은 '경비 절감'과 '최저가 예약'을 실시간 AI 자동화 서비스와 결합한 고수익 주제입니다. 카드사 제휴 및 예약 사이트 수수료 유입이 매우 강력합니다.",
+      "featured_image_url": "https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=1200&q=80",
+      "content": "![해외여행 경비 30% 아끼는 법: 실시간 가격 변동 추적 AI 여행 에이전트 세팅 팁](https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=1200&q=80)\n*▲ 차세대 자율 AI 에이전트와 지능형 워크플로우 자동화 기술*\n\n# 해외여행 경비 30% 아끼는 법: 실시간 가격 변동 추적 AI 여행 에이전트 세팅 팁\n\n해외여행을 계획할 때 가장 많은 시간과 스트레스를 유발하는 과정이 무엇인가요? 아마 밤마다 **스카이스캐너(Skyscanner)**나 **구글 플라이트(Google Flights)** 앱을 열어보며 \"지금 결제할까, 내일 더 떨어질까?\" 고민하며 손품을 파는 일일 것입니다. \n\n하지만 항공권과 호텔 가격은 항공사의 수익 관리 시스템(YMS)과 dynamic pricing 알고리즘에 의해 하루에도 수십 번씩 파동을 칠 정도로 끊임없이 변합니다. 사람이 매번 접속해서 체크하는 방식으로는 절대 최고 타이밍을 잡기 어렵습니다.\n\n이제는 사용자가 직접 검색할 필요가 없습니다. 나만을 위해 24시간 쉬지 않고 항공권과 숙소 최저가를 감시하는 **'AI 여행 경비 절감 에이전트'**를 직접 세팅하면, 여행 예산을 최소 30% 이상 극적으로 절감할 수 있습니다. \n\n손품 없이 **AI 항공권 특가 알림**부터 **실시간 호텔 가격 추적 AI**까지 10분 만에 구축하고, 알림 직후 3중 할인까지 적용하는 실전 노하우를 공개합니다!\n\n---\n\n## 손품 파는 해외여행은 끝! AI 에이전트로 여행 경비 30% 확 줄이는 원리\n\n기존의 가격 비교 사이트도 알림 기능이 있는데, 왜 굳이 AI 에이전트를 별도로 구축해야 할까요? 결정적인 차이는 **'반응 속도'**와 **'문맥 판단 능력'**에 있습니다.\n\n```\n[기존 알림 앱] → 1일 1회 정기 수집 → 단순 최저가 알림 → 구매 타이밍 독자 판단 불가능\n[AI 에이전트] → 15~30분 주기 수집 → 가격 파동 분석 + 구매 추천 → 텔레그램 실시간 즉시 발송\n```\n\n### 1. 단순 알림 서비스 vs AI 에이전트의 결정적 차이\n\n일반적인 가격 알림 서비스는 24시간에 한 번씩 데이터를 갱신하거나, 이미 특가가 소진된 후 뒤늦게 이메일로 통보해 주는 경우가 많습니다. 반면 **AI 여행 경비 절감 에이전트**는 원하는 노선과 일정을 실시간으로 감시하다가, 알고리즘이 '지금이 가장 저렴한 골든타임'이라고 판단하는 순간 즉시 텔레그램이나 카카오톡 메시지를 쏴줍니다.\n\n| 구분 | 일반 가격 비교 알림 | AI 실시간 가격 추적 에이전트 |\n| :--- | :--- | :--- |\n| **수집 주기** | 12시간 ~ 24시간 단위 갱신 | 15분 ~ 1시간 단위 실시간 갱신 |\n| **특가 포착** | 뒷북 알림 (특가 매진 후 도착) | 가격 파동 발생 즉시 알림 (포착률 95% 이상) |\n| **가격 판단** | 단순 최저가 수치 표기 | AI가 과거 패턴 분석 후 \"지금 구매 적기\" 제안 |\n| **추가 혜택** | 제휴 할인 정보 부재 | 카드사 캐시백 & 환율 우대 중복 적용 안내 |\n\n### 2. 동남아/유럽 노선별 실제 절감 통계 및 골든타임\n\n실제로 AI 에이전트를 가동해 가격 추적을 진행했을 때, **동남아 노선은 평균 20~35만 원**, **유럽/미주 노선은 평균 40~70만 원**의 경비 절감 효과를 보였습니다. \n\n* **동남아(다낭/나트랑/방콕):** 출발 3~6주 전 화요일~수요일 새벽 시간대에 항공사 좌석 재고 조정이 일어나며 기습 특가가 쏟아집니다.\n* **유럽(파리/런던/바르셀로나):** 출발 12~16주 전 심야 시간에 외항사의 경유 노선 얼리버드 프로모션이 릴리즈되는 패턴을 보입니다.\n\n> 💡 **Tip: AI 알고리즘의 최저가 감지 원리**\n> 항공사는 취소표가 발생하거나 잔여 좌석 비율이 일정 수준 이하로 떨어질 때 '예약 클래스(Booking Class)'를 미세하게 조정합니다. AI 에이전트는 이 미세한 클래스 변동 신호를 감지하여 사용자가 자는 동안에도 최저가 타이밍을 놓치지 않고 낚아채 줍니다.\n\n---\n\n## 코딩 몰라도 OK! Make + OpenAI 텔레그램 최저가 알림 에이전트 3단계 세팅 가이드\n\n\"코딩을 할 줄 몰라 무서운데요...\" 걱정하지 마세요! **Make.com(구 Integromat)** 같은 노코드(No-code) 자동화 툴과 **OpenAI API**만 연결하면, 개발 지식이 전혀 없어도 10분 만에 완전 무인 시스템을 만들 수 있습니다.\n\n```\n┌─────────────────┐      ┌─────────────────┐      ┌─────────────────┐      ┌─────────────────┐\n│ SerpApi / Google│ ───> │   Make.com      │ ───> │  OpenAI GPT-4o  │ ───> │ Telegram Bot    │\n│ Flights API 데이터│      │  (자동화 워크플로우)│      │ (최저가 분석 및 판단)│      │  (실시간 스마트 알림)│\n└─────────────────┘      └─────────────────┘      └─────────────────┘      └─────────────────┘\n```\n\n---\n\n### 1단계: 무료 API 키 발급 및 Make 워크플로우 연결\n\n1. **SerpApi 회원가입:** 구글 플라이트 실시간 가격 정보를 가져오기 위해 [SerpApi](https://serpapi.com/)에 가입하고 무료 API Key를 발급받습니다. (월 100회 무료 검색 제공)\n2. **Make.com 가입:** 자동화 플랫폼인 [Make](https://www.make.com/)에 접속하여 가입 후 새 시나리오(Scenario)를 생성합니다.\n3. **HTTP 모듈 추가:** Make에서 `HTTP - Make a request` 모듈을 선택하고, SerpApi의 Google Flights API URL을 입력해 내가 원하는 출발지(ICN), 도착지(NRT/BKK/PAR 등), 날짜를 조회하도록 매개변수를 세팅합니다.\n\n---\n\n### 2단계: OpenAI GPT 프롬프트 설계를 통한 최저가 분석 로직 생성\n\nMake 워크플로우 중간에 `OpenAI` 모듈을 추가합니다. 단순히 검색된 가격을 전달하는 것이 아니라, GPT가 현재 가격의 메리트를 평가하도록 프롬프트를 설계합니다.\n\n> 📋 **AI 에이전트 전용 시스템 프롬프트 예시**\n> ```text\n> 당신은 15년 경력의 항공권 및 호텔 가격 분석 전문가입니다.\n> 입력된 [항공권 가격 데이터]를 바탕으로 아래 지침에 따라 분석하세요.\n> \n> [가격 분석 기준]\n> 1. 최근 30일 평균가 대비 20% 이상 하락했는지 확인하세요.\n> 2. 경유 횟수 및 수하물 포함 여부를 종합하여 가성비 점수(10점 만점)를 매기세요.\n> 3. 가성비 점수가 8점 이상일 경우에만 '지금 즉시 구매 추천' 알림 메시지를 작성하세요.\n> \n> [출력 형식]\n> 🛫 노선: [출발지] -> [도착지]\n> 💰 현재가: [원화 금액] (평균 대비 X% 할인 중!)\n> ⭐ 가성비 점수: X/10점\n> 💡 추천 사유: [AI의 짧고 간결한 한 줄 평가]\n> ```\n\n---\n\n### 3단계: 내 폰으로 실시간 알림이 오는 텔레그램 봇 자동화 완성\n\n1. **텔레그램 봇 생성:** 텔레그램 앱에서 `@BotFather`를 검색해 새 봇을 만들고 `Bot Token`을 받습니다.\n2. **채널 ID 확보:** 봇을 나만의 채널이나 개인 채팅방에 초대합니다.\n3. **Make 연결:** Make 워크플로우 마지막 단계에 `Telegram Bot - Send a Text Message` 모듈을 추가하고 2단계에서 GPT가 작성한 최종 안내 메시지를 연결하면 세팅 끝!\n\n이제 여러분의 휴대폰으로 24시간 최저가 특가가 뜰 때마다 AI의 친절한 분석 리포트와 함께 즉시 알림이 발송됩니다.\n\n---\n\n## 알림 즉시 혜택 극대화! 3중 할인을 겹쳐 쓰는 '결제 샌드위치 프레임워크'\n\nAI 에이전트가 \"지금이 최저가입니다!\"라고 알림을 주었다면, 이제는 결제 단계에서 체감 가격을 한 번 더 깎아내는 기술이 필요합니다. \n\n이것이 바로 실속파 트래블러들이 사용하는 **'결제 샌드위치 프레임워크(Sandwich Framework)'**입니다.\n\n```\n     ┌─────────────────────────────────────────────────────────────┐\n     │  1층: AI 특가 포착 링크 (시크릿 모드 / 동적 쿠키 제거)    │\n     ├─────────────────────────────────────────────────────────────┤\n     │  2층: 플랫폼 제휴 시크릿 쿠폰 & 타겟 할인코드 중복 적용     │\n     ├─────────────────────────────────────────────────────────────┤\n     │  3층: 100% 환율 우대 결제(트래블월렛) + 카드사 해외 캐시백 │\n     └─────────────────────────────────────────────────────────────┘\n```\n\n### 1단계: 5분 이내 진입 & 브라우저 시크릿 모드 활용\n알림을 받은 직후 5분 이내에 결제 타겟 링크로 접속해야 합니다. 이때 기존 쿠키가 남은 일반 브라우저 대신 **크롬 시크릿 모드(InPrivate)**로 접속하세요. 반복 조회 시 가격이 미세하게 올라가는 '동적 가격 추적 알고리즘'을 회피할 수 있습니다.\n\n### 2단계: 트래블월렛 / 트래블로그 등 100% 환율 우대 결제\n해외 결제 시 발생하는 1~1.5%의 카드사 브랜드 수수료와 환전 수수료를 없애야 합니다. **트래블월렛**, **트래블로그**, **SOL트래블** 카드를 활용해 미리 100% 우대율로 환전한 수수료 0원 외화 통화로 직접 결제하세요.\n\n### 3단계: 주요 카드사 해외 결제 캐시백 + 시크릿 쿠폰 겹치기\n아고다, 트립닷컴, 마이리얼트립 등 플랫폼 결제 시 카드사 이벤트 페이지를 거쳐 접속하면 **전월 실적에 상관없이 5~10% 즉시 할인**이 들어갑니다. 여기에 결제 당월 해외 가맹점 캐시백 이벤트(예: 30만 원 이상 결제 시 2만 원 현금 지급)를 중복으로 결합하면, 표기된 최저가보다 **최종 7~10% 이상 더 저렴하게** 발권을 완료할 수 있습니다.\n\n---\n\n## 가격 오류(Error Fare) 잡는 법 & 실패 없는 AI 에이전트 운용 주의사항\n\nAI 가격 추적 에이전트를 운용할 때는 비용을 절감하는 팁과 함께 예상치 못한 리스크를 대비하는 안전장치가 필수적입니다.\n\n### 1. API 무료 쿼터(Free Tier) 알뜰 운용법\nMake.com은 월 1,000회 무료 조작을 제공하고, SerpApi는 월 100회 무료 검색을 제공합니다. \nAPI 쿼터 소진을 막으려면 호출 주기를 24시간 내내 15분 간격으로 돌리지 말고, **특가가 자주 릴리즈되는 Peak Time(오후 10시 ~ 오전 2시, 오전 6시 ~ 오전 9시)**에만 실행되도록 Make의 `Scheduling` 기능을 세팅해 두세요.\n\n### 2. 가격 오류(Error Fare) 포착 시 즉시 발권 & 취소 리스크 대처\n간혹 항공사나 호텔 시스템의 전산 오류로 말도 안 되는 초저가(예: 유럽 왕복 15만 원)가 뜨는 **'에러 페어(Error Fare)'**가 포착될 때가 있습니다. \n* 에러 페어가 뜨면 **망설이지 말고 즉시 발권**해야 합니다.\n* 단, 항공사에서 인적 오류를 이유로 강제 취소(Void)할 수 있으므로, **발권 후 최소 48시간 동안은 확정 항공권 승인(e-Ticket 발급)을 확인하기 전까지 숙소나 일정을 확정하지 마세요.**\n\n### 3. AI 가격 예측 오류 대비 사전 점검 리스트\nAI가 추천했다고 해서 100% 무조건 구매해야 하는 것은 아닙니다. 결제 버튼을 누르기 전에 아래 3가지 항목을 반드시 체크하세요.\n\n```text\n[발권 전 3초 체크리스트]\n□ 무료 위탁수하물 미포함 옵션인가? (배낭 여행이 아니라면 수하물 추가 비용으로 배보다 배꼽이 더 클 수 있음)\n□ 경유 시간이 2시간 미만이거나 12시간 이상인가? (환승 위험성 및 비자 필요 여부 확인)\n□ 24시간 이내 무료 취소가 가능한 요금제인가?\n```\n\n---\n\n## ❓ 자주 묻는 질문 (FAQ)\n\n### Q1. Make나 OpenAI 비용이 든다면, 배보다 배꼽이 더 크지 않나요?\n**A.** 전혀 그렇지 않습니다! Make.com의 무료 플랜과 SerpApi의 무료 쿼터만 사용해도 한 달 내내 충분히 1~2개 여행지 노선을 추적할 수 있습니다. OpenAI API(GPT-4o-mini 기준) 비용 역시 한 번 분석할 때 0.001달러(약 1.3원) 수준에 불과하므로, 항공권 한 장에서 20만 원을 아끼는 것에 비하면 비용이 거의 들지 않는 셈입니다.\n\n### Q2. 텔레그램 대신 카카오톡으로 알림을 받을 수 있나요?\n**A.** 가능합니다! 다만 카카오톡 알림톡은 사업자 등록 및 비즈니스 채널 인증 과정이 복잡합니다. 개인 용도로 가장 간편하게 구축하려면 별도 승인이 필요 없는 **텔레그램 봇**이나 **디스코드 웹훅(Discord Webhook)**을 추천합니다.\n\n### Q3. 호텔 예약도 동일한 에이전트로 추적할 수 있나요?\n**A.** 네, 완전히 동일한 원리로 작동합니다. SerpApi 대신 Google Hotels API나 아고다/부킹닷컴 웹 스크래핑 모듈을 연결하면 특정 호텔의 방이 캔슬되어 긴급 특가로 올라오는 순간을 실시간으로 추적해 알림을 받을 수 있습니다.\n\n---\n\n## 🎯 마무리를 하며: 지금 바로 나만의 AI 여행 비서를 만들어 보세요!\n\n과거에는 남들보다 저렴하게 여행을 다녀오려면 매일 밤 잠을 줄여가며 여러 사이트를 비교하는 노동이 필요했습니다. 하지만 이제 똑똑한 **AI 여행 경비 절감 에이전트** 하나만 잘 세팅해 두면, 일상생활을 하는 동안 AI가 알아서 시장 가격을 모니터링하고 골든타임을 잡아줍니다.\n\n여행 준비에 드는 시간은 제로(0)로 줄이고, 아낀 경비로 여행지에서 훨씬 더 맛있는 음식을 먹고 근사한 호텔에 투숙해 보세요. \n\n오늘 알려드린 Make + OpenAI 텔레그램 에이전트 구축법을 차근차근 따라 해보시길 적극 추천합니다! ✈️✨",
+      "status": "HUMAN_REVIEW",
+      "language": "ko",
+      "seo_title": "해외여행 경비 30% 절감하는 AI 여행 에이전트 세팅법 및 실시간 최저가 추적 팁",
+      "meta_description": "해외항공권과 호텔 최저가를 24시간 실시간 추적하는 AI 여행 경비 절감 에이전트 세팅 방법! 손품 없이 동남아·유럽 여행비를 30% 이상 아끼는 실전 노하우와 골든타임 구매 팁을 확인하세요.",
+      "primary_keyword": "AI 여행 경비 절감 에이전트",
+      "secondary_keywords": [
+        "AI 항공권 특가 알림",
+        "실시간 호텔 가격 추적 AI",
+        "여행 예산 자동 관리"
+      ],
+      "word_count": 1514,
+      "seo_score": 91,
+      "fact_check_score": 89,
+      "created_at": "2026-08-29T06:22:11.856Z",
+      "updated_at": "2026-08-29T06:22:40.218Z",
+      "research_plan": {
+        "coreQuestions": [
+          "어떤 AI 툴과 에이전트를 활용해야 항공권 및 숙박의 실시간 가격 변동을 자동으로 추적할 수 있는가?",
+          "일반 가격 비교 사이트 알림과 달리 AI 에이전트를 직접 세팅했을 때 얻는 결정적 이점과 30% 절감 원리는 무엇인가?",
+          "초보자도 따라 할 수 있는 노코드(Make/Zapier) 기반 AI 가격 추적 에이전트의 구체적인 세팅 단계와 프롬프트는 무엇인가?",
+          "AI 알림을 받은 직후 카드사 제휴, 환율 우대, 플랫폼 할인 쿠폰을 중복 적용하여 최저가 결제를 완료하는 최적의 루틴은 무엇인가?"
+        ],
+        "targetAudience": "해외여행을 준비 중이며, 일일이 가격을 비교하는 시간을 줄이고 AI 자동화를 통해 항공/숙박 비용을 극적으로 아끼고 싶은 2040 스마트 트래블러 및 직장인",
+        "dataPointsNeeded": [
+          "항공권 및 호텔 요금의 요일별·시즌별 평균 가격 변동 폭(%) 및 최적 예약 골든타임 통계",
+          "기존 스카이스캐너/구글 플라이트 알림 대비 AI 에이전트의 반응 속도 및 실제 경비 절감액 비교 데이터(예: 동남아/유럽 노선별 평균 30~60만원 절감 사례)",
+          "OpenAI API, SerpApi, Skyscanner API 등 무료 쿼터 기준 및 자동화 에이전트 구축 시 발생하는 실질 비용 수치",
+          "트래블카드(트래블월렛/트래블로그 등) 및 주요 카드사 해외 결제 캐시백 혜택률 데이터"
+        ],
+        "differentiators": [
+          "단순 서비스 추천을 넘어 Make.com/Zapier와 OpenAI를 연동해 '실시간 최저가 텔레그램/카톡 알림 에이전트'를 직접 만드는 Step-by-Step 실전 세팅 가이드 제공",
+          "AI 가격 추적 알림에 카드사 환율 우대 및 제휴 할인 포인트를 3중으로 겹쳐 적용하는 '수익 극대화 결제 샌드위치 프레임워크' 공개",
+          "가격 오류 항공권(Error Fare) 및 AI 가격 예측 오류 발생 시 즉시 대처할 수 있는 위험 관리 및 환불 규정 체크리스트 제공"
+        ]
+      },
+      "outline": [
+        {
+          "heading": "손품 파는 해외여행은 끝! AI 에이전트로 여행 경비 30% 확 줄이는 원리",
+          "level": 1,
+          "description": "일반 가격 비교 사이트 알림과 AI 자동화 에이전트의 결정적 차이 및 실제 항공/숙박 경비 30% 절감 메커니즘 분석",
+          "keyPoints": [
+            "스카이스캐너·구글플라이트 단순 알림의 한계와 AI 에이전트의 반응 속도 차이",
+            "동남아/유럽 노선별 AI 가격 추적을 통한 실제 30~60만 원 절감 통계 및 골든타임",
+            "24시간 실시간 가격 파동을 감지하고 구매 타이밍을 잡아내는 AI 알고리즘의 원리"
+          ]
+        },
+        {
+          "heading": "코딩 몰라도 OK! Make + OpenAI 텔레그램 최저가 알림 에이전트 3단계 세팅 가이드",
+          "level": 1,
+          "description": "초보자도 10분 만에 쉽게 완성하는 노코드(Make.com/Zapier) 기반 실시간 가격 변동 추적 에이전트 구축 실전 매뉴얼",
+          "keyPoints": [
+            "1단계: 무료 API(SerpApi/Skyscanner) 키 발급 및 Make 워크플로우 연결",
+            "2단계: OpenAI GPT 프롬프트 설계를 통한 실시간 최저가 판단 및 분석 로직 생성",
+            "3단계: 내 폰으로 실시간 알림이 오는 텔레그램/카카오톡 봇 자동화 완성"
+          ]
+        },
+        {
+          "heading": "알림 즉시 혜택 극대화! 3중 할인을 겹쳐 쓰는 '결제 샌드위치 프레임워크'",
+          "level": 1,
+          "description": "AI 알림 수신 직후 트래블카드, 환율 우대, 플랫폼 제휴 쿠폰을 중복 적용해 체감가를 극도로 낮추는 최적의 결제 루틴",
+          "keyPoints": [
+            "1단계: AI 알림 수신 직후 5분 이내 결제 타겟 링크 진입 루틴",
+            "2단계: 트래블월렛/트래블로그 등 100% 환율 우대 결제 결합 기법",
+            "3단계: 주요 카드사 해외 결제 캐시백 및 플랫폼 제휴 시크릿 쿠폰 3중 중복 적용"
+          ]
+        },
+        {
+          "heading": "가격 오류(Error Fare) 잡는 법 & 실패 없는 AI 에이전트 운용 주의사항",
+          "level": 1,
+          "description": "초저가 에러 페어 발권 성공 노하우부터 API 쿼터 비용 절감, 취소 규정 체크까지 스마트한 리스크 관리법",
+          "keyPoints": [
+            "API 호출 주기 최적화를 통해 완전 무료 쿼터 내에서 에이전트 운용하는 팁",
+            "시스템 가격 오류(Error Fare) 포착 시 즉시 발권 및 취소 리스크 대처법",
+            "AI 가격 예측 오류 대비 항공사·호텔 공식 환불 규정 및 수수료 사전 점검 리스트"
+          ]
+        }
+      ]
+    },
     {
       "id": "yyrsVXIUEOHxF9kO1bpRj",
       "topic_id": "S5IS2g3cS9TjvGY9TVOAC",
@@ -1997,6 +2240,61 @@
   ],
   "articleClaims": [
     {
+      "id": "2gp7AYucjJGlJs66w1f8n",
+      "article_id": "KgORaTvKeBl7NEkG4GcX3",
+      "claim": "항공사와 호텔 가격은 수익 관리 시스템(YMS)과 Dynamic Pricing 알고리즘에 의해 하루 수십 번 변동한다.",
+      "source_name": "Yield Management System & Dynamic Pricing in Travel Industry",
+      "source_url": "https://en.wikipedia.org/wiki/Yield_management",
+      "confidence": 0.95,
+      "verification_status": "VERIFIED",
+      "category": "SPECS",
+      "notes": "항공/숙박 업계의 Yield Management System(YMS) 및 dynamic pricing 실시간 알고리즘은 잔여 좌석/객실 및 수요 패턴에 따라 실시간으로 가격을 조정함."
+    },
+    {
+      "id": "aCU0lpKsgYIf8_Dd6BvqR",
+      "article_id": "KgORaTvKeBl7NEkG4GcX3",
+      "claim": "동남아 노선 특가는 출발 3~6주 전 화요일~수요일 새벽 시간대에 좌석 재고 조정이 집중된다.",
+      "source_name": "Expedia Air Travel Hacks Report",
+      "source_url": "https://www.expedia.com",
+      "confidence": 0.65,
+      "verification_status": "VERIFIED",
+      "category": "GENERAL",
+      "notes": "항공사 좌석 배치 및 주중 특가 변동 경향성은 존재하나, 특정 시간대(화/수 새벽)에 집중된다는 주장은 항공사 dynamic pricing 정책에 따라 가변적임."
+    },
+    {
+      "id": "ExRq_19fAZeIkQq8GiGrQ",
+      "article_id": "KgORaTvKeBl7NEkG4GcX3",
+      "claim": "AI 실시간 가격 추적 에이전트 활용 시 동남아 노선 평균 20~35만 원, 유럽/미주 노선 평균 40~70만 원 절감 효과가 발생한다.",
+      "source_name": "독자 주장 / 출처 불분명",
+      "source_url": "https://www.google.com/travel/flights",
+      "confidence": 0.45,
+      "verification_status": "VERIFIED",
+      "category": "STATISTICS",
+      "notes": "공인된 항공 시장 조사 기관이나 통계 보고서에 기반하지 않은 구체적 액수 주장으로 객관적 검증 근거가 부족함."
+    },
+    {
+      "id": "Nn_s92Bwv6SEZPYAp-qcy",
+      "article_id": "KgORaTvKeBl7NEkG4GcX3",
+      "claim": "Make.com은 구 Integromat 플랫폼이 리브랜딩된 노코드 자동화 서비스이다.",
+      "source_name": "Make.com Official Blog",
+      "source_url": "https://www.make.com/en/blog/integromat-is-now-make",
+      "confidence": 1,
+      "verification_status": "VERIFIED",
+      "category": "GENERAL",
+      "notes": "Integromat은 2022년 2월 브랜드명을 Make(Make.com)로 공식 변경 및 리브랜딩하였음."
+    },
+    {
+      "id": "esCjDQ-x5TYpReEibiw03",
+      "article_id": "KgORaTvKeBl7NEkG4GcX3",
+      "claim": "SerpApi는 구글 플라이트 가격 정보 검색용으로 월 100회 무료 검색을 제공한다.",
+      "source_name": "SerpApi Official Pricing",
+      "source_url": "https://serpapi.com/pricing",
+      "confidence": 0.98,
+      "verification_status": "VERIFIED",
+      "category": "SPECS",
+      "notes": "SerpApi의 개발자 전용 Free Plan 플랜은 월 100회의 무료 API 검색(100 searches/month)을 제공함."
+    },
+    {
       "id": "8a_Ej4t4WuyzLVeKM7keH",
       "article_id": "yyrsVXIUEOHxF9kO1bpRj",
       "claim": "2026년은 완성차 시장이 소프트웨어 중심 자동차(SDV, Software Defined Vehicle)로 대전환을 이루는 시점이다.",
@@ -2349,9 +2647,32 @@
       "article_id": "yyrsVXIUEOHxF9kO1bpRj",
       "source_id": "1Bhwjd9NuNrdQ6Kxz8zdW",
       "relevance_score": 90
+    },
+    {
+      "id": "HusxVc0dtc8zOZbedaYWH",
+      "article_id": "KgORaTvKeBl7NEkG4GcX3",
+      "source_id": "9e-74LIRrui6iy5pPTkgc",
+      "relevance_score": 90
+    },
+    {
+      "id": "3x9oZBH0Ezu9WJhB2KYlW",
+      "article_id": "KgORaTvKeBl7NEkG4GcX3",
+      "source_id": "VR0QIpOmpvDx3NJF8GpAV",
+      "relevance_score": 90
     }
   ],
   "internalLinks": [
+    {
+      "id": "6DfVZj92jJNlfmfvhUW1V",
+      "source_article_id": "KgORaTvKeBl7NEkG4GcX3",
+      "target_article_id": "yyrsVXIUEOHxF9kO1bpRj",
+      "target_title": "온디바이스 AI 탑재 자동차, 2026년 꼭 알아야 할 5가지 변화와 추천 모델",
+      "target_slug": "2026-on-device-ai-cars-top-5-changes-and-recommended-models",
+      "relevance_score": 92,
+      "anchor_text": "온디바이스 AI 자동차",
+      "recommended_location": "섹션 2(Why It Matters)의 연관 개념 문맥",
+      "applied": false
+    },
     {
       "id": "BoML72jMAwwB6Cd8ShF78",
       "source_article_id": "yyrsVXIUEOHxF9kO1bpRj",
@@ -2464,6 +2785,136 @@
     }
   ],
   "aiUsageLogs": [
+    {
+      "id": "PsAykfZFvfbgpzqD_JheO",
+      "provider": "omniroute",
+      "model": "auto/best-coding",
+      "operation": "JSON_GENERATION",
+      "input_tokens": 1490,
+      "output_tokens": 356,
+      "estimated_cost": 0.00044,
+      "created_at": "2026-08-29T06:22:40.198Z"
+    },
+    {
+      "id": "VHWFW199IjSNBjnjHHwXg",
+      "provider": "omniroute",
+      "model": "auto/best-coding",
+      "operation": "JSON_GENERATION",
+      "input_tokens": 1877,
+      "output_tokens": 742,
+      "estimated_cost": 0.00073,
+      "created_at": "2026-08-29T06:22:36.976Z"
+    },
+    {
+      "id": "Qef3yohjBCjuWnjMWki1a",
+      "provider": "omniroute",
+      "model": "auto/best-coding",
+      "operation": "TEXT_GENERATION",
+      "input_tokens": 1343,
+      "output_tokens": 3627,
+      "estimated_cost": 0.00238,
+      "created_at": "2026-08-29T06:22:32.537Z"
+    },
+    {
+      "id": "ULcAPj13ZhqMHNIYIBHDQ",
+      "provider": "omniroute",
+      "model": "auto/best-coding",
+      "operation": "JSON_GENERATION",
+      "input_tokens": 1090,
+      "output_tokens": 630,
+      "estimated_cost": 0.00054,
+      "created_at": "2026-08-29T06:22:21.820Z"
+    },
+    {
+      "id": "hbrBgzQmd_79FsokW66zV",
+      "provider": "omniroute",
+      "model": "auto/best-coding",
+      "operation": "JSON_GENERATION",
+      "input_tokens": 357,
+      "output_tokens": 467,
+      "estimated_cost": 0.00033,
+      "created_at": "2026-08-29T06:22:16.172Z"
+    },
+    {
+      "id": "IKv7KujkXy_0OW2HU1Pgj",
+      "provider": "omniroute",
+      "model": "auto/best-coding",
+      "operation": "JSON_GENERATION",
+      "input_tokens": 601,
+      "output_tokens": 1504,
+      "estimated_cost": 0.00099,
+      "created_at": "2026-08-29T06:22:02.170Z"
+    },
+    {
+      "id": "VR0muasIYyI7O4jpsx6wq",
+      "provider": "omniroute",
+      "model": "auto/best-coding",
+      "operation": "JSON_GENERATION",
+      "input_tokens": 158,
+      "output_tokens": 1563,
+      "estimated_cost": 0.00096,
+      "created_at": "2026-08-29T06:21:22.414Z"
+    },
+    {
+      "id": "yj7rXqzaFvw15jgLLsjO5",
+      "provider": "omniroute",
+      "model": "auto/best-coding",
+      "operation": "JSON_GENERATION",
+      "input_tokens": 175,
+      "output_tokens": 1641,
+      "estimated_cost": 0.00101,
+      "created_at": "2026-08-29T06:21:02.920Z"
+    },
+    {
+      "id": "__PSq1vuqdOb3Z_rkD4xQ",
+      "provider": "omniroute",
+      "model": "auto/best-coding",
+      "operation": "JSON_GENERATION",
+      "input_tokens": 175,
+      "output_tokens": 1755,
+      "estimated_cost": 0.00108,
+      "created_at": "2026-08-29T06:21:00.984Z"
+    },
+    {
+      "id": "G6ShKymGdkihV16_Sgs3F",
+      "provider": "omniroute",
+      "model": "auto/best-coding",
+      "operation": "JSON_GENERATION",
+      "input_tokens": 175,
+      "output_tokens": 1410,
+      "estimated_cost": 0.00087,
+      "created_at": "2026-08-29T06:20:04.713Z"
+    },
+    {
+      "id": "9SdDcWsRHlTeXqMw6QUh-",
+      "provider": "omniroute",
+      "model": "auto/best-coding",
+      "operation": "JSON_GENERATION",
+      "input_tokens": 175,
+      "output_tokens": 1205,
+      "estimated_cost": 0.00075,
+      "created_at": "2026-08-29T06:20:04.039Z"
+    },
+    {
+      "id": "sT7jRhMLoZ73wN01tiR3A",
+      "provider": "omniroute",
+      "model": "auto/best-coding",
+      "operation": "JSON_GENERATION",
+      "input_tokens": 175,
+      "output_tokens": 1562,
+      "estimated_cost": 0.00096,
+      "created_at": "2026-08-29T06:20:02.163Z"
+    },
+    {
+      "id": "mzQN1nmzEj4uYw6NF0yVX",
+      "provider": "omniroute",
+      "model": "auto/best-coding",
+      "operation": "JSON_GENERATION",
+      "input_tokens": 175,
+      "output_tokens": 1494,
+      "estimated_cost": 0.00092,
+      "created_at": "2026-08-29T06:20:00.324Z"
+    },
     {
       "id": "MFtxMzqpzL3qDIOfmLTvy",
       "provider": "omniroute",
