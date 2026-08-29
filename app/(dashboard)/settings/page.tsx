@@ -353,32 +353,43 @@ export default function SettingsPage() {
           </div>
         </div>
 
-        <div className="flex items-center justify-between pt-2 border-t border-slate-100 dark:border-slate-800">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pt-2 border-t border-slate-100 dark:border-slate-800">
           <div className="text-xs">
             {wpTestStatus === "testing" && <span className="text-amber-600 animate-pulse">워드프레스 서버 연결 테스트 중...</span>}
             {wpTestStatus === "success" && <span className="text-emerald-600 font-semibold">✅ 워드프레스 연결 성공! ({wpTestResult})</span>}
             {wpTestStatus === "error" && <span className="text-rose-600 font-semibold">❌ 워드프레스 연결 실패: {wpTestResult}</span>}
           </div>
-          <Button
-            size="sm"
-            variant="outline"
-            onClick={handleTestWordPress}
-            disabled={wpTestStatus === "testing"}
-            className="text-xs gap-1.5"
-          >
-            <Globe className="h-3.5 w-3.5 text-blue-600" />
-            연결 테스트 (Test Connection)
-          </Button>
+          <div className="flex items-center gap-2">
+            <a
+              href="/api/auth/wordpress"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold bg-blue-600 hover:bg-blue-700 text-white shadow-sm transition-colors"
+            >
+              <Globe className="h-3.5 w-3.5" />
+              워드프레스 원클릭 계정 연동 (OAuth2)
+            </a>
+            <Button
+              size="sm"
+              variant="outline"
+              onClick={handleTestWordPress}
+              disabled={wpTestStatus === "testing"}
+              className="text-xs gap-1.5"
+            >
+              연결 테스트
+            </Button>
+          </div>
         </div>
 
         <div className="p-3 bg-blue-50/50 dark:bg-blue-950/20 border border-blue-100 dark:border-blue-900 rounded-lg text-xs text-blue-800 dark:text-blue-300 space-y-1">
-          <p className="font-semibold">💡 워드프레스 OAuth2 토큰 발급 1분 가이드:</p>
-          <ol className="list-decimal list-inside space-y-0.5 text-[11px] opacity-90">
-            <li><a href="https://developer.wordpress.com/apps/" target="_blank" rel="noopener noreferrer" className="underline font-bold">developer.wordpress.com/apps</a> 접속 후 새 App 생성</li>
-            <li>OAuth2 설정 후 생성된 <strong>Bearer Access Token</strong>을 복사하여 위 입력란 또는 <code className="bg-blue-100 dark:bg-blue-900 px-1 rounded">.env</code>에 입력합니다.</li>
-          </ol>
+          <p className="font-semibold">💡 워드프레스 개발자 앱 연동 안내:</p>
+          <p className="text-[11px] opacity-90">
+            위 <strong>[워드프레스 원클릭 계정 연동]</strong>을 누르시면 WordPress.com 로그인 화면에서 권한을 승인하는 즉시 <strong>토큰이 자동 발급되어 연동이 완료</strong>됩니다.
+          </p>
+          <p className="text-[11px] opacity-80">
+            * 워드프레스 앱 설정(<a href="https://developer.wordpress.com/apps/" target="_blank" rel="noopener noreferrer" className="underline font-bold">developer.wordpress.com/apps</a>)의 <strong>Redirect URLs</strong>에 <code className="bg-blue-100 dark:bg-blue-900 px-1 rounded">http://localhost:3000/api/auth/wordpress/callback</code> 또는 <code className="bg-blue-100 dark:bg-blue-900 px-1 rounded">https://blog-ebon-nine-61.vercel.app/api/auth/wordpress/callback</code>이 등록되어 있어야 합니다.
+          </p>
         </div>
       </Card>
+
 
       {/* Naver Blog Integration Config */}
       <Card className="p-6 space-y-4">
