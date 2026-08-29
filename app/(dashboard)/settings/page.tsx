@@ -38,6 +38,13 @@ export default function SettingsPage() {
     defaultArticleLength: 2500,
   });
 
+  const [wpConfig, setWpConfig] = useState({
+    siteId: "hanabird2.wordpress.com",
+    token: "",
+  });
+  const [wpTestStatus, setWpTestStatus] = useState<"idle" | "testing" | "success" | "error">("idle");
+  const [wpTestResult, setWpTestResult] = useState("");
+
   const [aiLogs, setAiLogs] = useState<AIUsageLog[]>([]);
   const [saving, setSaving] = useState(false);
   const [savedMessage, setSavedMessage] = useState(false);
@@ -48,6 +55,7 @@ export default function SettingsPage() {
       .then((d) => {
         if (d.settings?.scoring_weights) setWeights(d.settings.scoring_weights);
         if (d.settings?.ai_config) setAiConfig(d.settings.ai_config);
+        if (d.settings?.wordpress) setWpConfig(d.settings.wordpress);
       })
       .catch(console.error);
 
@@ -58,6 +66,33 @@ export default function SettingsPage() {
       })
       .catch(console.error);
   }, []);
+
+  async function handleTestWordPress() {
+    setWpTestStatus("testing");
+    setWpTestResult("");
+    try {
+      const res = await fetch("/api/settings/test-wordpress", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          siteId: wpConfig.siteId,
+          token: wpConfig.token,
+        }),
+      });
+      const data = await res.json();
+      if (data.success) {
+        setWpTestStatus("success");
+        setWpTestResult(`${data.siteName} (${data.siteUrl})`);
+      } else {
+        setWpTestStatus("error");
+        setWpTestResult(data.error || "인증에 실패했습니다.");
+      }
+    } catch (err: any) {
+      setWpTestStatus("error");
+      setWpTestResult(err.message || "연결 중 오류가 발생했습니다.");
+    }
+  }
+
 
   async function handleSaveSettings() {
     setSaving(true);
@@ -270,6 +305,81 @@ export default function SettingsPage() {
         </div>
       </Card>
 
+      {/* WordPress.com Integration Config */}
+      <Card className="p-6 space-y-4">
+        <div className="flex items-center justify-between">
+          <div>
+            <CardTitle className="text-base font-bold flex items-center gap-2">
+              <Globe className="h-5 w-5 text-blue-600" />
+              워드프레스 (WordPress.com) REST API 자동 발행 설정
+            </CardTitle>
+            <CardDescription className="text-xs">
+              원클릭으로 워드프레스에 포스팅을 즉시 발행(Publish)하는 OAuth2 REST API 연동
+            </CardDescription>
+          </div>
+          <Badge variant="outline" className="text-xs">
+            REST API v1.1
+          </Badge>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
+          <div className="space-y-1">
+            <label className="font-semibold text-slate-600 dark:text-slate-300">
+              워드프레스 사이트 ID / 도메인 (WP_SITE_ID)
+            </label>
+            <Input
+              value={wpConfig.siteId}
+              onChange={(e) => setWpConfig({ ...wpConfig, siteId: e.target.value })}
+              placeholder="예: hanabird2.wordpress.com 또는 사이트 숫자 ID"
+              className="text-xs font-mono"
+            />
+            <p className="text-[10px] text-slate-400">워드프레스 도메인 또는 사이트 ID (예: hanabird2.wordpress.com)</p>
+          </div>
+
+          <div className="space-y-1">
+            <label className="font-semibold text-slate-600 dark:text-slate-300">
+              워드프레스 액세스 토큰 (WP_ACCESS_TOKEN)
+            </label>
+            <Input
+              type="password"
+              value={wpConfig.token}
+              onChange={(e) => setWpConfig({ ...wpConfig, token: e.target.value })}
+              placeholder="WordPress.com OAuth2 Bearer Token 입력"
+              className="text-xs font-mono"
+            />
+            <p className="text-[10px] text-slate-400">
+              WordPress.com 개발자 콘솔에서 발급받은 OAuth2 Bearer 토큰
+            </p>
+          </div>
+        </div>
+
+        <div className="flex items-center justify-between pt-2 border-t border-slate-100 dark:border-slate-800">
+          <div className="text-xs">
+            {wpTestStatus === "testing" && <span className="text-amber-600 animate-pulse">워드프레스 서버 연결 테스트 중...</span>}
+            {wpTestStatus === "success" && <span className="text-emerald-600 font-semibold">✅ 워드프레스 연결 성공! ({wpTestResult})</span>}
+            {wpTestStatus === "error" && <span className="text-rose-600 font-semibold">❌ 워드프레스 연결 실패: {wpTestResult}</span>}
+          </div>
+          <Button
+            size="sm"
+            variant="outline"
+            onClick={handleTestWordPress}
+            disabled={wpTestStatus === "testing"}
+            className="text-xs gap-1.5"
+          >
+            <Globe className="h-3.5 w-3.5 text-blue-600" />
+            연결 테스트 (Test Connection)
+          </Button>
+        </div>
+
+        <div className="p-3 bg-blue-50/50 dark:bg-blue-950/20 border border-blue-100 dark:border-blue-900 rounded-lg text-xs text-blue-800 dark:text-blue-300 space-y-1">
+          <p className="font-semibold">💡 워드프레스 OAuth2 토큰 발급 1분 가이드:</p>
+          <ol className="list-decimal list-inside space-y-0.5 text-[11px] opacity-90">
+            <li><a href="https://developer.wordpress.com/apps/" target="_blank" rel="noopener noreferrer" className="underline font-bold">developer.wordpress.com/apps</a> 접속 후 새 App 생성</li>
+            <li>OAuth2 설정 후 생성된 <strong>Bearer Access Token</strong>을 복사하여 위 입력란 또는 <code className="bg-blue-100 dark:bg-blue-900 px-1 rounded">.env</code>에 입력합니다.</li>
+          </ol>
+        </div>
+      </Card>
+
       {/* Naver Blog Integration Config */}
       <Card className="p-6 space-y-4">
         <div className="flex items-center justify-between">
@@ -286,6 +396,7 @@ export default function SettingsPage() {
             SmartEditor ONE
           </Badge>
         </div>
+
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
           <div className="space-y-1">
