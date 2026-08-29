@@ -346,11 +346,33 @@ export class DefaultTrendProvider implements TrendProvider {
       // AI 실패 시 방대한 트렌드 풀에서 랜덤 셔플 & 최신 점수로 선별
     }
 
-    // 2. Fallback: 방대한 풀에서 셔플하여 매번 신선한 6~8개 트렌드 제공
-    const shuffled = [...EXTENSIVE_TREND_POOL].sort(() => 0.5 - Math.random());
-    const selected = shuffled.slice(0, 7);
+    // 2. Fallback & Local Selection: 카테고리별로 1개씩 골고루 섞어 완벽한 다양성 보장
+    const categories = Array.from(new Set(EXTENSIVE_TREND_POOL.map((t) => t.category_name)));
+    
+    // 카테고리 셔플
+    for (let i = categories.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [categories[i], categories[j]] = [categories[j], categories[i]];
+    }
 
-    return selected.map((c) => {
+    const selected: Array<Omit<Trend, "id" | "opportunity_score" | "created_at">> = [];
+
+    // 각 카테고리에서 무작위 1개씩 선택
+    for (const cat of categories) {
+      const itemsInCat = EXTENSIVE_TREND_POOL.filter((t) => t.category_name === cat);
+      if (itemsInCat.length > 0) {
+        const randomItem = itemsInCat[Math.floor(Math.random() * itemsInCat.length)];
+        selected.push(randomItem);
+      }
+    }
+
+    // 결과 목록 셔플 (Fisher-Yates)
+    for (let i = selected.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [selected[i], selected[j]] = [selected[j], selected[i]];
+    }
+
+    return selected.slice(0, 8).map((c) => {
       // 점수 약간의 무작위 변동으로 실시간 역동성 부여
       const randomized = {
         ...c,
@@ -370,4 +392,5 @@ export class DefaultTrendProvider implements TrendProvider {
 }
 
 export const trendProvider = new DefaultTrendProvider();
+
 
