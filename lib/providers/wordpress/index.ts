@@ -27,24 +27,46 @@ export interface WordPressProvider {
 
 export class WordPressAdapter implements WordPressProvider {
   name = "WordPress REST API";
-  private siteId = process.env.WP_SITE_ID || process.env.WORDPRESS_SITE_ID;
-  private token = process.env.WP_ACCESS_TOKEN || process.env.WORDPRESS_ACCESS_TOKEN;
-  private url = process.env.WP_URL || process.env.WORDPRESS_URL;
-  private username = process.env.WP_USERNAME || process.env.WORDPRESS_USERNAME;
-  private appPassword = process.env.WP_APP_PASSWORD || process.env.WORDPRESS_APP_PASSWORD;
+
+  private getSiteId() {
+    return process.env.WP_SITE_ID || process.env.WORDPRESS_SITE_ID;
+  }
+  private getToken() {
+    return process.env.WP_ACCESS_TOKEN || process.env.WORDPRESS_ACCESS_TOKEN;
+  }
+  private getUrl() {
+    return process.env.WP_URL || process.env.WORDPRESS_URL;
+  }
+  private getUsername() {
+    return process.env.WP_USERNAME || process.env.WORDPRESS_USERNAME;
+  }
+  private getAppPassword() {
+    return process.env.WP_APP_PASSWORD || process.env.WORDPRESS_APP_PASSWORD;
+  }
 
   isConnected(): boolean {
-    return Boolean((this.siteId && this.token) || (this.url && this.username && this.appPassword));
+    const siteId = this.getSiteId();
+    const token = this.getToken();
+    const url = this.getUrl();
+    const username = this.getUsername();
+    const appPassword = this.getAppPassword();
+    return Boolean((siteId && token) || (url && username && appPassword));
   }
 
   async createPost(payload: WordPressPostPayload): Promise<WordPressPostResponse> {
+    const siteId = this.getSiteId();
+    const token = this.getToken();
+    const url = this.getUrl();
+    const username = this.getUsername();
+    const appPassword = this.getAppPassword();
+
     // 1. WordPress.com OAuth Bearer Token 방식 (현재 계정)
-    if (this.siteId && this.token) {
-      const res = await fetch(`https://public-api.wordpress.com/rest/v1.1/sites/${this.siteId}/posts/new`, {
+    if (siteId && token) {
+      const res = await fetch(`https://public-api.wordpress.com/rest/v1.1/sites/${siteId}/posts/new`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${this.token}`,
+          Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify({
           title: payload.title,
@@ -68,9 +90,9 @@ export class WordPressAdapter implements WordPressProvider {
     }
 
     // 2. 자체 호스팅 WordPress Application Passwords 방식
-    if (this.url && this.username && this.appPassword) {
-      const authHeader = Buffer.from(`${this.username}:${this.appPassword}`).toString("base64");
-      const res = await fetch(`${this.url.replace(/\/$/, "")}/wp-json/wp/v2/posts`, {
+    if (url && username && appPassword) {
+      const authHeader = Buffer.from(`${username}:${appPassword}`).toString("base64");
+      const res = await fetch(`${url.replace(/\/$/, "")}/wp-json/wp/v2/posts`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -91,13 +113,7 @@ export class WordPressAdapter implements WordPressProvider {
       };
     }
 
-    // 미연동 시 mock
-    console.log("[Mock WordPress] Creating post:", payload.title);
-    return {
-      id: Math.floor(Math.random() * 10000) + 100,
-      link: `https://hanabird2.wordpress.com/${payload.slug || "post"}`,
-      status: payload.status,
-    };
+    throw new Error("워드프레스 설정(WP_SITE_ID, WP_ACCESS_TOKEN)이 누락되었습니다. .env를 확인해 주세요.");
   }
 
   async updatePost(id: number, payload: Partial<WordPressPostPayload>): Promise<WordPressPostResponse> {
@@ -118,4 +134,5 @@ export class WordPressAdapter implements WordPressProvider {
 }
 
 export const wpProvider = new WordPressAdapter();
+
 
