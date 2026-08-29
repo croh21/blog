@@ -1,3 +1,5 @@
+import { getSettings } from "@/lib/db";
+
 export interface WordPressPostPayload {
   title: string;
   content: string;
@@ -17,7 +19,7 @@ export interface WordPressPostResponse {
 
 export interface WordPressProvider {
   name: string;
-  isConnected(): boolean;
+  isConnected(): Promise<boolean> | boolean;
   createPost(payload: WordPressPostPayload): Promise<WordPressPostResponse>;
   updatePost(id: number, payload: Partial<WordPressPostPayload>): Promise<WordPressPostResponse>;
   publishPost(id: number): Promise<WordPressPostResponse>;
@@ -28,39 +30,41 @@ export interface WordPressProvider {
 export class WordPressAdapter implements WordPressProvider {
   name = "WordPress REST API";
 
-  private getSiteId() {
-    return process.env.WP_SITE_ID || process.env.WORDPRESS_SITE_ID;
-  }
-  private getToken() {
-    return process.env.WP_ACCESS_TOKEN || process.env.WORDPRESS_ACCESS_TOKEN;
-  }
-  private getUrl() {
-    return process.env.WP_URL || process.env.WORDPRESS_URL;
-  }
-  private getUsername() {
-    return process.env.WP_USERNAME || process.env.WORDPRESS_USERNAME;
-  }
-  private getAppPassword() {
-    return process.env.WP_APP_PASSWORD || process.env.WORDPRESS_APP_PASSWORD;
+  private async getCredentials() {
+    let siteId = process.env.WP_SITE_ID || process.env.WORDPRESS_SITE_ID || "hanabird2.wordpress.com";
+    let token = process.env.WP_ACCESS_TOKEN || process.env.WORDPRESS_ACCESS_TOKEN;
+
+    try {
+      const settings = await getSettings();
+      if (settings?.wordpress?.token) {
+        token = settings.wordpress.token;
+      }
+      if (settings?.wordpress?.siteId && settings.wordpress.siteId !== "0") {
+        siteId = settings.wordpress.siteId;
+      }
+    } catch {
+      // ignore
+    }
+
+    if (siteId === "0") siteId = "hanabird2.wordpress.com";
+
+    const url = process.env.WP_URL || process.env.WORDPRESS_URL;
+    const username = process.env.WP_USERNAME || process.env.WORDPRESS_USERNAME;
+    const appPassword = process.env.WP_APP_PASSWORD || process.env.WORDPRESS_APP_PASSWORD;
+
+    return { siteId, token, url, username, appPassword };
   }
 
-  isConnected(): boolean {
-    const siteId = this.getSiteId();
-    const token = this.getToken();
-    const url = this.getUrl();
-    const username = this.getUsername();
-    const appPassword = this.getAppPassword();
-    return Boolean((siteId && token) || (url && username && appPassword));
+  async isConnected(): Promise<boolean> {
+    const creds = await this.getCredentials();
+    return Boolean((creds.siteId && creds.token) || (creds.url && creds.username && creds.appPassword));
   }
 
   async createPost(payload: WordPressPostPayload): Promise<WordPressPostResponse> {
-    const siteId = this.getSiteId();
-    const token = this.getToken();
-    const url = this.getUrl();
-    const username = this.getUsername();
-    const appPassword = this.getAppPassword();
+    const { siteId, token, url, username, appPassword } = await this.getCredentials();
 
     // 1. WordPress.com OAuth Bearer Token 방식 (현재 계정)
+
     if (siteId && token) {
       const res = await fetch(`https://public-api.wordpress.com/rest/v1.1/sites/${siteId}/posts/new`, {
         method: "POST",

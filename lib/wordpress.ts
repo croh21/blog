@@ -44,6 +44,8 @@ export function markdownToHtml(md: string): string {
   return html;
 }
 
+import { getSettings } from "@/lib/db";
+
 export async function publishArticleToWordPress(article: {
   title: string;
   content: string;
@@ -54,8 +56,23 @@ export async function publishArticleToWordPress(article: {
   featuredImageUrl?: string;
   status?: "publish" | "draft";
 }): Promise<WordPressPublishResult> {
-  const siteId = process.env.WP_SITE_ID;
-  const token = process.env.WP_ACCESS_TOKEN;
+  let siteId = process.env.WP_SITE_ID || "hanabird2.wordpress.com";
+  let token = process.env.WP_ACCESS_TOKEN;
+
+  try {
+    const settings = await getSettings();
+    if (settings?.wordpress?.token) {
+      token = settings.wordpress.token;
+    }
+    if (settings?.wordpress?.siteId && settings.wordpress.siteId !== "0") {
+      siteId = settings.wordpress.siteId;
+    }
+  } catch {
+    // ignore
+  }
+
+  if (siteId === "0") siteId = "hanabird2.wordpress.com";
+
   const defaultStatus = (process.env.WP_POST_STATUS as "publish" | "draft") || "publish";
 
   if (!siteId || !token) {
@@ -65,6 +82,7 @@ export async function publishArticleToWordPress(article: {
       error: "WordPress 환경 설정(WP_SITE_ID, WP_ACCESS_TOKEN)이 누락되었습니다.",
     };
   }
+
 
   try {
     let postContent = markdownToHtml(article.content);
