@@ -93,14 +93,16 @@ function TrendsContent() {
   }
 
   const filteredTrends = trends.filter((t) => {
-    const matchesSearch =
-      t.title.toLowerCase().includes(search.toLowerCase()) ||
-      t.description.toLowerCase().includes(search.toLowerCase());
-    const matchesCat =
-      selectedCategory === "ALL" || t.category_name === selectedCategory;
-    const matchesScore = t.opportunity_score >= minScore;
+    if (!t) return false;
+    const titleStr = (t.title || "").toLowerCase();
+    const descStr = (t.description || "").toLowerCase();
+    const searchStr = (search || "").toLowerCase();
+    const matchesSearch = !searchStr || titleStr.includes(searchStr) || descStr.includes(searchStr);
+    const matchesCat = selectedCategory === "ALL" || t.category_name === selectedCategory;
+    const matchesScore = (t.opportunity_score ?? 0) >= minScore;
     return matchesSearch && matchesCat && matchesScore;
   });
+
 
   return (
     <div className="space-y-6">
