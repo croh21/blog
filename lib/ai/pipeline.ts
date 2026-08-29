@@ -28,7 +28,8 @@ export interface PipelineProgressCallback {
 export function getTopicCuratedImages(topic: Topic): { featured: string; inBody: string; featuredCaption: string; inBodyCaption: string } {
   const text = `${topic.title} ${topic.primary_keyword} ${topic.why_this_topic}`.toLowerCase();
 
-  if (text.includes("마그네슘") || text.includes("수면") || text.includes("불면") || text.includes("피로")) {
+  // 1. 마그네슘, 수면, 불면, 만성피로, 스트레스
+  if (text.includes("마그네슘") || text.includes("수면") || text.includes("불면") || text.includes("피로") || text.includes("스트레스") || text.includes("이완")) {
     return {
       featured: "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=1200&q=80",
       inBody: "https://images.unsplash.com/photo-1511295742362-92c96b124e52?auto=format&fit=crop&w=1200&q=80",
@@ -37,7 +38,8 @@ export function getTopicCuratedImages(topic: Topic): { featured: string; inBody:
     };
   }
 
-  if (text.includes("단식") || text.includes("오토파지") || text.includes("공복")) {
+  // 2. 간헐적 단식, 공복, 오토파지, 디톡스
+  if (text.includes("단식") || text.includes("오토파지") || text.includes("공복") || text.includes("디톡스") || text.includes("클렌즈")) {
     return {
       featured: "https://images.unsplash.com/photo-1490645935967-10de6ba17061?auto=format&fit=crop&w=1200&q=80",
       inBody: "https://images.unsplash.com/photo-1505576399279-565b52d4ac71?auto=format&fit=crop&w=1200&q=80",
@@ -46,23 +48,125 @@ export function getTopicCuratedImages(topic: Topic): { featured: string; inBody:
     };
   }
 
-  if (text.includes("식단") || text.includes("노화") || text.includes("혈당") || text.includes("건강") || text.includes("영양")) {
+  // 3. 건강 식단, 저속노화, 혈당, 다이어트, 영양, 슈퍼푸드
+  if (text.includes("식단") || text.includes("노화") || text.includes("혈당") || text.includes("당뇨") || text.includes("영양") || text.includes("다이어트") || text.includes("비타민") || text.includes("칼로리")) {
     return {
       featured: "https://images.unsplash.com/photo-1498837167922-ddd27525d352?auto=format&fit=crop&w=1200&q=80",
       inBody: "https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=1200&q=80",
-      featuredCaption: "▲ 혈당 스파이크를 예방하는 신선한 채소와 통곡물 기반 저속노화 식단",
+      featuredCaption: "▲ 혈당 스파이크를 예방하는 신선한 채소와 통곡물 기반 건강 식단",
       inBodyCaption: "▲ 식이섬유 -> 단백질 -> 복합 탄수화물 순서로 구성한 균형 잡힌 실전 밥상",
     };
   }
 
-  // Tech / AI / SEO
+  // 4. 운동, 헬스, 피트니스, 러닝, 홈트, 근력, 체형교정
+  if (text.includes("운동") || text.includes("헬스") || text.includes("피트니스") || text.includes("러닝") || text.includes("홈트") || text.includes("근육") || text.includes("필라테스") || text.includes("요가")) {
+    return {
+      featured: "https://images.unsplash.com/photo-1517838277536-f5f99be501cd?auto=format&fit=crop&w=1200&q=80",
+      inBody: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=1200&q=80",
+      featuredCaption: "▲ 기초 대사량 향상과 신체 활력을 돕는 맞춤형 운동 루틴",
+      inBodyCaption: "▲ 부상 방지와 코어 강화를 위한 바른 자세 및 실천 스트레칭",
+    };
+  }
+
+  // 5. AI, 챗GPT, 인공지능, LLM, 프롬프트, 자동화, 머신러닝
+  if (text.includes("ai") || text.includes("gpt") || text.includes("인공지능") || text.includes("프롬프트") || text.includes("자동화") || text.includes("머신러닝") || text.includes("딥러닝") || text.includes("에이전트")) {
+    return {
+      featured: "https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=1200&q=80",
+      inBody: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80",
+      featuredCaption: "▲ 차세대 자율 AI 에이전트와 지능형 워크플로우 자동화 기술",
+      inBodyCaption: "▲ 데이터 처리 최적화 및 실시간 AI 성능 모니터링 아키텍처",
+    };
+  }
+
+  // 6. 주식, 투자, 재테크, 부동산, 금융, 경제, 암호화폐, 코인, 세금
+  if (text.includes("주식") || text.includes("투자") || text.includes("재테크") || text.includes("부동산") || text.includes("금융") || text.includes("경제") || text.includes("비트코인") || text.includes("자산") || text.includes("절세") || text.includes("청약")) {
+    return {
+      featured: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&fit=crop&w=1200&q=80",
+      inBody: "https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?auto=format&fit=crop&w=1200&q=80",
+      featuredCaption: "▲ 시장 변동성 분석과 데이터 기반 포트폴리오 자산 배분 전략",
+      inBodyCaption: "▲ 복리 효과 극대화와 리스크 헷지를 위한 체계적 투자 로드맵",
+    };
+  }
+
+  // 7. 마케팅, SEO, 블로그 수익화, SNS, 인스타그램, 유튜브, 애드센스
+  if (text.includes("마케팅") || text.includes("seo") || text.includes("수익") || text.includes("블로그") || text.includes("인스타") || text.includes("유튜브") || text.includes("트래픽") || text.includes("브랜딩") || text.includes("광고") || text.includes("커머스")) {
+    return {
+      featured: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80",
+      inBody: "https://images.unsplash.com/photo-1533750349088-cd871a92f312?auto=format&fit=crop&w=1200&q=80",
+      featuredCaption: "▲ 검색 엔진 상위 노출과 트래픽 급상승을 위한 10-Factor SEO 전략",
+      inBodyCaption: "▲ 전환율 최적화(CRO) 및 지속 가능한 디지털 콘텐츠 수익화 파이프라인",
+    };
+  }
+
+  // 8. 코딩, 프로그래밍, 개발, 웹, 앱, 소프트웨어, 클라우드
+  if (text.includes("코딩") || text.includes("개발") || text.includes("프로그래밍") || text.includes("웹") || text.includes("앱") || text.includes("클라우드") || text.includes("서버") || text.includes("react") || text.includes("next")) {
+    return {
+      featured: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=1200&q=80",
+      inBody: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1200&q=80",
+      featuredCaption: "▲ 확장성 높은 모던 소프트웨어 개발 및 클라우드 아키텍처",
+      inBodyCaption: "▲ 코드 리팩토링 및 고성능 풀스택 시스템 구축 프로세스",
+    };
+  }
+
+  // 9. 여행, 관광, 호텔, 항공, 휴가, 명소
+  if (text.includes("여행") || text.includes("관광") || text.includes("호텔") || text.includes("항공") || text.includes("휴가") || text.includes("명소") || text.includes("캠핑")) {
+    return {
+      featured: "https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=1200&q=80",
+      inBody: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80",
+      featuredCaption: "▲ 힐링과 재충전을 위한 여행지 추천 및 최적의 동선 가이드",
+      inBodyCaption: "▲ 현지 로컬 명소와 감성적인 여행 꿀팁 총정리",
+    };
+  }
+
+  // 10. 맛집, 카페, 요리, 레시피, 커피, 베이킹
+  if (text.includes("맛집") || text.includes("카페") || text.includes("요리") || text.includes("레시피") || text.includes("커피") || text.includes("디저트") || text.includes("음식")) {
+    return {
+      featured: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1200&q=80",
+      inBody: "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=1200&q=80",
+      featuredCaption: "▲ 신선한 재료 본연의 맛을 살린 시그니처 메뉴와 다이닝 공간",
+      inBodyCaption: "▲ 누구나 쉽게 따라 할 수 있는 단계별 황금 레시피와 홈카페 노하우",
+    };
+  }
+
+  // 11. 뷰티, 피부, 패션, 화장품, 스타일, 헤어
+  if (text.includes("뷰티") || text.includes("피부") || text.includes("패션") || text.includes("화장품") || text.includes("스타일") || text.includes("메이크업") || text.includes("헤어")) {
+    return {
+      featured: "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=1200&q=80",
+      inBody: "https://images.unsplash.com/photo-1512290900672-1f48039c336b?auto=format&fit=crop&w=1200&q=80",
+      featuredCaption: "▲ 피부 장벽 강화와 빛나는 피부 톤을 위한 단계별 데일리 케어",
+      inBodyCaption: "▲ 트렌디한 스타일링과 나만의 개성을 살리는 뷰티 루틴",
+    };
+  }
+
+  // 12. 자기계발, 독서, 생산성, 습관, 심리학, 공부
+  if (text.includes("자기계발") || text.includes("독서") || text.includes("생산성") || text.includes("습관") || text.includes("심리") || text.includes("공부") || text.includes("동기부여") || text.includes("시간관리")) {
+    return {
+      featured: "https://images.unsplash.com/photo-1499750310107-5fef28a66643?auto=format&fit=crop&w=1200&q=80",
+      inBody: "https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?auto=format&fit=crop&w=1200&q=80",
+      featuredCaption: "▲ 지속적인 성장을 이끄는 아침 루틴과 몰입(Flow) 환경 구축",
+      inBodyCaption: "▲ 목표 달성을 가속화하는 실행력 강화 및 멘탈 관리 전략",
+    };
+  }
+
+  // 13. 자동차, 모빌리티, 테크기기, 스마트폰, 전자기기
+  if (text.includes("자동차") || text.includes("전기차") || text.includes("스마트폰") || text.includes("아이폰") || text.includes("갤럭시") || text.includes("노트북") || text.includes("모빌리티")) {
+    return {
+      featured: "https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1200&q=80",
+      inBody: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1200&q=80",
+      featuredCaption: "▲ 혁신적인 기술이 집약된 차세대 디바이스 및 스마트 모빌리티",
+      inBodyCaption: "▲ 실사용 환경에서의 성능 벤치마크 및 주요 스펙 비교 분석",
+    };
+  }
+
+  // 기본값 (세련된 모던 비즈니스/라이프스타일 이미지)
   return {
-    featured: "https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=1200&q=80",
-    inBody: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80",
-    featuredCaption: "▲ 차세대 자율 AI 에이전트와 지능형 워크플로우 자동화",
-    inBodyCaption: "▲ 데이터 분석 및 실시간 성능 모니터링 대시보드",
+    featured: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1200&q=80",
+    inBody: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?auto=format&fit=crop&w=1200&q=80",
+    featuredCaption: `▲ ${topic.primary_keyword} 관련 주요 트렌드 및 핵심 인사이트`,
+    inBodyCaption: `▲ ${topic.primary_keyword} 실전 적용을 위한 심층 가이드`,
   };
 }
+
 
 /**
  * Intelligent domain article synthesizer:
