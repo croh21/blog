@@ -155,12 +155,17 @@ function TrendsContent() {
               onChange={(e) => setSelectedCategory(e.target.value)}
               className="flex h-10 w-full rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 px-3 py-2 text-sm text-slate-900 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-blue-600"
             >
-              <option value="ALL">전체 카테고리</option>
+              <option value="ALL">전체 카테고리 (All Categories)</option>
+              <option value="여행 & 관광">여행 & 관광 (제주/캠핑/해외)</option>
+              <option value="맛집 & 요리">맛집 & 요리 (레시피/홈카페/노포)</option>
               <option value="건강 & 웰니스">건강 & 웰니스 (저속노화/영양/수면)</option>
-              <option value="AI & 생산성 테크">AI & 생산성 테크</option>
-              <option value="디지털 마케팅 & 수익화">디지털 마케팅 & 수익화</option>
+              <option value="AI & 테크">AI & 테크 (Claude/MCP/자동화)</option>
+              <option value="재테크 & 금융">재테크 & 금융 (절세/ETF/청약)</option>
+              <option value="디지털 마케팅">디지털 마케팅 & 블로그 수익화</option>
+              <option value="자기계발 & 라이프">자기계발 & 라이프 (루틴/노션/습관)</option>
             </select>
           </div>
+
 
           <div>
             <select
